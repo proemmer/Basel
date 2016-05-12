@@ -15,6 +15,7 @@ events. UWP app which uses the library to connect gestures with keyboard keys.
 * Black and white screen. (gesture??)
 * Push information from Presentation to Band??? -> Then we have to create a Addin
 * Also use Cortana to control the presentation. (Cortana is reachable with the band)
+* Geture trainer (create own gestures and map it to commands)
 
 ## Ideas
 
