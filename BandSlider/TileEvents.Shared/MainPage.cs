@@ -16,6 +16,7 @@
     TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
+using Basel;
 using Microsoft.Band;
 using Microsoft.Band.Tiles;
 using Microsoft.Band.Tiles.Pages;
@@ -37,6 +38,7 @@ namespace BandSlider
         private App viewModel;
         private ButtonKind buttonKind;
         private bool handlingClick;
+        private BandManager _bandManager = new BandManager(BandClientManager.Instance);
         
         private async void Button_Click(object sender, RoutedEventArgs e)
         {

@@ -4,12 +4,19 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TileEvents
+namespace Basel
 {
     public class BandManager : IDisposable
     {
+        private readonly IBandClientManager _bandClientManager;
         private IBandClient _bandClient;
 
+        public BandManager(IBandClientManager bandClientManager)
+        {
+            if (bandClientManager == null)
+                throw new ArgumentNullException("bandClientManager");
+            _bandClientManager = bandClientManager;
+        }
 
         public async Task<int> StartMonitoring()
         {
@@ -17,13 +24,13 @@ namespace TileEvents
             try
             {
                 // Get the list of Microsoft Bands paired to the phone.
-                IBandInfo[] pairedBands = await BandClientManager.Instance.GetBandsAsync();
+                IBandInfo[] pairedBands = await _bandClientManager.GetBandsAsync();
                 if (pairedBands.Length < 1)
                 {
                     return await Task.FromResult(-1);
                 }
 
-                _bandClient = await BandClientManager.Instance.ConnectAsync(pairedBands[0]);
+                _bandClient = await _bandClientManager.ConnectAsync(pairedBands[0]);
 
                 _bandClient.SensorManager.Contact.ReadingChanged += (s, args) =>
                 {
@@ -49,7 +56,6 @@ namespace TileEvents
             }
             return await Task.FromResult(0);
         }
-
 
         public async Task<int> StopMonitoring()
         {
