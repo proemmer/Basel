@@ -4,20 +4,28 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Basel
+namespace Basel.Recorder
 {
     public class DataRecorder : IDataRecorder, ISensorDataConsumer
     {
         private readonly IBandManager _bandManager;
         private IRecord _record;
+ 
         private CancellationTokenSource _cts;
-        private enum OperationType { Playing, Recoring };
 
-        private class Operation
+        public RecorderState RecorderState { get; private set; } = RecorderState.Stopped;
+
+        public IRecord Record
         {
-            public OperationType OperationType { get; set; }
-            public IRecord Record { get; set; }
+            get
+            {
+                if (RecorderState != RecorderState.Stopped)
+                    throw new InvalidOperationException("Set the record is only available in state stopped!");
+                return _record;
+            }
         }
+
+
 
         public DataRecorder(IBandManager manager)
         {
@@ -26,7 +34,20 @@ namespace Basel
             _bandManager = manager;
         }
 
-        public RecorderState RecorderState { get; private set; } = RecorderState.None;
+        public Task<bool> StartAsync()
+        {
+            if (RecorderState == RecorderState.Pausing)
+
+            if (_record == null)
+                _record = new Record();
+
+            return _bandManager.StartAsync();
+        }
+
+        public Task<IRecord> StopAsync()
+        {
+            throw new NotImplementedException();
+        }
 
         public Task<bool> PauseAsync()
         {
@@ -38,44 +59,15 @@ namespace Basel
             throw new NotImplementedException();
         }
 
-        public Task<bool> StartPlayingAsync(IRecord record, double speed = 1, bool loop = false)
-        {
-            if (_record == null)
-                throw new InvalidOperationException("Start is not allowed, there is already an active record!");
 
-            if (record == null)
-                throw new ArgumentNullException("record");
 
-            return _bandManager.StartAsync();
-        }
-
-        public Task<bool> RestartPlayingAsync(double speed = 1, bool loop = false)
+        public Task<bool> RestartAsync(double speed = 1, bool loop = false)
         {
             if (_record == null)
                 throw new InvalidOperationException("Restart is not allowed, you have to call start first!");
 
             return _bandManager.StartAsync();
         }
-
-        public Task<bool> StopPlayingAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> StartRecordingAsync()
-        {
-            return _bandManager.StartAsync();
-        }
-
-        public async Task<IRecord> StopRecordingAsync()
-        {
-            if(await _bandManager.StopAsync())
-            {
-                //TODO
-            }
-            return null;
-        }
-
 
 
         private Task Run(Operation operation)
@@ -90,14 +82,5 @@ namespace Basel
             TaskScheduler.Current);
         }
 
-        public Task<bool> StartAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> StopAsync()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

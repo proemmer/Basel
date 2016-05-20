@@ -51,93 +51,96 @@ namespace Basel
                 }
 
                 _bandClient = await _bandClientManager.ConnectAsync(pairedBands[0]);
-                var start = new List<Task>();
-
-                if (_configuration.AmbientLight)
+                if (_bandClient != null)
                 {
-                    _bandClient.SensorManager.AmbientLight.ReadingChanged += (s, args) => ProcessSensorReading(args.SensorReading, _ambientLightSensorUpdate);
-                    start.Add(_bandClient.SensorManager.AmbientLight.StartReadingsAsync());
-                }
+                    var start = new List<Task>();
 
-                if (_configuration.Accelerometer)
-                {
-                    _bandClient.SensorManager.Accelerometer.ReadingChanged += (s, args) => ProcessSensorReading(args.SensorReading, _accelerometerSensorUpdate);
-                    start.Add(_bandClient.SensorManager.Accelerometer.StartReadingsAsync());
-                }
+                    if (_configuration.AmbientLight)
+                    {
+                        _bandClient.SensorManager.AmbientLight.ReadingChanged += (s, args) => ProcessSensorReading(args.SensorReading, _ambientLightSensorUpdate);
+                        start.Add(_bandClient.SensorManager.AmbientLight.StartReadingsAsync());
+                    }
 
-                if (_configuration.Altimeter)
-                {
-                    _bandClient.SensorManager.Altimeter.ReadingChanged += (s, args) => ProcessSensorReading(args.SensorReading, _altimeterSensorUpdate);
-                    start.Add(_bandClient.SensorManager.Altimeter.StartReadingsAsync());
-                }
+                    if (_configuration.Accelerometer)
+                    {
+                        _bandClient.SensorManager.Accelerometer.ReadingChanged += (s, args) => ProcessSensorReading(args.SensorReading, _accelerometerSensorUpdate);
+                        start.Add(_bandClient.SensorManager.Accelerometer.StartReadingsAsync());
+                    }
 
-                if (_configuration.Barometer)
-                {
-                    _bandClient.SensorManager.Barometer.ReadingChanged += (s, args) => ProcessSensorReading(args.SensorReading, _barometerSensorUpdate);
-                    start.Add(_bandClient.SensorManager.Barometer.StartReadingsAsync());
-                }
+                    if (_configuration.Altimeter)
+                    {
+                        _bandClient.SensorManager.Altimeter.ReadingChanged += (s, args) => ProcessSensorReading(args.SensorReading, _altimeterSensorUpdate);
+                        start.Add(_bandClient.SensorManager.Altimeter.StartReadingsAsync());
+                    }
 
-                if (_configuration.Calories)
-                {
-                    _bandClient.SensorManager.Calories.ReadingChanged += (s, args) => ProcessSensorReading(args.SensorReading, _caloriesSensorUpdate);
-                    start.Add(_bandClient.SensorManager.Calories.StartReadingsAsync());
-                }
+                    if (_configuration.Barometer)
+                    {
+                        _bandClient.SensorManager.Barometer.ReadingChanged += (s, args) => ProcessSensorReading(args.SensorReading, _barometerSensorUpdate);
+                        start.Add(_bandClient.SensorManager.Barometer.StartReadingsAsync());
+                    }
 
-                if (_configuration.Contact)
-                {
-                    _bandClient.SensorManager.Contact.ReadingChanged += (s, args) => ProcessSensorReading(args.SensorReading, _contactSensorUpdate);
-                    start.Add(_bandClient.SensorManager.Contact.StartReadingsAsync());
-                }
+                    if (_configuration.Calories)
+                    {
+                        _bandClient.SensorManager.Calories.ReadingChanged += (s, args) => ProcessSensorReading(args.SensorReading, _caloriesSensorUpdate);
+                        start.Add(_bandClient.SensorManager.Calories.StartReadingsAsync());
+                    }
 
-                if (_configuration.Distance)
-                {
-                    _bandClient.SensorManager.Distance.ReadingChanged += (s, args) => ProcessSensorReading(args.SensorReading, _distanceSensorUpdate);
-                    start.Add(_bandClient.SensorManager.Distance.StartReadingsAsync());
-                }
+                    if (_configuration.Contact)
+                    {
+                        _bandClient.SensorManager.Contact.ReadingChanged += (s, args) => ProcessSensorReading(args.SensorReading, _contactSensorUpdate);
+                        start.Add(_bandClient.SensorManager.Contact.StartReadingsAsync());
+                    }
 
-                if (_configuration.Gsr)
-                {
-                    _bandClient.SensorManager.Gsr.ReadingChanged += (s, args) => ProcessSensorReading(args.SensorReading, _grsSensorUpdate);
-                    start.Add(_bandClient.SensorManager.Gsr.StartReadingsAsync());
-                }
+                    if (_configuration.Distance)
+                    {
+                        _bandClient.SensorManager.Distance.ReadingChanged += (s, args) => ProcessSensorReading(args.SensorReading, _distanceSensorUpdate);
+                        start.Add(_bandClient.SensorManager.Distance.StartReadingsAsync());
+                    }
 
-                if (_configuration.Gyroscope)
-                {
-                    _bandClient.SensorManager.Gyroscope.ReadingChanged += (s, args) => ProcessSensorReading(args.SensorReading, _gyroscopeSensorUpdate);
-                    start.Add(_bandClient.SensorManager.Gyroscope.StartReadingsAsync());
-                }
+                    if (_configuration.Gsr)
+                    {
+                        _bandClient.SensorManager.Gsr.ReadingChanged += (s, args) => ProcessSensorReading(args.SensorReading, _grsSensorUpdate);
+                        start.Add(_bandClient.SensorManager.Gsr.StartReadingsAsync());
+                    }
 
-                if (_configuration.HeartRate)
-                {
-                    _bandClient.SensorManager.HeartRate.ReadingChanged += (s, args) => ProcessSensorReading(args.SensorReading, _heartRateSensorUpdate);
-                    start.Add(_bandClient.SensorManager.HeartRate.StartReadingsAsync());
-                }
+                    if (_configuration.Gyroscope)
+                    {
+                        _bandClient.SensorManager.Gyroscope.ReadingChanged += (s, args) => ProcessSensorReading(args.SensorReading, _gyroscopeSensorUpdate);
+                        start.Add(_bandClient.SensorManager.Gyroscope.StartReadingsAsync());
+                    }
 
-                if (_configuration.Pedometer)
-                {
-                    _bandClient.SensorManager.Pedometer.ReadingChanged += (s, args) => ProcessSensorReading(args.SensorReading, _pedometerSensorUpdate);
-                    start.Add(_bandClient.SensorManager.Pedometer.StartReadingsAsync());
-                }
+                    if (_configuration.HeartRate)
+                    {
+                        _bandClient.SensorManager.HeartRate.ReadingChanged += (s, args) => ProcessSensorReading(args.SensorReading, _heartRateSensorUpdate);
+                        start.Add(_bandClient.SensorManager.HeartRate.StartReadingsAsync());
+                    }
 
-                if (_configuration.RRInterval)
-                {
-                    _bandClient.SensorManager.RRInterval.ReadingChanged += (s, args) => ProcessSensorReading(args.SensorReading, _rRIntervalSensorUpdate);
-                    start.Add(_bandClient.SensorManager.RRInterval.StartReadingsAsync());
-                }
+                    if (_configuration.Pedometer)
+                    {
+                        _bandClient.SensorManager.Pedometer.ReadingChanged += (s, args) => ProcessSensorReading(args.SensorReading, _pedometerSensorUpdate);
+                        start.Add(_bandClient.SensorManager.Pedometer.StartReadingsAsync());
+                    }
 
-                if (_configuration.SkinTemperature)
-                {
-                    _bandClient.SensorManager.SkinTemperature.ReadingChanged += (s, args) => ProcessSensorReading(args.SensorReading, _skinTemperatureSensorUpdate);
-                    start.Add(_bandClient.SensorManager.SkinTemperature.StartReadingsAsync());
-                }
+                    if (_configuration.RRInterval)
+                    {
+                        _bandClient.SensorManager.RRInterval.ReadingChanged += (s, args) => ProcessSensorReading(args.SensorReading, _rRIntervalSensorUpdate);
+                        start.Add(_bandClient.SensorManager.RRInterval.StartReadingsAsync());
+                    }
 
-                if (_configuration.UV)
-                {
-                    _bandClient.SensorManager.UV.ReadingChanged += (s, args) => ProcessSensorReading(args.SensorReading, _uVSensorUpdate);
-                    start.Add(_bandClient.SensorManager.UV.StartReadingsAsync());
-                }
+                    if (_configuration.SkinTemperature)
+                    {
+                        _bandClient.SensorManager.SkinTemperature.ReadingChanged += (s, args) => ProcessSensorReading(args.SensorReading, _skinTemperatureSensorUpdate);
+                        start.Add(_bandClient.SensorManager.SkinTemperature.StartReadingsAsync());
+                    }
 
-                Task.WaitAll(start.ToArray());
+                    if (_configuration.UV)
+                    {
+                        _bandClient.SensorManager.UV.ReadingChanged += (s, args) => ProcessSensorReading(args.SensorReading, _uVSensorUpdate);
+                        start.Add(_bandClient.SensorManager.UV.StartReadingsAsync());
+                    }
+
+                    Task.WaitAll(start.ToArray());
+                }
             }
             catch (Exception ex)
             {
@@ -150,8 +153,93 @@ namespace Basel
         {
             try
             {
-                if(_bandClient != null)
-                    await _bandClient.SensorManager.Accelerometer.StopReadingsAsync();
+                var start = new List<Task>();
+
+                if (_configuration.AmbientLight)
+                {
+                    _bandClient.SensorManager.AmbientLight.ReadingChanged -= (s, args) => ProcessSensorReading(args.SensorReading, _ambientLightSensorUpdate);
+                    start.Add(_bandClient.SensorManager.AmbientLight.StopReadingsAsync());
+                }
+
+                if (_configuration.Accelerometer)
+                {
+                    _bandClient.SensorManager.Accelerometer.ReadingChanged -= (s, args) => ProcessSensorReading(args.SensorReading, _accelerometerSensorUpdate);
+                    start.Add(_bandClient.SensorManager.Accelerometer.StopReadingsAsync());
+                }
+
+                if (_configuration.Altimeter)
+                {
+                    _bandClient.SensorManager.Altimeter.ReadingChanged -= (s, args) => ProcessSensorReading(args.SensorReading, _altimeterSensorUpdate);
+                    start.Add(_bandClient.SensorManager.Altimeter.StopReadingsAsync());
+                }
+
+                if (_configuration.Barometer)
+                {
+                    _bandClient.SensorManager.Barometer.ReadingChanged -= (s, args) => ProcessSensorReading(args.SensorReading, _barometerSensorUpdate);
+                    start.Add(_bandClient.SensorManager.Barometer.StopReadingsAsync());
+                }
+
+                if (_configuration.Calories)
+                {
+                    _bandClient.SensorManager.Calories.ReadingChanged -= (s, args) => ProcessSensorReading(args.SensorReading, _caloriesSensorUpdate);
+                    start.Add(_bandClient.SensorManager.Calories.StopReadingsAsync());
+                }
+
+                if (_configuration.Contact)
+                {
+                    _bandClient.SensorManager.Contact.ReadingChanged -= (s, args) => ProcessSensorReading(args.SensorReading, _contactSensorUpdate);
+                    start.Add(_bandClient.SensorManager.Contact.StopReadingsAsync());
+                }
+
+                if (_configuration.Distance)
+                {
+                    _bandClient.SensorManager.Distance.ReadingChanged -= (s, args) => ProcessSensorReading(args.SensorReading, _distanceSensorUpdate);
+                    start.Add(_bandClient.SensorManager.Distance.StopReadingsAsync());
+                }
+
+                if (_configuration.Gsr)
+                {
+                    _bandClient.SensorManager.Gsr.ReadingChanged -= (s, args) => ProcessSensorReading(args.SensorReading, _grsSensorUpdate);
+                    start.Add(_bandClient.SensorManager.Gsr.StopReadingsAsync());
+                }
+
+                if (_configuration.Gyroscope)
+                {
+                    _bandClient.SensorManager.Gyroscope.ReadingChanged -= (s, args) => ProcessSensorReading(args.SensorReading, _gyroscopeSensorUpdate);
+                    start.Add(_bandClient.SensorManager.Gyroscope.StopReadingsAsync());
+                }
+
+                if (_configuration.HeartRate)
+                {
+                    _bandClient.SensorManager.HeartRate.ReadingChanged -= (s, args) => ProcessSensorReading(args.SensorReading, _heartRateSensorUpdate);
+                    start.Add(_bandClient.SensorManager.HeartRate.StopReadingsAsync());
+                }
+
+                if (_configuration.Pedometer)
+                {
+                    _bandClient.SensorManager.Pedometer.ReadingChanged -= (s, args) => ProcessSensorReading(args.SensorReading, _pedometerSensorUpdate);
+                    start.Add(_bandClient.SensorManager.Pedometer.StopReadingsAsync());
+                }
+
+                if (_configuration.RRInterval)
+                {
+                    _bandClient.SensorManager.RRInterval.ReadingChanged -= (s, args) => ProcessSensorReading(args.SensorReading, _rRIntervalSensorUpdate);
+                    start.Add(_bandClient.SensorManager.RRInterval.StopReadingsAsync());
+                }
+
+                if (_configuration.SkinTemperature)
+                {
+                    _bandClient.SensorManager.SkinTemperature.ReadingChanged -= (s, args) => ProcessSensorReading(args.SensorReading, _skinTemperatureSensorUpdate);
+                    start.Add(_bandClient.SensorManager.SkinTemperature.StopReadingsAsync());
+                }
+
+                if (_configuration.UV)
+                {
+                    _bandClient.SensorManager.UV.ReadingChanged -= (s, args) => ProcessSensorReading(args.SensorReading, _uVSensorUpdate);
+                    start.Add(_bandClient.SensorManager.UV.StopReadingsAsync());
+                }
+
+                Task.WaitAll(start.ToArray());
             }
             catch (Exception ex)
             {
