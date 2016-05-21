@@ -139,7 +139,7 @@ namespace Basel
                         start.Add(_bandClient.SensorManager.UV.StartReadingsAsync());
                     }
 
-                    Task.WaitAll(start.ToArray());
+                    //Task.WaitAll(start.ToArray());
                 }
             }
             catch (Exception ex)

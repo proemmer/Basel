@@ -8,6 +8,11 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock HorizontalAlignment="Left" Margin="10,23,0,0" TextWrapping="Wrap" Text="MICROSOFT BAND SDK - ACCELEROMETER" VerticalAlignment="Top" FontSize="16"/>
+        <Button Content="Run" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top" Click="Button_Click" FontFamily="Global User Interface" FontSize="16"/>
+        <ScrollViewer Margin="10,135,10,10" VerticalScrollBarVisibility="Auto">
+            <TextBlock TextWrapping="Wrap" Text="{Binding StatusMessage}" FontSize="16"/>
+        </ScrollViewer>
 
     </Grid>
 </Page>

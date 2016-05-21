@@ -6,6 +6,8 @@ namespace Basel.Recorder
     public enum RecorderState{ Stopped, Recoring, Pausing }
     public interface IDataRecorder
     {
+
+        IRecord Record { get; }
         /// <summary>
         /// Create a new IRecord (if not in state paused) and collect data
         /// </summary>
@@ -16,7 +18,7 @@ namespace Basel.Recorder
         /// Stop the recording and return the recorded IRecord
         /// </summary>
         /// <returns></returns>
-        Task<IRecord> StopAsync();
+        Task<bool> StopAsync();
 
         /// <summary>
         /// Pause recording or playing

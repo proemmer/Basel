@@ -4,7 +4,7 @@
   <mp:PhoneIdentity PhoneProductId="234a9222-75af-4f92-af22-bba8aae833c3" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>BandSlider</DisplayName>
-    <PublisherDisplayName>Benjamin</PublisherDisplayName>
+    <PublisherDisplayName>Proemmer</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>

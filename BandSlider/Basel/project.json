@@ -1,25 +1,17 @@
-{
-  "version": "1.0.0-*",
-  "description": "Basel Class Library",
-  "authors": [ "Benjamin" ],
-  "packOptions": {
-    "tags": [ ],
-    "licenseUrl": ""
+﻿{
+  "dependencies": {
+    "Microsoft.Band": "1.3.20420",
+    "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0"
   },
   "frameworks": {
-    "uap10.0": {
-      "dependencies": {
-        "Microsoft.CSharp": "4.0.1-beta-23516",
-        "System.Collections": "4.0.11-beta-23516",
-        "System.Linq": "4.0.1-beta-23516",
-        "System.Runtime": "4.0.21-beta-23516",
-        "System.Threading": "4.0.11-beta-23516",
-        "Microsoft.Band": "1.3.20420"
-      }
-    }
+    "uap10.0": {}
   },
-  "dependencies": {
-    "System.Collections.Concurrent": "4.0.11-beta-23516",
-    "System.Threading.Thread": "4.0.0-rc3-23829"
+  "runtimes": {
+    "win10-arm": {},
+    "win10-arm-aot": {},
+    "win10-x86": {},
+    "win10-x86-aot": {},
+    "win10-x64": {},
+    "win10-x64-aot": {}
   }
 }

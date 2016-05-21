@@ -17,6 +17,7 @@
 */
 
 using Basel;
+using Basel.Recorder;
 using Microsoft.Band;
 using Microsoft.Band.Tiles;
 using Microsoft.Band.Tiles.Pages;
@@ -38,8 +39,10 @@ namespace BandSlider
         private App viewModel;
         private ButtonKind buttonKind;
         private bool handlingClick;
-        private BandManager _bandManager = new BandManager(BandClientManager.Instance);
-        
+        private BandManager _bandManager;
+        private IDataRecorder _recorder;
+
+
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             if (handlingClick)
@@ -53,75 +56,99 @@ namespace BandSlider
             try
             {
                 buttonKind = ButtonKindFromModel();
-
-                // Get the list of Microsoft Bands paired to the phone.
-                IBandInfo[] pairedBands = await BandClientManager.Instance.GetBandsAsync();
-                if (pairedBands.Length < 1)
+                if (_bandManager == null)
                 {
-                    this.viewModel.StatusMessage = "This sample app requires a Microsoft Band paired to your device. Also make sure that you have the latest firmware installed on your Band, as provided by the latest Microsoft Health app.";
-                    return;
+
+                    var config = new BaselConfiguration
+                    {
+                        Contact = true,
+                        Gyroscope = true,
+                        Accelerometer = true
+                    };
+
+
+                    _bandManager = new BandManager(BandClientManager.Instance, config);
+
+
+                    _recorder = new DataRecorder(_bandManager, config);
+
+                    await _recorder.StartAsync();
+                }
+                else
+                {
+                    await _recorder.StopAsync();
+                    _bandManager = null;
                 }
 
-                // Connect to Microsoft Band.
-                using (IBandClient bandClient = await BandClientManager.Instance.ConnectAsync(pairedBands[0]))
-                {
-                    // Create a Tile with a TextButton on it.
-                    // WARNING! This tile guid is only an example. Please do not copy it to your test application;
-                    // always create a unique guid for each application.
-                    // If one application installs its tile, a second application using the same guid will fail to install
-                    // its tile due to a guid conflict. In the event of such a failure, the text of the exception will not
-                    // report that the tile with the same guid already exists on the band.
-                    // There might be other unexpected behavior.
-                    Guid myTileId = new Guid("497B746E-4F5F-44D4-96E2-FC46D407B6E3");
-                    BandTile myTile = new BandTile(myTileId)
-                    {
-                        Name = "My Tile",
-                        TileIcon = await LoadIcon("ms-appx:///Assets/SampleTileIconLarge.png"),
-                        SmallIcon = await LoadIcon("ms-appx:///Assets/SampleTileIconSmall.png")
-                    };
 
-                    await BuildLayout(myTile);
+                //// Get the list of Microsoft Bands paired to the phone.
+                //IBandInfo[] pairedBands = await BandClientManager.Instance.GetBandsAsync();
+                //if (pairedBands.Length < 1)
+                //{
+                //    this.viewModel.StatusMessage = "This sample app requires a Microsoft Band paired to your device. Also make sure that you have the latest firmware installed on your Band, as provided by the latest Microsoft Health app.";
+                //    return;
+                //}
 
-                    // Remove the Tile from the Band, if present. An application won't need to do this everytime it runs. 
-                    // But in case you modify this sample code and run it again, let's make sure to start fresh.
-                    await bandClient.TileManager.RemoveTileAsync(myTileId);
-                    
-                    // Create the Tile on the Band.
-                    await bandClient.TileManager.AddTileAsync(myTile);
-                    await bandClient.TileManager.SetPagesAsync(myTileId, new PageData(new Guid("5F5FD06E-BD37-4B71-B36C-3ED9D721F200"), 0, GetPageElementData()));
+                //// Connect to Microsoft Band.
+                //using (IBandClient bandClient = await BandClientManager.Instance.ConnectAsync(pairedBands[0]))
+                //{
+                //    // Create a Tile with a TextButton on it.
+                //    // WARNING! This tile guid is only an example. Please do not copy it to your test application;
+                //    // always create a unique guid for each application.
+                //    // If one application installs its tile, a second application using the same guid will fail to install
+                //    // its tile due to a guid conflict. In the event of such a failure, the text of the exception will not
+                //    // report that the tile with the same guid already exists on the band.
+                //    // There might be other unexpected behavior.
+                //    Guid myTileId = new Guid("497B746E-4F5F-44D4-96E2-FC46D407B6E3");
+                //    BandTile myTile = new BandTile(myTileId)
+                //    {
+                //        Name = "My Tile",
+                //        TileIcon = await LoadIcon("ms-appx:///Assets/SampleTileIconLarge.png"),
+                //        SmallIcon = await LoadIcon("ms-appx:///Assets/SampleTileIconSmall.png")
+                //    };
 
-                    // Subscribe to Tile events.
-                    int buttonPressedCount = 0;
-                    TaskCompletionSource<bool> closePressed = new TaskCompletionSource<bool>();
+                //    await BuildLayout(myTile);
 
-                    bandClient.TileManager.TileButtonPressed += (s, args) => 
-                    {
-                        Dispatcher.RunAsync(
-                            CoreDispatcherPriority.Normal,
-                            () =>
-                            {
-                                buttonPressedCount++;
-                                this.viewModel.StatusMessage = string.Format("TileButtonPressed = {0}", buttonPressedCount);
-                            }
-                        );
-                    };
-                    bandClient.TileManager.TileClosed += (s, args) => 
-                    {
-                        closePressed.TrySetResult(true);
-                    };
+                //    // Remove the Tile from the Band, if present. An application won't need to do this everytime it runs. 
+                //    // But in case you modify this sample code and run it again, let's make sure to start fresh.
+                //    await bandClient.TileManager.RemoveTileAsync(myTileId);
 
-                    await bandClient.TileManager.StartReadingsAsync();
+                //    // Create the Tile on the Band.
+                //    await bandClient.TileManager.AddTileAsync(myTile);
+                //    await bandClient.TileManager.SetPagesAsync(myTileId, new PageData(new Guid("5F5FD06E-BD37-4B71-B36C-3ED9D721F200"), 0, GetPageElementData()));
 
-                    // Receive events until the Tile is closed.
-                    this.viewModel.StatusMessage = "Check the Tile on your Band (it's the last Tile). Waiting for events ...";
+                //    // Subscribe to Tile events.
+                //    int buttonPressedCount = 0;
+                //    TaskCompletionSource<bool> closePressed = new TaskCompletionSource<bool>();
 
-                    await closePressed.Task;
-                    
-                    // Stop listening for Tile events.
-                    await bandClient.TileManager.StopReadingsAsync();
+                //    bandClient.TileManager.TileButtonPressed += (s, args) => 
+                //    {
+                //        Dispatcher.RunAsync(
+                //            CoreDispatcherPriority.Normal,
+                //            () =>
+                //            {
+                //                buttonPressedCount++;
+                //                this.viewModel.StatusMessage = string.Format("TileButtonPressed = {0}", buttonPressedCount);
+                //            }
+                //        );
+                //    };
+                //    bandClient.TileManager.TileClosed += (s, args) => 
+                //    {
+                //        closePressed.TrySetResult(true);
+                //    };
 
-                    this.viewModel.StatusMessage = "Done.";
-                }
+                //    await bandClient.TileManager.StartReadingsAsync();
+
+                //    // Receive events until the Tile is closed.
+                //    this.viewModel.StatusMessage = "Check the Tile on your Band (it's the last Tile). Waiting for events ...";
+
+                //    await closePressed.Task;
+
+                //    // Stop listening for Tile events.
+                //    await bandClient.TileManager.StopReadingsAsync();
+
+                //    this.viewModel.StatusMessage = "Done.";
+                //}
             }
             catch (Exception ex)
             {
