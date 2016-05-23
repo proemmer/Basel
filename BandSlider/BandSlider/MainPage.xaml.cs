@@ -25,7 +25,7 @@ namespace BandSlider
         public MainPage()
         {
             this.InitializeComponent();
-            this.DataContext = this.viewModel = App.Current;
+            this.DataContext = this._viewModel = App.Current;
         }
     }
 }

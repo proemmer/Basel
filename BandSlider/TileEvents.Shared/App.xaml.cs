@@ -65,43 +65,57 @@ namespace BandSlider
             get { return (App)Application.Current; }
         }
 
-        private string statusMessage = "Pair a Microsoft Band with your device and click Run.";
+        private string _statusMessage = "Pair a Microsoft Band with your device and click Run.";
         public string StatusMessage
         {
-            get { return statusMessage; }
-            set { UpdatePropertyField(ref statusMessage, value, "StatusMessage"); }
+            get { return _statusMessage; }
+            set { UpdatePropertyField(ref _statusMessage, value, "StatusMessage"); }
         }
 
-        private bool useTextButton = true;
+        private string _filePath = @"";
+        public string FilePath
+        {
+            get { return _filePath; }
+            set { UpdatePropertyField(ref _filePath, value, "FilePath"); }
+        }
+
+        private bool _playing;
+        public bool Playing
+        {
+            get { return _playing; }
+            set { UpdatePropertyField(ref _playing, value, "Playing"); }
+        }
+
+        private bool _useTextButton = true;
         public bool UseTextButton
         {
-            get { return useTextButton; }
+            get { return _useTextButton; }
             set
             {
                 ResetButtonPropertiesIf(value);
-                UpdatePropertyField(ref useTextButton, value, "UseTextButton");
+                UpdatePropertyField(ref _useTextButton, value, "UseTextButton");
             }
         }
 
-        private bool useFilledButton = false;
+        private bool _useFilledButton = false;
         public bool UseFilledButton
         {
-            get { return useFilledButton; }
+            get { return _useFilledButton; }
             set
             {
                 ResetButtonPropertiesIf(value);
-                UpdatePropertyField(ref useFilledButton, value, "UseFilledButton");
+                UpdatePropertyField(ref _useFilledButton, value, "UseFilledButton");
             }
         }
 
-        private bool useIconButton = false;
+        private bool _useIconButton = false;
         public bool UseIconButton
         {
-            get { return useIconButton; }
+            get { return _useIconButton; }
             set
             {
                 ResetButtonPropertiesIf(value);
-                UpdatePropertyField(ref useIconButton, value, "UseIconButton");
+                UpdatePropertyField(ref _useIconButton, value, "UseIconButton");
             }
         }
 
@@ -120,7 +134,7 @@ namespace BandSlider
         {
             if (value)
             {
-                useTextButton = useFilledButton = useIconButton = false;
+                _useTextButton = _useFilledButton = _useIconButton = false;
             }
         }
 

@@ -59,7 +59,7 @@ namespace Basel.Recorder
                 Task.FromResult(false);
             _pausing = false;
             _waitingForPlay.Set();
-            return Task.FromResult(true);
+            return Play();
         }
 
         public Task<bool> PauseAsync()
@@ -84,7 +84,7 @@ namespace Basel.Recorder
 
 
 
-        private Task Play()
+        private Task<bool> Play()
         {
             if (_cts != null)
                 _cts.Dispose();
@@ -172,25 +172,29 @@ namespace Basel.Recorder
                 do
                 {
                     var accelerometerEnumerator = collection.GetEnumerator();
-                    var startTime = accelerometerEnumerator.Current.Timestamp;
 
-                    while (!_cts.IsCancellationRequested)
+                    if (accelerometerEnumerator.MoveNext())
                     {
-                        if (_pausing)
-                            _waitingForPlay.Wait();
-                        if (_cts.IsCancellationRequested)
-                            return;
+                        var startTime = accelerometerEnumerator.Current.Timestamp;
 
-                        ProcessSensorReading<T>(accelerometerEnumerator.Current, onUpdate);
-
-                        if (accelerometerEnumerator.MoveNext())
+                        while (!_cts.IsCancellationRequested)
                         {
-                            var sleepTime = Convert.ToInt32((accelerometerEnumerator.Current.Timestamp - startTime).TotalMilliseconds * _speed);
-                            if (_cts.Token.WaitHandle.WaitOne(sleepTime))
+                            if (_pausing)
+                                _waitingForPlay.Wait();
+                            if (_cts.IsCancellationRequested)
+                                return;
+
+                            ProcessSensorReading<T>(accelerometerEnumerator.Current, onUpdate);
+
+                            if (accelerometerEnumerator.MoveNext())
+                            {
+                                var sleepTime = Convert.ToInt32((accelerometerEnumerator.Current.Timestamp - startTime).TotalMilliseconds * _speed);
+                                if (_cts.Token.WaitHandle.WaitOne(sleepTime))
+                                    break;
+                            }
+                            else
                                 break;
                         }
-                        else
-                            break;
                     }
 
                     //TODO:  synchronize with other sensors!

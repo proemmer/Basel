@@ -22,8 +22,10 @@ using Microsoft.Band;
 using Microsoft.Band.Tiles;
 using Microsoft.Band.Tiles.Pages;
 using System;
+using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
+using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
@@ -36,128 +38,211 @@ namespace BandSlider
     /// </summary>
     partial class MainPage
     {
-        private App viewModel;
-        private ButtonKind buttonKind;
-        private bool handlingClick;
-        private BandManager _bandManager;
+        private App _viewModel;
+        private ButtonKind _buttonKind;
+        private bool _handlingClick;
+        private ISensorDataProducer _producer;
         private IDataRecorder _recorder;
+        private IDataPlayer _player;
+        private IRecord _currentRecord;
 
-
-        private async void Button_Click(object sender, RoutedEventArgs e)
+        private async void ButtonRun_Click(object sender, RoutedEventArgs e)
         {
-            if (handlingClick)
+            if (_handlingClick)
             {
                 return;
             }
 
-            this.viewModel.StatusMessage = "Running ...";
+            this._viewModel.StatusMessage = "Starting ...";
 
-            handlingClick = true;
+            _handlingClick = true;
             try
             {
-                buttonKind = ButtonKindFromModel();
-                if (_bandManager == null)
+                _buttonKind = ButtonKindFromModel();
+
+                var config = new BaselConfiguration
+                {
+                    Contact = true,
+                    Gyroscope = true,
+                    Accelerometer = true
+                };
+
+
+                if (_viewModel.Playing)
                 {
 
-                    var config = new BaselConfiguration
+                    if (_currentRecord != null)
                     {
-                        Contact = true,
-                        Gyroscope = true,
-                        Accelerometer = true
-                    };
+                        _player = new DataPlayer(config)
+                        {
+                            Record = _currentRecord
+                        };
 
-
-                    _bandManager = new BandManager(BandClientManager.Instance, config);
-
-
-                    _recorder = new DataRecorder(_bandManager, config);
-
-                    await _recorder.StartAsync();
+                        await _player.StartAsync();
+                        _viewModel.StatusMessage = "Playing...";
+                    }
+                    else
+                        _viewModel.StatusMessage = "No Record to Play loaded.";
                 }
                 else
                 {
-                    await _recorder.StopAsync();
-                    _bandManager = null;
+                    _producer = new BandManager(BandClientManager.Instance, config);
+                    _recorder = new DataRecorder(_producer, config);
+
+                    await _recorder.StartAsync();
+                    this._viewModel.StatusMessage = "Recording...";
                 }
-
-
-                //// Get the list of Microsoft Bands paired to the phone.
-                //IBandInfo[] pairedBands = await BandClientManager.Instance.GetBandsAsync();
-                //if (pairedBands.Length < 1)
-                //{
-                //    this.viewModel.StatusMessage = "This sample app requires a Microsoft Band paired to your device. Also make sure that you have the latest firmware installed on your Band, as provided by the latest Microsoft Health app.";
-                //    return;
-                //}
-
-                //// Connect to Microsoft Band.
-                //using (IBandClient bandClient = await BandClientManager.Instance.ConnectAsync(pairedBands[0]))
-                //{
-                //    // Create a Tile with a TextButton on it.
-                //    // WARNING! This tile guid is only an example. Please do not copy it to your test application;
-                //    // always create a unique guid for each application.
-                //    // If one application installs its tile, a second application using the same guid will fail to install
-                //    // its tile due to a guid conflict. In the event of such a failure, the text of the exception will not
-                //    // report that the tile with the same guid already exists on the band.
-                //    // There might be other unexpected behavior.
-                //    Guid myTileId = new Guid("497B746E-4F5F-44D4-96E2-FC46D407B6E3");
-                //    BandTile myTile = new BandTile(myTileId)
-                //    {
-                //        Name = "My Tile",
-                //        TileIcon = await LoadIcon("ms-appx:///Assets/SampleTileIconLarge.png"),
-                //        SmallIcon = await LoadIcon("ms-appx:///Assets/SampleTileIconSmall.png")
-                //    };
-
-                //    await BuildLayout(myTile);
-
-                //    // Remove the Tile from the Band, if present. An application won't need to do this everytime it runs. 
-                //    // But in case you modify this sample code and run it again, let's make sure to start fresh.
-                //    await bandClient.TileManager.RemoveTileAsync(myTileId);
-
-                //    // Create the Tile on the Band.
-                //    await bandClient.TileManager.AddTileAsync(myTile);
-                //    await bandClient.TileManager.SetPagesAsync(myTileId, new PageData(new Guid("5F5FD06E-BD37-4B71-B36C-3ED9D721F200"), 0, GetPageElementData()));
-
-                //    // Subscribe to Tile events.
-                //    int buttonPressedCount = 0;
-                //    TaskCompletionSource<bool> closePressed = new TaskCompletionSource<bool>();
-
-                //    bandClient.TileManager.TileButtonPressed += (s, args) => 
-                //    {
-                //        Dispatcher.RunAsync(
-                //            CoreDispatcherPriority.Normal,
-                //            () =>
-                //            {
-                //                buttonPressedCount++;
-                //                this.viewModel.StatusMessage = string.Format("TileButtonPressed = {0}", buttonPressedCount);
-                //            }
-                //        );
-                //    };
-                //    bandClient.TileManager.TileClosed += (s, args) => 
-                //    {
-                //        closePressed.TrySetResult(true);
-                //    };
-
-                //    await bandClient.TileManager.StartReadingsAsync();
-
-                //    // Receive events until the Tile is closed.
-                //    this.viewModel.StatusMessage = "Check the Tile on your Band (it's the last Tile). Waiting for events ...";
-
-                //    await closePressed.Task;
-
-                //    // Stop listening for Tile events.
-                //    await bandClient.TileManager.StopReadingsAsync();
-
-                //    this.viewModel.StatusMessage = "Done.";
-                //}
             }
             catch (Exception ex)
             {
-                this.viewModel.StatusMessage = ex.ToString();
+                this._viewModel.StatusMessage = ex.ToString();
             }
             finally
             {
-                handlingClick = false;
+                _handlingClick = false;
             }
+        }
+
+
+        private async void ButtonStop_Click(object sender, RoutedEventArgs e)
+        {
+            if (_handlingClick)
+            {
+                return;
+            }
+
+            this._viewModel.StatusMessage = "Stopping ...";
+
+            _handlingClick = true;
+            try
+            {
+                if (_viewModel.Playing)
+                    await _player.StopAsync();
+                else
+                    await _recorder.StopAsync();
+
+                this._viewModel.StatusMessage = "Stopped";
+            }
+            catch (Exception ex)
+            {
+                this._viewModel.StatusMessage = ex.ToString();
+            }
+            finally
+            {
+                _handlingClick = false;
+            }
+
+        }
+
+        private async void ButtonPause_Click(object sender, RoutedEventArgs e)
+        {
+            if (_handlingClick)
+            {
+                return;
+            }
+
+            this._viewModel.StatusMessage = "Pausing ...";
+
+            _handlingClick = true;
+            try
+            {
+                if (_player != null)
+                    await _player.PauseAsync();
+                if (_recorder != null)
+                    await _recorder.PauseAsync();
+
+                this._viewModel.StatusMessage = "Paused";
+            }
+            catch (Exception ex)
+            {
+                this._viewModel.StatusMessage = ex.ToString();
+            }
+            finally
+            {
+                _handlingClick = false;
+            }
+        }
+
+
+
+        private async void ButtonLoad_Click(object sender, RoutedEventArgs e)
+        {
+            if (_handlingClick)
+            {
+                return;
+            }
+
+            _handlingClick = true;
+            try
+            {
+                if (_viewModel.Playing)
+                {
+                    this._viewModel.StatusMessage = "";
+                    FileOpenPicker picker = new FileOpenPicker();
+                    picker.ViewMode = PickerViewMode.Thumbnail;
+                    picker.FileTypeFilter.Add(".bsd");
+                    picker.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
+
+                    StorageFile file = await picker.PickSingleFileAsync();
+                    if (file != null)
+                    {
+                        string jsonText = await FileIO.ReadTextAsync(file);
+                        _currentRecord = JsonRecordPersistor.Deserialize(jsonText);
+                        _viewModel.FilePath = file.Name;
+                        this._viewModel.StatusMessage = "File loaded";
+                    }
+                    else
+                        this._viewModel.StatusMessage = "No file selected";
+                }
+                else
+                    this._viewModel.StatusMessage = "Invalid State";
+            }
+            catch (Exception ex)
+            {
+                this._viewModel.StatusMessage = ex.ToString();
+            }
+            finally
+            {
+                _handlingClick = false;
+            }
+
+
+        }
+
+        private async void ButtonSave_Click(object sender, RoutedEventArgs e)
+        {
+            if (_handlingClick)
+            {
+                return;
+            }
+
+            _handlingClick = true;
+            try
+            {
+                this._viewModel.StatusMessage = "";
+                FileSavePicker picker = new FileSavePicker();
+                picker.FileTypeChoices.Add("file style", new string[] { ".bsd" });
+                picker.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
+                picker.SuggestedFileName = _viewModel.FilePath;
+                StorageFile file = await picker.PickSaveFileAsync();
+                if (file != null)
+                {
+                    await FileIO.WriteTextAsync(file, JsonRecordPersistor.Serialize(_recorder?.Record));
+                    this._viewModel.StatusMessage = "File saved";
+                }
+                else
+                    this._viewModel.StatusMessage = "No file selected";
+            }
+            catch (Exception ex)
+            {
+                this._viewModel.StatusMessage = ex.ToString();
+            }
+            finally
+            {
+                _handlingClick = false;
+            }
+
+
         }
 
         private async Task BuildLayout(BandTile myTile)
@@ -166,7 +251,7 @@ namespace BandSlider
 
             PageElement buttonElement = null;
 
-            switch (buttonKind)
+            switch (_buttonKind)
             {
                 case ButtonKind.Text:
                     buttonElement = new TextButton();
@@ -196,7 +281,7 @@ namespace BandSlider
         
         private PageElementData GetPageElementData()
         {
-            switch (buttonKind)
+            switch (_buttonKind)
             {
                 case ButtonKind.Text:
                     return new TextButtonData(1, "Click here");
@@ -233,15 +318,15 @@ namespace BandSlider
 
         ButtonKind ButtonKindFromModel()
         {
-            if (this.viewModel.UseTextButton)
+            if (this._viewModel.UseTextButton)
             {
                 return ButtonKind.Text;
             }
-            else if (this.viewModel.UseFilledButton)
+            else if (this._viewModel.UseFilledButton)
             {
                 return ButtonKind.Filled;
             }
-            else if (this.viewModel.UseIconButton)
+            else if (this._viewModel.UseIconButton)
             {
                 return ButtonKind.Icon;
             }

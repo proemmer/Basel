@@ -18,8 +18,6 @@ namespace Basel.Recorder
         {
             get
             {
-                if (RecorderState != RecorderState.Stopped)
-                    throw new InvalidOperationException("Set the record is only available in state stopped!");
                 return _record;
             }
         }
@@ -65,7 +63,6 @@ namespace Basel.Recorder
         {
             if (RecorderState == RecorderState.Recoring)
                 return Task.FromResult(false);
-
             _record = new Record();
             return Task.FromResult(true);
         }

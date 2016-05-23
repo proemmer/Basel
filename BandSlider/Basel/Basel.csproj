@@ -124,6 +124,21 @@
     <Compile Include="Recorder\Persistor\JsonRecordPersistor.cs" />
     <Compile Include="Recorder\Record.cs" />
     <Compile Include="SensorDataProducerBase.cs" />
+    <Compile Include="SensorReading\BandAccelerometerReading.cs" />
+    <Compile Include="SensorReading\BandAltimeterReading.cs" />
+    <Compile Include="SensorReading\BandAmbientLightReading.cs" />
+    <Compile Include="SensorReading\BandBarometerReading.cs" />
+    <Compile Include="SensorReading\BandCaloriesReading.cs" />
+    <Compile Include="SensorReading\BandContactReading.cs" />
+    <Compile Include="SensorReading\BandDistanceReading.cs" />
+    <Compile Include="SensorReading\BandGyroscopeReading.cs" />
+    <Compile Include="SensorReading\BandHeartRateReading.cs" />
+    <Compile Include="SensorReading\BandPedometerReading.cs" />
+    <Compile Include="SensorReading\BandGrsReading.cs" />
+    <Compile Include="SensorReading\BandRRIntervalReading.cs" />
+    <Compile Include="SensorReading\BandSensorReadingBase.cs" />
+    <Compile Include="SensorReading\BandSkinTemperatureReading.cs" />
+    <Compile Include="SensorReading\BandUVReading.cs" />
     <EmbeddedResource Include="Properties\Basel.rd.xml" />
   </ItemGroup>
   <ItemGroup />

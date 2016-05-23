@@ -8,6 +8,8 @@ namespace Basel.Recorder
     public enum PlayerState { Stopped, Playing, Pausing }
     public interface IDataPlayer
     {
+        IRecord Record { get; set; }
+
         /// Start playing the given record.
         /// </summary>
         /// <param name="record">given record to play</param>
