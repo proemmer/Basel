@@ -16,11 +16,13 @@
     TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
+using Basel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -119,16 +121,196 @@ namespace BandSlider
             }
         }
 
-        private void UpdatePropertyField<T>(ref T field, T value, string fieldName)
+        #region Consig
+        private BaselConfiguration _config = new BaselConfiguration();
+        public BaselConfiguration Config
         {
-            field = value;
+            get { return _config; }
+            set
+            {
+                UpdatePropertyField(ref _config, value);
+            }
+        }
 
+
+        //Beschleunigungsmesser 
+        public bool Accelerometer
+        {
+            get { return _config.Accelerometer; }
+            set
+            {
+                _config.Accelerometer = value;
+                RaisPropertyChanged();
+            }
+        }
+
+        //Höhenmesser
+        public bool Altimeter
+        {
+            get { return _config.Altimeter; }
+            set
+            {
+                _config.Altimeter = value;
+                RaisPropertyChanged();
+            }
+        }
+
+        //Umgebunslicht
+        public bool AmbientLight
+        {
+            get { return _config.AmbientLight; }
+            set
+            {
+                _config.AmbientLight = value;
+                RaisPropertyChanged();
+            }
+        }
+
+        //Luftdruckmesser
+        public bool Barometer
+        {
+            get { return _config.Barometer; }
+            set
+            {
+                _config.Barometer = value;
+                RaisPropertyChanged();
+            }
+        }
+
+        //Kaloriemesser
+        public bool Calories
+        {
+            get { return _config.Calories; }
+            set
+            {
+                _config.Calories = value;
+                RaisPropertyChanged();
+            }
+        }
+
+        //Band kontakt
+        public bool Contact
+        {
+            get { return _config.Contact; }
+            set
+            {
+                _config.Contact = value;
+                RaisPropertyChanged();
+            }
+        }
+
+        //Entfernungsmesser
+        public bool Distance
+        {
+            get { return _config.Distance; }
+            set
+            {
+                _config.Distance = value;
+                RaisPropertyChanged();
+            }
+        }
+
+        //Galvanischer Hautsensor
+        public bool Gsr
+        {
+            get { return _config.Gsr; }
+            set
+            {
+                _config.Gsr = value;
+                RaisPropertyChanged();
+            }
+        }
+
+        //Kreisel
+        public bool Gyroscope
+        {
+            get { return _config.Gyroscope; }
+            set
+            {
+                _config.Gyroscope = value;
+                RaisPropertyChanged();
+            }
+        }
+
+        //Herzfrequenz
+        public bool HeartRate
+        {
+            get { return _config.HeartRate; }
+            set
+            {
+                _config.HeartRate = value;
+                RaisPropertyChanged();
+            }
+        }
+
+        //Schrittzähler
+        public bool Pedometer
+        {
+            get { return _config.Pedometer; }
+            set
+            {
+                _config.Pedometer = value;
+                RaisPropertyChanged();
+            }
+        }
+
+        //Der Abstand zwischen zwei Herzschlägen 
+        public bool RRInterval
+        {
+            get { return _config.RRInterval; }
+            set
+            {
+                _config.RRInterval = value;
+                RaisPropertyChanged();
+            }
+        }
+
+        //Hauttemperatur
+        public bool SkinTemperature
+        {
+            get { return _config.SkinTemperature; }
+            set
+            {
+                _config.SkinTemperature = value;
+                RaisPropertyChanged();
+            }
+        }
+
+        //Uv
+        public bool UV
+        {
+            get { return _config.UV; }
+            set
+            {
+                _config.UV = value;
+                RaisPropertyChanged();
+            }
+        }
+
+
+
+        #endregion
+
+        private void RaisPropertyChanged([CallerMemberName]string fieldName = null)
+        {
             var handler = PropertyChanged;
             if (handler != null)
             {
                 handler(this, new PropertyChangedEventArgs(fieldName));
             }
         }
+
+        private void UpdatePropertyField<T>(ref T field, T value, [CallerMemberName]string fieldName = null)
+        {
+            field = value;
+            var handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(fieldName));
+            }
+        }
+
+
 
         private void ResetButtonPropertiesIf(bool value)
         {

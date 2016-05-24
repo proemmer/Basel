@@ -109,11 +109,10 @@
   <ItemGroup>
     <Compile Include="BandManager.cs" />
     <Compile Include="BaselConfiguration.cs" />
-    <Compile Include="Configuration.cs" />
-    <Compile Include="GestureDetector.cs" />
-    <Compile Include="IBandManager.cs" />
+    <Compile Include="Filters\FastLowAmplitudeNoiseFilter.cs" />
+    <Compile Include="Filters\IFilter.cs" />
+    <Compile Include="Filters\LowPassFilter.cs" />
     <Compile Include="IConfiguration.cs" />
-    <Compile Include="ISensorDataConsumer.cs" />
     <Compile Include="ISensorDataProducer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Recorder\DataPlayer.cs" />
@@ -141,7 +140,9 @@
     <Compile Include="SensorReading\BandUVReading.cs" />
     <EmbeddedResource Include="Properties\Basel.rd.xml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Detection\" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

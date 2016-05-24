@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Band.Sensors;
 
@@ -8,6 +6,7 @@ namespace Basel
 {
     public abstract class SensorDataProducerBase : ISensorDataProducer
     {
+        #region EventHandler
         protected EventHandler<BandSensorReadingEventArgs<IBandAmbientLightReading>> _ambientLightSensorUpdate;
         protected EventHandler<BandSensorReadingEventArgs<IBandAccelerometerReading>> _accelerometerSensorUpdate;
         protected EventHandler<BandSensorReadingEventArgs<IBandAltimeterReading>> _altimeterSensorUpdate;
@@ -22,8 +21,6 @@ namespace Basel
         protected EventHandler<BandSensorReadingEventArgs<IBandRRIntervalReading>> _rRIntervalSensorUpdate;
         protected EventHandler<BandSensorReadingEventArgs<IBandSkinTemperatureReading>> _skinTemperatureSensorUpdate;
         protected EventHandler<BandSensorReadingEventArgs<IBandUVReading>> _uVSensorUpdate;
-
-
 
         public event EventHandler<BandSensorReadingEventArgs<IBandAmbientLightReading>> OnAmbientLightSensorUpdate
         {
@@ -98,6 +95,14 @@ namespace Basel
             add { _uVSensorUpdate += value; }
             remove { _uVSensorUpdate -= value; }
         }
+        #endregion
+
+
+
+        public abstract Task<bool> StartAsync();
+
+        public abstract Task<bool> StopAsync();
+
 
 
         protected void ProcessSensorReading<T>(T sensorUpdate, EventHandler<BandSensorReadingEventArgs<T>> onDataChanged) where T : IBandSensorReading
@@ -120,8 +125,5 @@ namespace Basel
 
 
 
-        public abstract Task<bool> StartAsync();
-
-        public abstract Task<bool> StopAsync();
     }
 }

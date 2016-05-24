@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Basel.Recorder
 {
-    public class DataRecorder : IDataRecorder, ISensorDataConsumer
+    public class DataRecorder : IDataRecorder
     {
         private readonly ISensorDataProducer _producer;
         private IRecord _record;

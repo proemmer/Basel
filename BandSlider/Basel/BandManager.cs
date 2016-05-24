@@ -9,12 +9,16 @@ using Basel.SensorReadings;
 
 namespace Basel
 {
+    //https://code.msdn.microsoft.com/windowsapps/Shake-Gesture-Library-04c82d5f/sourcecode?fileId=86871&pathId=1135434873
+
+
     public class BandManager : SensorDataProducerBase, IDisposable
     {
-        private readonly ConcurrentDictionary<ISensorDataConsumer, object> _subscribers = new ConcurrentDictionary<ISensorDataConsumer, object>();
+        #region Fields
         private readonly IBandClientManager _bandClientManager;
         private IBandClient _bandClient;
         private IBaselConfiguration _configuration;
+        #endregion
 
         public BandManager(IBandClientManager bandClientManager, IBaselConfiguration configuration)
         {
@@ -25,18 +29,6 @@ namespace Basel
 
             _bandClientManager = bandClientManager;
             _configuration = configuration;
-        }
-
-
-        public bool Subscribe(ISensorDataConsumer consumer)
-        {
-            return _subscribers.TryAdd(consumer, null);
-        }
-
-        public bool Unsubscribe(ISensorDataConsumer consumer)
-        {
-            object c;
-            return _subscribers.TryRemove(consumer, out c);
         }
 
         public override async Task<bool> StartAsync()
@@ -255,8 +247,7 @@ namespace Basel
                 _bandClient.Dispose();
         }
 
-
-
+        #region Reading Converter
 
         private void Barometer_ReadingChanged(object sender, Microsoft.Band.Sensors.BandSensorReadingEventArgs<Microsoft.Band.Sensors.IBandBarometerReading> e)
         {
@@ -327,6 +318,7 @@ namespace Basel
         {
             ProcessSensorReading(new BaselBandAmbientLightReading(e.SensorReading), _ambientLightSensorUpdate);
         }
+        #endregion
 
     }
 }

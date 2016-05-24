@@ -60,20 +60,12 @@ namespace BandSlider
             {
                 _buttonKind = ButtonKindFromModel();
 
-                var config = new BaselConfiguration
-                {
-                    Contact = true,
-                    Gyroscope = true,
-                    Accelerometer = true
-                };
-
-
                 if (_viewModel.Playing)
                 {
 
                     if (_currentRecord != null)
                     {
-                        _player = new DataPlayer(config)
+                        _player = new DataPlayer(_viewModel.Config)
                         {
                             Record = _currentRecord
                         };
@@ -86,8 +78,8 @@ namespace BandSlider
                 }
                 else
                 {
-                    _producer = new BandManager(BandClientManager.Instance, config);
-                    _recorder = new DataRecorder(_producer, config);
+                    _producer = new BandManager(BandClientManager.Instance, _viewModel.Config);
+                    _recorder = new DataRecorder(_producer, _viewModel.Config);
 
                     await _recorder.StartAsync();
                     this._viewModel.StatusMessage = "Recording...";
