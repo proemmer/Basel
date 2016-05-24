@@ -9,6 +9,8 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "BandSlider.Shared", "TileEv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Basel", "Basel\Basel.csproj", "{7DE7B174-8B2E-48A1-9312-940FA849E41E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Recorded", "Recorded", "{339FA131-4E6D-49C8-94D2-67F3A66EF552}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		TileEvents.Shared\TileEvents.Shared.projitems*{e3e59afc-7720-4dcf-b36d-123d1e621fe5}*SharedItemsImports = 4
