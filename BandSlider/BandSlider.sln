@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Basel", "Basel\Basel.csproj
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Recorded", "Recorded", "{339FA131-4E6D-49C8-94D2-67F3A66EF552}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SliderCtrl", "SliderCtrl\SliderCtrl.csproj", "{4B98A47B-322E-426C-8CA2-0325706B9C19}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		TileEvents.Shared\TileEvents.Shared.projitems*{e3e59afc-7720-4dcf-b36d-123d1e621fe5}*SharedItemsImports = 4
@@ -63,6 +65,22 @@ Global
 		{7DE7B174-8B2E-48A1-9312-940FA849E41E}.Release|x64.Build.0 = Release|x64
 		{7DE7B174-8B2E-48A1-9312-940FA849E41E}.Release|x86.ActiveCfg = Release|x86
 		{7DE7B174-8B2E-48A1-9312-940FA849E41E}.Release|x86.Build.0 = Release|x86
+		{4B98A47B-322E-426C-8CA2-0325706B9C19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B98A47B-322E-426C-8CA2-0325706B9C19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B98A47B-322E-426C-8CA2-0325706B9C19}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{4B98A47B-322E-426C-8CA2-0325706B9C19}.Debug|ARM.Build.0 = Debug|Any CPU
+		{4B98A47B-322E-426C-8CA2-0325706B9C19}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4B98A47B-322E-426C-8CA2-0325706B9C19}.Debug|x64.Build.0 = Debug|Any CPU
+		{4B98A47B-322E-426C-8CA2-0325706B9C19}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4B98A47B-322E-426C-8CA2-0325706B9C19}.Debug|x86.Build.0 = Debug|Any CPU
+		{4B98A47B-322E-426C-8CA2-0325706B9C19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B98A47B-322E-426C-8CA2-0325706B9C19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B98A47B-322E-426C-8CA2-0325706B9C19}.Release|ARM.ActiveCfg = Release|Any CPU
+		{4B98A47B-322E-426C-8CA2-0325706B9C19}.Release|ARM.Build.0 = Release|Any CPU
+		{4B98A47B-322E-426C-8CA2-0325706B9C19}.Release|x64.ActiveCfg = Release|Any CPU
+		{4B98A47B-322E-426C-8CA2-0325706B9C19}.Release|x64.Build.0 = Release|Any CPU
+		{4B98A47B-322E-426C-8CA2-0325706B9C19}.Release|x86.ActiveCfg = Release|Any CPU
+		{4B98A47B-322E-426C-8CA2-0325706B9C19}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
