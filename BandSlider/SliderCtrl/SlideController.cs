@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Http;
-using PowerPoint = Microsoft.Office.Interop.PowerPoint;
 
 namespace SliderCtrl
 {
@@ -19,13 +14,27 @@ namespace SliderCtrl
         [HttpGet]
         public int Page()
         {
-            return Globals.ThisAddIn.Application.ActivePresentation.SlideShowWindow.View.Slide.SlideIndex;
+            try
+            {
+                return Globals.ThisAddIn.Application.ActivePresentation.SlideShowWindow.View.Slide.SlideIndex;
+            }
+            catch(Exception)
+            {
+                return 0;
+            }
         }
 
         [HttpPost]
         public void Start()
         {
-            Globals.ThisAddIn.Application.ActivePresentation.SlideShowSettings.Run();
+            try
+            {
+                Globals.ThisAddIn.Application.ActivePresentation.SlideShowSettings.Run();
+            }
+            catch(Exception)
+            {
+
+            }
         }
 
         [HttpPost]

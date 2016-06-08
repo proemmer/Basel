@@ -131,7 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Basel\Basel.csproj">
-      <Project>{7de7b174-8b2e-48a1-9312-940fa849e41e}</Project>
+      <Project>{003c9aac-c2ac-4f41-9ba5-56573a0b8cdf}</Project>
       <Name>Basel</Name>
     </ProjectReference>
   </ItemGroup>
