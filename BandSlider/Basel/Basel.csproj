@@ -41,6 +41,8 @@
   <ItemGroup>
     <Compile Include="BandManager.cs" />
     <Compile Include="BaselConfiguration.cs" />
+    <Compile Include="Detection\GestureDetector.cs" />
+    <Compile Include="Detection\IGesture.cs" />
     <Compile Include="Filters\FastLowAmplitudeNoiseFilter.cs" />
     <Compile Include="Filters\IFilter.cs" />
     <Compile Include="Filters\LowPassFilter.cs" />
@@ -71,9 +73,7 @@
     <Compile Include="SensorReading\BandSkinTemperatureReading.cs" />
     <Compile Include="SensorReading\BandUVReading.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Detection\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
