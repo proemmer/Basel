@@ -17,8 +17,12 @@
 */
 
 using Basel;
+using Basel.Detection;
+using Basel.Detection.Recognizer.Dollar;
+using Basel.Recorder;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -52,6 +56,15 @@ namespace BandSlider
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public IDataRecorder Recorder { get; set; }
+        public IDataPlayer Player { get; set; }
+        public IRecord CurrentRecord { get; set; }
+        public DollarRecognizer Recognizer { get; set; }
+        public ISensorDataProducer Producer { get; set; }
+
+
+        public Frame Root { get; private set; }
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -79,6 +92,16 @@ namespace BandSlider
         {
             get { return _filePath; }
             set { UpdatePropertyField(ref _filePath, value, "FilePath"); }
+        }
+
+        private ObservableCollection<IGesture> _gestures = new ObservableCollection<IGesture>();
+        public ObservableCollection<IGesture> Gestures
+        {
+            get { return _gestures; }
+            set
+            {
+                UpdatePropertyField(ref _gestures, value, "Gestures");
+            }
         }
 
         private bool _playing;
@@ -382,6 +405,7 @@ namespace BandSlider
                 }
             }
 
+            Root = rootFrame;
             // Ensure the current window is active
             Window.Current.Activate();
         }

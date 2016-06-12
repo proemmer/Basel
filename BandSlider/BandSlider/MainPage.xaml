@@ -9,10 +9,11 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="25"></RowDefinition>
-            <RowDefinition Height="40"></RowDefinition>
-            <RowDefinition Height="40"></RowDefinition>
-            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="35"></RowDefinition>
+            <RowDefinition Height="35"></RowDefinition>
+            <RowDefinition Height="35"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
         </Grid.RowDefinitions>
@@ -37,132 +38,144 @@
                 <ColumnDefinition Width="70"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="70"></ColumnDefinition>
-                <ColumnDefinition Width="80"></ColumnDefinition>
+                <ColumnDefinition Width="70"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
             <Button Grid.Column="0" Content="Load" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Click="ButtonLoad_Click" FontFamily="Global User Interface" FontSize="16"/>
             <TextBox Grid.Column="1" Text="{Binding FilePath}" VerticalAlignment="Top" Margin="0,0,0,0" IsReadOnly="True"></TextBox>
             <Button Grid.Column="2"  Content="Save" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Top" Click="ButtonSave_Click" FontFamily="Global User Interface" FontSize="16"/>
-            <Button Grid.Column="3"  Content="Recog" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Top" Click="ButtonTest_Click" FontFamily="Global User Interface" FontSize="16"/>
+
+            <Button Grid.Column="3"  Content="Add" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Top" Click="ButtonAddGesture_Click" FontFamily="Global User Interface" FontSize="16"/>
         </Grid>
 
-        <StackPanel Grid.Row="4" Orientation="Vertical">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="00,0" TextWrapping="Wrap" Text="Accelerometer"  FontSize="16"/>
-                <ToggleSwitch Grid.Column="1"  HorizontalAlignment="Center" VerticalAlignment="Center" IsOn="{Binding Accelerometer, Mode=TwoWay}" />
-            </Grid>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="00,0" TextWrapping="Wrap" Text="Altimeter"  FontSize="16"/>
-                <ToggleSwitch Grid.Column="1"  HorizontalAlignment="Center" VerticalAlignment="Center" IsOn="{Binding Altimeter, Mode=TwoWay}" />
-            </Grid>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="00,0" TextWrapping="Wrap" Text="AmbientLight"  FontSize="16"/>
-                <ToggleSwitch Grid.Column="1"  HorizontalAlignment="Center" VerticalAlignment="Center" IsOn="{Binding AmbientLight, Mode=TwoWay}" />
-            </Grid>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="00,0" TextWrapping="Wrap" Text="Barometer"  FontSize="16"/>
-                <ToggleSwitch Grid.Column="1"  HorizontalAlignment="Center" VerticalAlignment="Center" IsOn="{Binding Barometer, Mode=TwoWay}" />
-            </Grid>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="00,0" TextWrapping="Wrap" Text="Calories"  FontSize="16"/>
-                <ToggleSwitch Grid.Column="1"  HorizontalAlignment="Center" VerticalAlignment="Center" IsOn="{Binding Calories, Mode=TwoWay}" />
-            </Grid>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="00,0" TextWrapping="Wrap" Text="Contact"  FontSize="16"/>
-                <ToggleSwitch Grid.Column="1"  HorizontalAlignment="Center" VerticalAlignment="Center" IsOn="{Binding Contact, Mode=TwoWay}" />
-            </Grid>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="00,0" TextWrapping="Wrap" Text="Distance"  FontSize="16"/>
-                <ToggleSwitch Grid.Column="1"  HorizontalAlignment="Center" VerticalAlignment="Center" IsOn="{Binding Distance, Mode=TwoWay}" />
-            </Grid>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="00,0" TextWrapping="Wrap" Text="Grs"  FontSize="16"/>
-                <ToggleSwitch Grid.Column="1"  HorizontalAlignment="Center" VerticalAlignment="Center" IsOn="{Binding Grs, Mode=TwoWay}" />
-            </Grid>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="00,0" TextWrapping="Wrap" Text="Gyroscope"  FontSize="16"/>
-                <ToggleSwitch Grid.Column="1"  HorizontalAlignment="Center" VerticalAlignment="Center" IsOn="{Binding Gyroscope, Mode=TwoWay}" />
-            </Grid>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="00,0" TextWrapping="Wrap" Text="HeartRate"  FontSize="16"/>
-                <ToggleSwitch Grid.Column="1"  HorizontalAlignment="Center" VerticalAlignment="Center" IsOn="{Binding HeartRate, Mode=TwoWay}" />
-            </Grid>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="00,0" TextWrapping="Wrap" Text="Pedometer"  FontSize="16"/>
-                <ToggleSwitch Grid.Column="1"  HorizontalAlignment="Center" VerticalAlignment="Center" IsOn="{Binding Pedometer, Mode=TwoWay}" />
-            </Grid>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="00,0" TextWrapping="Wrap" Text="RRInterval"  FontSize="16"/>
-                <ToggleSwitch Grid.Column="1"  HorizontalAlignment="Center" VerticalAlignment="Center" IsOn="{Binding RRInterval, Mode=TwoWay}" />
-            </Grid>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="00,0" TextWrapping="Wrap" Text="SkinTemperature"  FontSize="16"/>
-                <ToggleSwitch Grid.Column="1"  HorizontalAlignment="Center" VerticalAlignment="Center" IsOn="{Binding SkinTemperature, Mode=TwoWay}" />
-            </Grid>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="00,0" TextWrapping="Wrap" Text="UV"  FontSize="16"/>
-                <ToggleSwitch Grid.Column="1"  HorizontalAlignment="Center" VerticalAlignment="Center" IsOn="{Binding UV, Mode=TwoWay}" />
-            </Grid>
+        <ScrollViewer Grid.Row="4" Margin="10,0,0,0" VerticalScrollBarVisibility="Auto">
+            <StackPanel Orientation="Vertical">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="00,0" TextWrapping="Wrap" Text="Accelerometer"  FontSize="16"/>
+                    <ToggleSwitch Grid.Column="1"  HorizontalAlignment="Center" VerticalAlignment="Center" IsOn="{Binding Accelerometer, Mode=TwoWay}" />
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="00,0" TextWrapping="Wrap" Text="Altimeter"  FontSize="16"/>
+                    <ToggleSwitch Grid.Column="1"  HorizontalAlignment="Center" VerticalAlignment="Center" IsOn="{Binding Altimeter, Mode=TwoWay}" />
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="00,0" TextWrapping="Wrap" Text="AmbientLight"  FontSize="16"/>
+                    <ToggleSwitch Grid.Column="1"  HorizontalAlignment="Center" VerticalAlignment="Center" IsOn="{Binding AmbientLight, Mode=TwoWay}" />
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="00,0" TextWrapping="Wrap" Text="Barometer"  FontSize="16"/>
+                    <ToggleSwitch Grid.Column="1"  HorizontalAlignment="Center" VerticalAlignment="Center" IsOn="{Binding Barometer, Mode=TwoWay}" />
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="00,0" TextWrapping="Wrap" Text="Calories"  FontSize="16"/>
+                    <ToggleSwitch Grid.Column="1"  HorizontalAlignment="Center" VerticalAlignment="Center" IsOn="{Binding Calories, Mode=TwoWay}" />
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="00,0" TextWrapping="Wrap" Text="Contact"  FontSize="16"/>
+                    <ToggleSwitch Grid.Column="1"  HorizontalAlignment="Center" VerticalAlignment="Center" IsOn="{Binding Contact, Mode=TwoWay}" />
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="00,0" TextWrapping="Wrap" Text="Distance"  FontSize="16"/>
+                    <ToggleSwitch Grid.Column="1"  HorizontalAlignment="Center" VerticalAlignment="Center" IsOn="{Binding Distance, Mode=TwoWay}" />
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="00,0" TextWrapping="Wrap" Text="Grs"  FontSize="16"/>
+                    <ToggleSwitch Grid.Column="1"  HorizontalAlignment="Center" VerticalAlignment="Center" IsOn="{Binding Grs, Mode=TwoWay}" />
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="00,0" TextWrapping="Wrap" Text="Gyroscope"  FontSize="16"/>
+                    <ToggleSwitch Grid.Column="1"  HorizontalAlignment="Center" VerticalAlignment="Center" IsOn="{Binding Gyroscope, Mode=TwoWay}" />
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="00,0" TextWrapping="Wrap" Text="HeartRate"  FontSize="16"/>
+                    <ToggleSwitch Grid.Column="1"  HorizontalAlignment="Center" VerticalAlignment="Center" IsOn="{Binding HeartRate, Mode=TwoWay}" />
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="00,0" TextWrapping="Wrap" Text="Pedometer"  FontSize="16"/>
+                    <ToggleSwitch Grid.Column="1"  HorizontalAlignment="Center" VerticalAlignment="Center" IsOn="{Binding Pedometer, Mode=TwoWay}" />
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="00,0" TextWrapping="Wrap" Text="RRInterval"  FontSize="16"/>
+                    <ToggleSwitch Grid.Column="1"  HorizontalAlignment="Center" VerticalAlignment="Center" IsOn="{Binding RRInterval, Mode=TwoWay}" />
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="00,0" TextWrapping="Wrap" Text="SkinTemperature"  FontSize="16"/>
+                    <ToggleSwitch Grid.Column="1"  HorizontalAlignment="Center" VerticalAlignment="Center" IsOn="{Binding SkinTemperature, Mode=TwoWay}" />
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="00,0" TextWrapping="Wrap" Text="UV"  FontSize="16"/>
+                    <ToggleSwitch Grid.Column="1"  HorizontalAlignment="Center" VerticalAlignment="Center" IsOn="{Binding UV, Mode=TwoWay}" />
+                </Grid>
 
-        </StackPanel>
-
-        <ScrollViewer Grid.Row="5" Margin="10,0,0,0" VerticalScrollBarVisibility="Auto">
+            </StackPanel>
+        </ScrollViewer>
+        <Grid Grid.Row="5" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Button  Content="Recog" HorizontalAlignment="Center" Margin="0,0,10,0" VerticalAlignment="Top" Click="ButtonRecognize_Click" FontFamily="Global User Interface" FontSize="16"/>
+            <ListView Grid.Row="1" ItemsSource="{Binding Gestures}" DisplayMemberPath="Name" BorderThickness="1">
+                
+            </ListView>
+        </Grid>
+        <ScrollViewer Grid.Row="6" Margin="10,0,0,0" VerticalScrollBarVisibility="Auto">
             <TextBlock TextWrapping="Wrap" Text="{Binding StatusMessage}" FontSize="16"/>
         </ScrollViewer>
 

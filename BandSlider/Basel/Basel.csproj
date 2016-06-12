@@ -57,6 +57,8 @@
     <Compile Include="Detection\Recognizer\IRecognizer.cs" />
     <Compile Include="Detection\Recognizer\NBestList.cs" />
     <Compile Include="Detection\Recognizer\Recognizer.cs" />
+    <Compile Include="Detection\Recognizer\UWave\UWave.cs" />
+    <Compile Include="Detection\Recognizer\UWave\UWaveGesture.cs" />
     <Compile Include="Filters\FastLowAmplitudeNoiseFilter.cs" />
     <Compile Include="Filters\IFilter.cs" />
     <Compile Include="Filters\LowPassFilter.cs" />

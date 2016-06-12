@@ -22,6 +22,7 @@ using Basel.Recorder;
 using Microsoft.Band;
 using Microsoft.Band.Tiles;
 using Microsoft.Band.Tiles.Pages;
+using Recognizer.Dollar;
 using System;
 using System.IO;
 using System.Linq;
@@ -32,6 +33,7 @@ using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace BandSlider
@@ -44,10 +46,6 @@ namespace BandSlider
         private App _viewModel;
         private ButtonKind _buttonKind;
         private bool _handlingClick;
-        private ISensorDataProducer _producer;
-        private IDataRecorder _recorder;
-        private IDataPlayer _player;
-        private IRecord _currentRecord;
 
         private async void ButtonRun_Click(object sender, RoutedEventArgs e)
         {
@@ -66,14 +64,14 @@ namespace BandSlider
                 if (_viewModel.Playing)
                 {
 
-                    if (_currentRecord != null)
+                    if (_viewModel.CurrentRecord != null)
                     {
-                        _player = new DataPlayer(_viewModel.Config)
+                        _viewModel.Player = new DataPlayer(_viewModel.Config)
                         {
-                            Record = _currentRecord
+                            Record = _viewModel.CurrentRecord
                         };
-
-                        await _player.StartAsync();
+                        _viewModel.Producer = _viewModel.Player as ISensorDataProducer;
+                        
                         _viewModel.StatusMessage = "Playing...";
                     }
                     else
@@ -81,12 +79,13 @@ namespace BandSlider
                 }
                 else
                 {
-                    _producer = new BandManager(BandClientManager.Instance, _viewModel.Config);
-                    _recorder = new DataRecorder(_producer, _viewModel.Config);
-
-                    await _recorder.StartAsync();
-                    this._viewModel.StatusMessage = "Recording...";
+                    _viewModel.Producer = new BandManager(BandClientManager.Instance, _viewModel.Config);
+                    _viewModel.Recorder = new DataRecorder(_viewModel.Producer, _viewModel.Config);
+                    _viewModel.StatusMessage = "Recording...";
+                    
                 }
+
+                _viewModel.Root.Navigate(typeof(DataPage));
             }
             catch (Exception ex)
             {
@@ -98,7 +97,6 @@ namespace BandSlider
             }
         }
 
-
         private async void ButtonStop_Click(object sender, RoutedEventArgs e)
         {
             if (_handlingClick)
@@ -106,21 +104,21 @@ namespace BandSlider
                 return;
             }
 
-            this._viewModel.StatusMessage = "Stopping ...";
+            _viewModel.StatusMessage = "Stopping ...";
 
             _handlingClick = true;
             try
             {
                 if (_viewModel.Playing)
-                    await _player.StopAsync();
+                    await _viewModel.Player.StopAsync();
                 else
-                    await _recorder.StopAsync();
+                    await _viewModel.Recorder.StopAsync();
 
                 this._viewModel.StatusMessage = "Stopped";
             }
             catch (Exception ex)
             {
-                this._viewModel.StatusMessage = ex.ToString();
+                _viewModel.StatusMessage = ex.ToString();
             }
             finally
             {
@@ -141,16 +139,16 @@ namespace BandSlider
             _handlingClick = true;
             try
             {
-                if (_player != null)
-                    await _player.PauseAsync();
-                if (_recorder != null)
-                    await _recorder.PauseAsync();
+                if (_viewModel.Player != null)
+                    await _viewModel.Player.PauseAsync();
+                if (_viewModel.Recorder != null)
+                    await _viewModel.Recorder.PauseAsync();
 
                 this._viewModel.StatusMessage = "Paused";
             }
             catch (Exception ex)
             {
-                this._viewModel.StatusMessage = ex.ToString();
+                _viewModel.StatusMessage = ex.ToString();
             }
             finally
             {
@@ -170,7 +168,7 @@ namespace BandSlider
             {
                 if (_viewModel.Playing)
                 {
-                    this._viewModel.StatusMessage = "";
+                    _viewModel.StatusMessage = "";
                     FileOpenPicker picker = new FileOpenPicker();
                     picker.ViewMode = PickerViewMode.Thumbnail;
                     picker.FileTypeFilter.Add(".bsd");
@@ -180,15 +178,15 @@ namespace BandSlider
                     if (file != null)
                     {
                         string jsonText = await FileIO.ReadTextAsync(file);
-                        _currentRecord = JsonRecordPersistor.Deserialize(jsonText);
+                        _viewModel.CurrentRecord = JsonRecordPersistor.Deserialize(jsonText);
                         _viewModel.FilePath = file.Name;
-                        this._viewModel.StatusMessage = "File loaded";
+                        _viewModel.StatusMessage = "File loaded";
                     }
                     else
-                        this._viewModel.StatusMessage = "No file selected";
+                        _viewModel.StatusMessage = "No file selected";
                 }
                 else
-                    this._viewModel.StatusMessage = "Invalid State";
+                    _viewModel.StatusMessage = "Invalid State";
             }
             catch (Exception ex)
             {
@@ -212,7 +210,7 @@ namespace BandSlider
             _handlingClick = true;
             try
             {
-                this._viewModel.StatusMessage = "";
+                _viewModel.StatusMessage = "";
                 FileSavePicker picker = new FileSavePicker();
                 picker.FileTypeChoices.Add("file style", new string[] { ".bsd" });
                 picker.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
@@ -220,7 +218,7 @@ namespace BandSlider
                 StorageFile file = await picker.PickSaveFileAsync();
                 if (file != null)
                 {
-                    await FileIO.WriteTextAsync(file, JsonRecordPersistor.Serialize(_recorder?.Record));
+                    await FileIO.WriteTextAsync(file, JsonRecordPersistor.Serialize(_viewModel.Recorder?.Record));
                     this._viewModel.StatusMessage = "File saved";
                 }
                 else
@@ -238,7 +236,8 @@ namespace BandSlider
 
         }
 
-        private async void ButtonTest_Click(object sender, RoutedEventArgs e)
+
+        private void ButtonAddGesture_Click(object sender, RoutedEventArgs e)
         {
             if (_handlingClick)
             {
@@ -249,13 +248,12 @@ namespace BandSlider
             try
             {
                 this._viewModel.StatusMessage = "";
-                await Task.Run(() =>
-               {
-                   var rec = new DollarRecognizer();
-
-                   rec.AddGesture("Test", new Unistroke("Test", _currentRecord.Accelerometer.ToList()));
-                   var result = rec.Recognize(_currentRecord.Accelerometer.ToList(), false);
-               });
+                if(_viewModel.Recognizer == null)
+                    _viewModel.Recognizer = new DollarRecognizer();
+                var name = Path.GetFileNameWithoutExtension(_viewModel.FilePath);
+                var gesture = new Unistroke(name, _viewModel.CurrentRecord.Accelerometer.ToList());
+                _viewModel.Gestures.Add(gesture);
+                _viewModel.Recognizer.AddGesture(name, gesture);
 
 
 
@@ -268,8 +266,40 @@ namespace BandSlider
             {
                 _handlingClick = false;
             }
+        }
 
+        private async void ButtonRecognize_Click(object sender, RoutedEventArgs e)
+        {
+            if (_handlingClick || _viewModel.Recognizer == null)
+            {
+                return;
+            }
 
+            _handlingClick = true;
+            try
+            {
+                _viewModel.StatusMessage = "";
+                NBestList result = null;
+                var data = _viewModel.Playing ? _viewModel.CurrentRecord.Accelerometer.ToList() : _viewModel.Recorder?.Record.Accelerometer.ToList();
+                if (data.Any())
+                {
+                    await Task.Run(() =>
+                   {
+                       result = _viewModel.Recognizer.Recognize(data, false);
+                   });
+                }
+
+                if(result != null)
+                    _viewModel.StatusMessage = $"{result.Name}: {Math.Round(result.Score, 2)} ({Math.Round(result.Distance, 2)}px, {Math.Round(result.Angle, 2)}{(char)176})";
+            }
+            catch (Exception ex)
+            {
+                _viewModel.StatusMessage = ex.ToString();
+            }
+            finally
+            {
+                _handlingClick = false;
+            }
         }
 
 

@@ -10,7 +10,7 @@ namespace Basel.Detection.Recognizer
         protected Dictionary<string, IGesture> _gestures;
 
 
-        public abstract NBestList Recognize(List<IBandAccelerometerReading> readings, bool protractor);
+        public abstract IGesture Recognize(List<IBandAccelerometerReading> readings, bool protractor);
 
         #region Gestures
 

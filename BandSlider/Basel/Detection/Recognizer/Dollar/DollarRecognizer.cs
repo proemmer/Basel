@@ -43,7 +43,7 @@ namespace Basel.Detection.Recognizer.Dollar
         /// <param name="readings"></param>
         /// <param name="protractor"></param>
         /// <returns></returns>
-        public override NBestList Recognize(List<IBandAccelerometerReading> readings, bool protractor) // candidate points
+        public override IGesture Recognize(List<IBandAccelerometerReading> readings, bool protractor) // candidate points
         {
             double intervall = readings.PathLength() / (NumPoints - 1); // interval distance between points
             List<IBandAccelerometerReading> points = readings.ResampleInSpace(intervall);
@@ -77,7 +77,8 @@ namespace Basel.Detection.Recognizer.Dollar
                 }
             }
             nbest.SortDescending(); // sort descending by score so that nbest[0] is best result
-            return nbest;
+            var res = _gestures.FirstOrDefault(x => x.Key == nbest.Name);
+            return res.Key != null ? res.Value : null;
         }
 
         // From http://www.math.uic.edu/~jan/mcs471/Lec9/gss.pdf

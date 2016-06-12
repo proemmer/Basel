@@ -206,5 +206,33 @@ namespace Basel.Detection.Helpers
             return degrees * 3.1415926535897931 / 180.0;
         }
 
+        public static List<IBandAccelerometerReading> RotateByRadians(List<IBandAccelerometerReading> points, double radians)
+        {
+            var newPoints = new List<IBandAccelerometerReading>(points.Count);
+            IBandAccelerometerReading c = Centroid(points);
+
+            double cos = Math.Cos(radians);
+            double sin = Math.Sin(radians);
+
+            double cx = c.AccelerationX;
+            double cy = c.AccelerationY;
+
+            for (int i = 0; i < points.Count; i++)
+            {
+                var p = points[i];
+
+                double dx = p.AccelerationX - cx;
+                double dy = p.AccelerationY - cy;
+
+                var q = new BaselBandAccelerometerReading
+                {
+                    AccelerationX = dx * cos - dy * sin + cx,
+                    AccelerationY = dx * sin + dy * cos + cy
+                };
+                newPoints.Add(q);
+            }
+            return newPoints;
+        }
+
     }
 }

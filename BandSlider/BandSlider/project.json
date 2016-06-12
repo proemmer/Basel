@@ -1,5 +1,6 @@
 ﻿{
   "dependencies": {
+    "Microsoft.AspNet.WebApi.Client": "5.2.3",
     "Microsoft.Band": "1.3.20420",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0"
   },
