@@ -5,6 +5,9 @@ using Basel.SensorReadings;
 
 namespace Basel.Detection.Recognizer.UWave
 {
+    /// <summary>
+    /// http://zhen-wang.appspot.com/rice/projects_uWave.html
+    /// </summary>
     public class UWave : Recognizer
     {
         private const int DIMENSION = 3;
