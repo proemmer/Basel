@@ -17,11 +17,14 @@
 */
 
 using Basel;
+using Basel.Detection.Recognizer.Dollar;
 using Basel.Recorder;
 using Microsoft.Band;
 using Microsoft.Band.Tiles;
 using Microsoft.Band.Tiles.Pages;
 using System;
+using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
@@ -155,8 +158,6 @@ namespace BandSlider
             }
         }
 
-
-
         private async void ButtonLoad_Click(object sender, RoutedEventArgs e)
         {
             if (_handlingClick)
@@ -236,6 +237,41 @@ namespace BandSlider
 
 
         }
+
+        private async void ButtonTest_Click(object sender, RoutedEventArgs e)
+        {
+            if (_handlingClick)
+            {
+                return;
+            }
+
+            _handlingClick = true;
+            try
+            {
+                this._viewModel.StatusMessage = "";
+                await Task.Run(() =>
+               {
+                   var rec = new DollarRecognizer();
+
+                   rec.AddGesture("Test", new Unistroke("Test", _currentRecord.Accelerometer.ToList()));
+                   var result = rec.Recognize(_currentRecord.Accelerometer.ToList(), false);
+               });
+
+
+
+            }
+            catch (Exception ex)
+            {
+                this._viewModel.StatusMessage = ex.ToString();
+            }
+            finally
+            {
+                _handlingClick = false;
+            }
+
+
+        }
+
 
         private async Task BuildLayout(BandTile myTile)
         {

@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Basel</RootNamespace>
-    <AssemblyName>BaselPortable</AssemblyName>
+    <AssemblyName>Basel</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -41,8 +41,22 @@
   <ItemGroup>
     <Compile Include="BandManager.cs" />
     <Compile Include="BaselConfiguration.cs" />
-    <Compile Include="Detection\GestureDetector.cs" />
+    <Compile Include="Detection\Detector.cs" />
+    <Compile Include="Detection\Helpers\DetectionExtensions.cs" />
+    <Compile Include="Detection\Helpers\GPRECTF.cs" />
+    <Compile Include="Detection\Helpers\Point.cs" />
+    <Compile Include="Detection\Helpers\PointF.cs" />
+    <Compile Include="Detection\Helpers\Rectangle.cs" />
+    <Compile Include="Detection\Helpers\RectangleF.cs" />
+    <Compile Include="Detection\Helpers\Size.cs" />
+    <Compile Include="Detection\Helpers\SizeF.cs" />
     <Compile Include="Detection\IGesture.cs" />
+    <Compile Include="Detection\Recognizer\Dollar\DollarRecognizer.cs" />
+    <Compile Include="Detection\Recognizer\Dollar\Unistroke.cs" />
+    <Compile Include="Detection\Gesture.cs" />
+    <Compile Include="Detection\Recognizer\IRecognizer.cs" />
+    <Compile Include="Detection\Recognizer\NBestList.cs" />
+    <Compile Include="Detection\Recognizer\Recognizer.cs" />
     <Compile Include="Filters\FastLowAmplitudeNoiseFilter.cs" />
     <Compile Include="Filters\IFilter.cs" />
     <Compile Include="Filters\LowPassFilter.cs" />

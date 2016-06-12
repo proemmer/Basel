@@ -4,14 +4,14 @@ using System.Threading.Tasks;
 
 namespace Basel.Detection
 {
-    public class GestureDetector
+    public class Detector
     {
         private readonly ISensorDataProducer _producer;
         private IBaselConfiguration _configuration;
         private ConcurrentDictionary<IGesture,Action> _gestures = new ConcurrentDictionary<IGesture, Action>();
 
 
-        public GestureDetector(ISensorDataProducer producer, IBaselConfiguration configuration)
+        public Detector(ISensorDataProducer producer, IBaselConfiguration configuration)
         {
             if (producer == null)
                 throw new ArgumentNullException("producer");
@@ -53,7 +53,7 @@ namespace Basel.Detection
 
             if (_configuration.AmbientLight)
             {
-                _producer.OnAmbientLightSensorUpdate += _producer_OnAmbientLightSensorUpdate; ;
+                _producer.OnAmbientLightSensorUpdate += _producer_OnAmbientLightSensorUpdate;
             }
 
             if (_configuration.Accelerometer)

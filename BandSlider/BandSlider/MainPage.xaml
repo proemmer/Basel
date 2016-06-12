@@ -37,11 +37,13 @@
                 <ColumnDefinition Width="70"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="70"></ColumnDefinition>
+                <ColumnDefinition Width="80"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
             <Button Grid.Column="0" Content="Load" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Click="ButtonLoad_Click" FontFamily="Global User Interface" FontSize="16"/>
             <TextBox Grid.Column="1" Text="{Binding FilePath}" VerticalAlignment="Top" Margin="0,0,0,0" IsReadOnly="True"></TextBox>
             <Button Grid.Column="2"  Content="Save" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Top" Click="ButtonSave_Click" FontFamily="Global User Interface" FontSize="16"/>
+            <Button Grid.Column="3"  Content="Recog" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Top" Click="ButtonTest_Click" FontFamily="Global User Interface" FontSize="16"/>
         </Grid>
 
         <StackPanel Grid.Row="4" Orientation="Vertical">

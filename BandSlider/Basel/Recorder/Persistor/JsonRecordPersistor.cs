@@ -61,7 +61,8 @@ namespace Basel
             {
                 return JsonConvert.DeserializeObject<Record>(json, new JsonSerializerSettings
                 {
-                    TypeNameHandling = TypeNameHandling.Objects
+                    TypeNameHandling = TypeNameHandling.Objects,
+                    TypeNameAssemblyFormat = System.Runtime.Serialization.Formatters.FormatterAssemblyStyle.Simple
                 });
             }
             catch (Exception ex)
