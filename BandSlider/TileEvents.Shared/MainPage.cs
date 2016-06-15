@@ -18,6 +18,7 @@
 
 using Basel;
 using Basel.Detection.Recognizer.Dollar;
+using Basel.Detection.Recognizer.UWave;
 using Basel.Recorder;
 using Microsoft.Band;
 using Microsoft.Band.Tiles;
@@ -249,9 +250,9 @@ namespace BandSlider
             {
                 this._viewModel.StatusMessage = "";
                 if(_viewModel.Recognizer == null)
-                    _viewModel.Recognizer = new DollarRecognizer();
+                    _viewModel.Recognizer = new UWaveRecognizer();
                 var name = Path.GetFileNameWithoutExtension(_viewModel.FilePath);
-                var gesture = new Unistroke(name, _viewModel.CurrentRecord.Accelerometer.ToList());
+                var gesture = new UWaveGesture(name, _viewModel.CurrentRecord.Accelerometer.ToList());
                 _viewModel.Gestures.Add(gesture);
                 _viewModel.Recognizer.AddGesture(name, gesture);
 

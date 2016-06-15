@@ -8,7 +8,7 @@ namespace Basel.Detection.Recognizer.UWave
     /// <summary>
     /// http://zhen-wang.appspot.com/rice/projects_uWave.html
     /// </summary>
-    public class UWave : Recognizer
+    public class UWaveRecognizer : Recognizer
     {
         private const int DIMENSION = 3;
         //(8,4) applies to 100Hz; if 50Hz, change to (4,2)...

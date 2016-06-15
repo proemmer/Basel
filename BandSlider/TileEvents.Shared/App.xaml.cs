@@ -18,6 +18,7 @@
 
 using Basel;
 using Basel.Detection;
+using Basel.Detection.Recognizer;
 using Basel.Detection.Recognizer.Dollar;
 using Basel.Recorder;
 using System;
@@ -59,7 +60,7 @@ namespace BandSlider
         public IDataRecorder Recorder { get; set; }
         public IDataPlayer Player { get; set; }
         public IRecord CurrentRecord { get; set; }
-        public DollarRecognizer Recognizer { get; set; }
+        public IRecognizer Recognizer { get; set; }
         public ISensorDataProducer Producer { get; set; }
 
 
