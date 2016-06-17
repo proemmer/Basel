@@ -26,9 +26,11 @@ namespace BandSlider
     public partial class DataPage
     {
         private App _viewModel;
+        private int _numOfEvents = 0;
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            _numOfEvents++;
             _viewModel.Producer.OnAccelerometerSensorUpdate += Producer_OnAccelerometerSensorUpdate;
 
             if(_viewModel.Player != null)
@@ -51,12 +53,12 @@ namespace BandSlider
 
         private void UpdateUI(IBandAccelerometerReading accelerometerReading)
         {
-            
+            _numOfEvents++;
             statusTextBlock.Text = "getting data";
             // Show the numeric values.
-            xTextBlock.Text = "X: " + accelerometerReading.AccelerationX.ToString("0.00");
-            yTextBlock.Text = "Y: " + accelerometerReading.AccelerationY.ToString("0.00");
-            zTextBlock.Text = "Z: " + accelerometerReading.AccelerationZ.ToString("0.00");
+            xTextBlock.Text = _numOfEvents + " - X: " + accelerometerReading.AccelerationX.ToString("0.00");
+            yTextBlock.Text = _numOfEvents + " - Y: " + accelerometerReading.AccelerationY.ToString("0.00");
+            zTextBlock.Text = _numOfEvents + " - Z: " + accelerometerReading.AccelerationZ.ToString("0.00");
 
             // Show the values graphically.
             xLine.X2 = xLine.X1 + accelerometerReading.AccelerationX * 200;

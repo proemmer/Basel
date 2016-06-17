@@ -8,6 +8,10 @@ EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "BandSlider.Shared", "TileEvents.Shared\BandSlider.Shared.shproj", "{F41CDAE2-0E1D-4B53-9A6F-6A11CF6666AE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Recorded", "Recorded", "{339FA131-4E6D-49C8-94D2-67F3A66EF552}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\Pictures\next.bsd = ..\..\..\..\Pictures\next.bsd
+		..\..\..\..\Pictures\prev.bsd = ..\..\..\..\Pictures\prev.bsd
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SliderCtrl", "SliderCtrl\SliderCtrl.csproj", "{4B98A47B-322E-426C-8CA2-0325706B9C19}"
 EndProject

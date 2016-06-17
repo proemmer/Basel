@@ -29,6 +29,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.WindowsRuntime;
+using TileEvents;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
@@ -62,7 +63,8 @@ namespace BandSlider
         public IRecord CurrentRecord { get; set; }
         public IRecognizer Recognizer { get; set; }
         public ISensorDataProducer Producer { get; set; }
-
+        public SliderCtrlClient SliderCtrl { get; set; }
+        public GestureDetector PPDetector { get; set; }
 
         public Frame Root { get; private set; }
 
@@ -74,6 +76,8 @@ namespace BandSlider
         {
             this.InitializeComponent();
             this.Suspending += this.OnSuspending;
+            Accelerometer = true;
+            SliderCtrl = new SliderCtrlClient("http://localhost:5000");
         }
 
         public static new App Current

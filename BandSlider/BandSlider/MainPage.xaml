@@ -32,6 +32,7 @@
         </Grid>
 
         <ToggleSwitch Grid.Row="2" HorizontalAlignment="Center" Margin="2" VerticalAlignment="Center" OffContent="Record" OnContent="Play" IsOn="{Binding Playing, Mode=TwoWay}" />
+        
 
         <Grid Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,0,0">
             <Grid.ColumnDefinitions>
@@ -170,7 +171,8 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <Button  Content="Recog" HorizontalAlignment="Center" Margin="0,0,10,0" VerticalAlignment="Top" Click="ButtonRecognize_Click" FontFamily="Global User Interface" FontSize="16"/>
+            <Button  Content="Recog" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Click="ButtonRecognize_Click" FontFamily="Global User Interface" FontSize="16"/>
+            <Button  Content="Detect" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Top" Click="ButtonDetect_Click" FontFamily="Global User Interface" FontSize="16"/>
             <ListView Grid.Row="1" ItemsSource="{Binding Gestures}" DisplayMemberPath="Name" BorderThickness="1">
                 
             </ListView>

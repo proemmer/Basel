@@ -30,6 +30,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TileEvents;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
@@ -49,23 +50,15 @@ namespace BandSlider
         private ButtonKind _buttonKind;
         private bool _handlingClick;
 
-        private async void ButtonRun_Click(object sender, RoutedEventArgs e)
+
+        #region Record and play
+        private void ButtonRun_Click(object sender, RoutedEventArgs e)
         {
-            if (_handlingClick)
+            ButtonClick(() =>
             {
-                return;
-            }
-
-            this._viewModel.StatusMessage = "Starting ...";
-
-            _handlingClick = true;
-            try
-            {
-                _buttonKind = ButtonKindFromModel();
-
+                _viewModel.StatusMessage = "Starting ...";
                 if (_viewModel.Playing)
                 {
-
                     if (_viewModel.CurrentRecord != null)
                     {
                         _viewModel.Player = new DataPlayer(_viewModel.Config)
@@ -73,7 +66,6 @@ namespace BandSlider
                             Record = _viewModel.CurrentRecord
                         };
                         _viewModel.Producer = _viewModel.Player as ISensorDataProducer;
-                        
                         _viewModel.StatusMessage = "Playing...";
                     }
                     else
@@ -84,89 +76,43 @@ namespace BandSlider
                     _viewModel.Producer = new BandManager(BandClientManager.Instance, _viewModel.Config);
                     _viewModel.Recorder = new DataRecorder(_viewModel.Producer, _viewModel.Config);
                     _viewModel.StatusMessage = "Recording...";
-                    
                 }
 
                 _viewModel.Root.Navigate(typeof(DataPage));
-            }
-            catch (Exception ex)
-            {
-                this._viewModel.StatusMessage = ex.ToString();
-            }
-            finally
-            {
-                _handlingClick = false;
-            }
+            });
         }
 
-        private async void ButtonStop_Click(object sender, RoutedEventArgs e)
+        private void ButtonStop_Click(object sender, RoutedEventArgs e)
         {
-            if (_handlingClick)
+            ButtonClick(async () =>
             {
-                return;
-            }
-
-            _viewModel.StatusMessage = "Stopping ...";
-
-            _handlingClick = true;
-            try
-            {
+                _viewModel.StatusMessage = "Stopping ...";
                 if (_viewModel.Playing)
                     await _viewModel.Player.StopAsync();
                 else
                     await _viewModel.Recorder.StopAsync();
 
-                this._viewModel.StatusMessage = "Stopped";
-            }
-            catch (Exception ex)
-            {
-                _viewModel.StatusMessage = ex.ToString();
-            }
-            finally
-            {
-                _handlingClick = false;
-            }
-
+                _viewModel.StatusMessage = "Stopped";
+            });
         }
 
-        private async void ButtonPause_Click(object sender, RoutedEventArgs e)
+        private void ButtonPause_Click(object sender, RoutedEventArgs e)
         {
-            if (_handlingClick)
+            ButtonClick(async () =>
             {
-                return;
-            }
-
-            this._viewModel.StatusMessage = "Pausing ...";
-
-            _handlingClick = true;
-            try
-            {
+                _viewModel.StatusMessage = "Pausing ...";
                 if (_viewModel.Player != null)
                     await _viewModel.Player.PauseAsync();
                 if (_viewModel.Recorder != null)
                     await _viewModel.Recorder.PauseAsync();
 
-                this._viewModel.StatusMessage = "Paused";
-            }
-            catch (Exception ex)
-            {
-                _viewModel.StatusMessage = ex.ToString();
-            }
-            finally
-            {
-                _handlingClick = false;
-            }
+                _viewModel.StatusMessage = "Paused";
+            });
         }
 
-        private async void ButtonLoad_Click(object sender, RoutedEventArgs e)
+        private void ButtonLoad_Click(object sender, RoutedEventArgs e)
         {
-            if (_handlingClick)
-            {
-                return;
-            }
-
-            _handlingClick = true;
-            try
+            ButtonClick(async () =>
             {
                 if (_viewModel.Playing)
                 {
@@ -189,28 +135,12 @@ namespace BandSlider
                 }
                 else
                     _viewModel.StatusMessage = "Invalid State";
-            }
-            catch (Exception ex)
-            {
-                this._viewModel.StatusMessage = ex.ToString();
-            }
-            finally
-            {
-                _handlingClick = false;
-            }
-
-
+            });
         }
 
-        private async void ButtonSave_Click(object sender, RoutedEventArgs e)
+        private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
-            if (_handlingClick)
-            {
-                return;
-            }
-
-            _handlingClick = true;
-            try
+            ButtonClick(async () =>
             {
                 _viewModel.StatusMessage = "";
                 FileSavePicker picker = new FileSavePicker();
@@ -221,80 +151,102 @@ namespace BandSlider
                 if (file != null)
                 {
                     await FileIO.WriteTextAsync(file, JsonRecordPersistor.Serialize(_viewModel.Recorder?.Record));
-                    this._viewModel.StatusMessage = "File saved";
+                    _viewModel.StatusMessage = "File saved";
                 }
                 else
-                    this._viewModel.StatusMessage = "No file selected";
-            }
-            catch (Exception ex)
-            {
-                this._viewModel.StatusMessage = ex.ToString();
-            }
-            finally
-            {
-                _handlingClick = false;
-            }
-
-
+                    _viewModel.StatusMessage = "No file selected";
+            });
         }
+        #endregion
 
 
+
+        #region Detection And Gestures
         private void ButtonAddGesture_Click(object sender, RoutedEventArgs e)
         {
-            if (_handlingClick)
+            ButtonClick(() =>
             {
-                return;
-            }
-
-            _handlingClick = true;
-            try
-            {
-                this._viewModel.StatusMessage = "";
-                if(_viewModel.Recognizer == null)
+                _viewModel.StatusMessage = "";
+                if (_viewModel.Recognizer == null)
                     _viewModel.Recognizer = new UWaveRecognizer();
                 var name = Path.GetFileNameWithoutExtension(_viewModel.FilePath);
                 var gesture = new UWaveGesture(name, _viewModel.CurrentRecord.Accelerometer.ToList());
                 _viewModel.Gestures.Add(gesture);
                 _viewModel.Recognizer.AddGesture(name, gesture);
-
-
-
-            }
-            catch (Exception ex)
-            {
-                this._viewModel.StatusMessage = ex.ToString();
-            }
-            finally
-            {
-                _handlingClick = false;
-            }
+            });
         }
 
-        private async void ButtonRecognize_Click(object sender, RoutedEventArgs e)
+        private void ButtonRecognize_Click(object sender, RoutedEventArgs e)
         {
-            if (_handlingClick || _viewModel.Recognizer == null)
+            ButtonClick(async () =>
             {
-                return;
-            }
-
-            _handlingClick = true;
-            try
-            {
+                if (_viewModel.Recognizer == null)
+                    return;
                 _viewModel.StatusMessage = "";
                 IGesture result = null;
                 var data = _viewModel.Playing ? _viewModel.CurrentRecord.Accelerometer.ToList() : _viewModel.Recorder?.Record.Accelerometer.ToList();
                 if (data.Any())
                 {
-                    await Task.Run(() =>
-                   {
-                       result = _viewModel.Recognizer.Recognize(data, false);
-                   });
+                    await Task.Run(() => { result = _viewModel.Recognizer.Recognize(data, false); });
                 }
 
                 if (result != null)
                     _viewModel.StatusMessage = $"Detected gesture: {result.Name}";
                 else
                     _viewModel.StatusMessage = $"No gesture detected!";
+            });
+        }
+
+        private void ButtonDetect_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonClick (async () =>
+            {
+                _viewModel.StatusMessage = "";
+                if (_viewModel.PPDetector == null)
+                {
+                    _viewModel.PPDetector = new GestureDetector((name =>
+                    {
+                        Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => _viewModel.StatusMessage = $"{DateTime.Now}:{name}");
+                        if (_viewModel.SliderCtrl != null)
+                        {
+                            switch (name)
+                            {
+                                case "next":
+                                    _viewModel.SliderCtrl.NextAsync();
+                                    break;
+                                case "prev":
+                                    _viewModel.SliderCtrl.PrevAsync();
+                                    break;
+                                case "start":
+                                    _viewModel.SliderCtrl.StartAsync();
+                                    break;
+                                case "stop":
+                                    _viewModel.SliderCtrl.StopAsync();
+                                    break;
+                            }
+                        }
+                    }));
+
+                    await _viewModel.PPDetector.StartDetectionAsync();
+                }
+                else
+                    await _viewModel.PPDetector.StartDetectionAsync();
+            });
+            
+        }
+        #endregion
+
+        #region Helper
+
+        private void ButtonClick(Action action)
+        {
+            if (_handlingClick)
+                return;
+            _handlingClick = true;
+            try
+            {
+                action();
+                _viewModel.StatusMessage = "Paused";
             }
             catch (Exception ex)
             {
@@ -305,7 +257,6 @@ namespace BandSlider
                 _handlingClick = false;
             }
         }
-
 
         private async Task BuildLayout(BandTile myTile)
         {
@@ -404,6 +355,7 @@ namespace BandSlider
             Filled,
             Icon
         }
-
+        
+        #endregion
     }
 }
