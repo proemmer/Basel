@@ -5,9 +5,9 @@ using System.Linq;
 
 namespace Basel.Detection.Recognizer
 {
-    public abstract class Recognizer
+    public abstract class Recognizer : IRecognizer
     {
-        protected Dictionary<string, IGesture> _gestures;
+        protected readonly Dictionary<string, IGesture> _gestures = new Dictionary<string, IGesture>();
 
 
         public abstract IGesture Recognize(List<IBandAccelerometerReading> readings, bool protractor);

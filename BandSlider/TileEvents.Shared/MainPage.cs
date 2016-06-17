@@ -17,6 +17,7 @@
 */
 
 using Basel;
+using Basel.Detection;
 using Basel.Detection.Recognizer.Dollar;
 using Basel.Detection.Recognizer.UWave;
 using Basel.Recorder;
@@ -280,7 +281,7 @@ namespace BandSlider
             try
             {
                 _viewModel.StatusMessage = "";
-                NBestList result = null;
+                IGesture result = null;
                 var data = _viewModel.Playing ? _viewModel.CurrentRecord.Accelerometer.ToList() : _viewModel.Recorder?.Record.Accelerometer.ToList();
                 if (data.Any())
                 {
@@ -290,8 +291,8 @@ namespace BandSlider
                    });
                 }
 
-                if(result != null)
-                    _viewModel.StatusMessage = $"{result.Name}: {Math.Round(result.Score, 2)} ({Math.Round(result.Distance, 2)}px, {Math.Round(result.Angle, 2)}{(char)176})";
+                //if(result != null)
+                //    _viewModel.StatusMessage = $"{result.Name}: {Math.Round(result.Score, 2)} ({Math.Round(result.Distance, 2)}px, {Math.Round(result.Angle, 2)}{(char)176})";
             }
             catch (Exception ex)
             {

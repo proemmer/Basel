@@ -30,7 +30,6 @@ namespace Basel.Detection.Recognizer.Dollar
 
         public DollarRecognizer()
         {
-            _gestures = new Dictionary<string, IGesture>();
         }
 
         #endregion
