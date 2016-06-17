@@ -19,33 +19,32 @@ namespace Basel.Detection.Recognizer.UWave
         {
             var accIndex = 0;
             var readingsCopy = readings.ToList();
-            accIndex = QuantizeAcc(readingsCopy, accIndex);
+            accIndex = QuantizeAcc(readingsCopy);
 
-            var gestures = _gestures.OfType<UWaveGesture>().ToList();
+            var gestures = _gestures.Values.OfType<UWaveGesture>().ToList();
             foreach (var gesture in gestures)
-            {
-                gesture.Length = QuantizeAcc(gesture.Readings, gesture.Length);
-            }
+                gesture.Length = QuantizeAcc(gesture.Readings);
 
             var ret = DetectGesture(readings, accIndex, gestures);
-
             return ret >= 0 ?  gestures[ret] : null;
         }
 
 
 
-        private int DetectGesture(List<IBandAccelerometerReading> readings, int lenght, List<UWaveGesture> gestures)
+        private int DetectGesture(List<IBandAccelerometerReading> readings, int length, List<UWaveGesture> gestures)
         {
-            int ret = -1;
+            if (length <= 0)
+                return -1;
+            int ret = 0;
             var distances = new List<double>();
             foreach (var gesture in gestures)
             {
                 var table = new Dictionary<int, double>();
-                for (var j = 0; j < lenght * gesture.Length; j++)
+                for (var j = 0; j < length * gesture.Length; j++)
                     table[j] = -1;
 
-                var distance = DTWdistance(readings, lenght, gesture.Readings, gesture.Length, lenght - 1, gesture.Length - 1, table);
-                distance /= (lenght + gesture.Length);
+                var distance = DTWdistance(readings, length, gesture.Readings, gesture.Length, length - 1, gesture.Length - 1, table);
+                distance /= (length + gesture.Length);
                 distances.Add(distance);
             }
 
@@ -58,16 +57,16 @@ namespace Basel.Detection.Recognizer.UWave
             return ret;
         }
 
-        private int QuantizeAcc(List<IBandAccelerometerReading> readings, int length)
+        private int QuantizeAcc(List<IBandAccelerometerReading> readings)
         {
             var i = 0;
             var window = QUAN_WIN_SIZE;
             var temp = new List<BaselBandAccelerometerReading>();
             //take moving window average
-            while (i < length)
+            while (i < readings.Count)
             {
-                if (i + window > length)
-                    window = length - i;
+                if (i + window > readings.Count)
+                    window = readings.Count - i;
                 var sumX = 0.0;
                 var sumY = 0.0;
                 var sumZ = 0.0;
@@ -84,7 +83,7 @@ namespace Basel.Detection.Recognizer.UWave
                     AccelerationY = sumY * 1.0 / window,
                     AccelerationZ = sumZ * 1.0 / window
                 });
-                i += QUAN_MOV_STEP;
+                i++;
             }//while
 
 

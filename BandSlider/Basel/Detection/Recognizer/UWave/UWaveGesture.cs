@@ -17,6 +17,7 @@ namespace Basel.Detection.Recognizer.UWave
         {
             Name = name;
             Readings = timepoints;
+            Length = timepoints.Count;
         }
 
         

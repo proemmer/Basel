@@ -291,8 +291,10 @@ namespace BandSlider
                    });
                 }
 
-                //if(result != null)
-                //    _viewModel.StatusMessage = $"{result.Name}: {Math.Round(result.Score, 2)} ({Math.Round(result.Distance, 2)}px, {Math.Round(result.Angle, 2)}{(char)176})";
+                if (result != null)
+                    _viewModel.StatusMessage = $"Detected gesture: {result.Name}";
+                else
+                    _viewModel.StatusMessage = $"No gesture detected!";
             }
             catch (Exception ex)
             {
