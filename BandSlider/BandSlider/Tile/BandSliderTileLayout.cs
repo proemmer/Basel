@@ -9,23 +9,83 @@ using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml.Media.Imaging;
 
-namespace BandSlider
+namespace BandSlider.Tile
 {
 	internal class BandSliderTileLayout
 	{
 		private readonly PageLayout pageLayout;
 		private readonly PageLayoutData pageLayoutData;
 		
+		private readonly FlowPanel panel = new FlowPanel();
+		internal TextButton StartStop = new TextButton();
+		internal TextButton StartStopDetection = new TextButton();
+		internal TextButton Next = new TextButton();
+		internal TextButton Prev = new TextButton();
 		
+		internal TextButtonData StartStopData = new TextButtonData(2, "Start");
+		internal TextButtonData StartStopDetectionData = new TextButtonData(3, "Detect");
+		internal TextButtonData NextData = new TextButtonData(4, "Next");
+		internal TextButtonData PrevData = new TextButtonData(5, "Prev");
 		
 		public BandSliderTileLayout()
 		{
 			LoadIconMethod = LoadIcon;
 			AdjustUriMethod = (uri) => uri;
 			
-			pageLayout = new PageLayout();
+			panel = new FlowPanel();
+			panel.Orientation = FlowPanelOrientation.Vertical;
+			panel.Rect = new PageRect(0, 0, 257, 128);
+			panel.ElementId = 1;
+			panel.Margins = new Margins(0, 0, 0, 0);
+			panel.HorizontalAlignment = HorizontalAlignment.Left;
+			panel.VerticalAlignment = VerticalAlignment.Top;
 			
-			PageElementData[] pageElementDataArray = new PageElementData[0];
+			StartStop = new TextButton();
+			StartStop.PressedColor = new BandColor(32, 32, 32);
+			StartStop.Rect = new PageRect(0, 0, 125, 60);
+			StartStop.ElementId = 2;
+			StartStop.Margins = new Margins(0, 2, 0, 0);
+			StartStop.HorizontalAlignment = HorizontalAlignment.Center;
+			StartStop.VerticalAlignment = VerticalAlignment.Top;
+			
+			panel.Elements.Add(StartStop);
+			
+			StartStopDetection = new TextButton();
+			StartStopDetection.PressedColor = new BandColor(32, 32, 32);
+			StartStopDetection.Rect = new PageRect(0, 0, 125, 60);
+			StartStopDetection.ElementId = 3;
+			StartStopDetection.Margins = new Margins(130, -60, 0, 0);
+			StartStopDetection.HorizontalAlignment = HorizontalAlignment.Center;
+			StartStopDetection.VerticalAlignment = VerticalAlignment.Top;
+			
+			panel.Elements.Add(StartStopDetection);
+			
+			Next = new TextButton();
+			Next.PressedColor = new BandColor(32, 32, 32);
+			Next.Rect = new PageRect(0, 0, 125, 60);
+			Next.ElementId = 4;
+			Next.Margins = new Margins(130, 4, 0, 0);
+			Next.HorizontalAlignment = HorizontalAlignment.Center;
+			Next.VerticalAlignment = VerticalAlignment.Top;
+			
+			panel.Elements.Add(Next);
+			
+			Prev = new TextButton();
+			Prev.PressedColor = new BandColor(32, 32, 32);
+			Prev.Rect = new PageRect(0, 0, 125, 60);
+			Prev.ElementId = 5;
+			Prev.Margins = new Margins(0, -60, 0, 0);
+			Prev.HorizontalAlignment = HorizontalAlignment.Center;
+			Prev.VerticalAlignment = VerticalAlignment.Top;
+			
+			panel.Elements.Add(Prev);
+			pageLayout = new PageLayout(panel);
+			
+			PageElementData[] pageElementDataArray = new PageElementData[4];
+			pageElementDataArray[0] = StartStopData;
+			pageElementDataArray[1] = StartStopDetectionData;
+			pageElementDataArray[2] = NextData;
+			pageElementDataArray[3] = PrevData;
 			
 			pageLayoutData = new PageLayoutData(pageElementDataArray);
 		}

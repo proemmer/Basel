@@ -7,7 +7,7 @@ namespace Basel.Detection.Recognizer
     public interface IRecognizer
     {
 
-        IGesture Recognize(List<IBandAccelerometerReading> readings, bool protractor);
+        IGesture Recognize(List<IBandAccelerometerReading> readings);
 
         int NumOfGestures { get; }
         List<IGesture> Gestures { get; }

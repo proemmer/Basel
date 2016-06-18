@@ -42,8 +42,9 @@ namespace Basel.Detection.Recognizer.Dollar
         /// <param name="readings"></param>
         /// <param name="protractor"></param>
         /// <returns></returns>
-        public override IGesture Recognize(List<IBandAccelerometerReading> readings, bool protractor) // candidate points
+        public override IGesture Recognize(List<IBandAccelerometerReading> readings) // candidate points
         {
+            bool protractor = false;
             double intervall = readings.PathLength() / (NumPoints - 1); // interval distance between points
             List<IBandAccelerometerReading> points = readings.ResampleInSpace(intervall);
             double radians = points.Centroid().Angle(points[0], false);

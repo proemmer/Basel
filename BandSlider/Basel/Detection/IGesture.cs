@@ -9,5 +9,6 @@ namespace Basel.Detection
     public interface IGesture
     {
         string Name { get; }
+        int Length { get; set; }
     }
 }

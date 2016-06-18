@@ -18,6 +18,7 @@
 
 using Basel;
 using Basel.Detection;
+using Basel.Detection.Detectors;
 using Basel.Detection.Recognizer;
 using Basel.Detection.Recognizer.Dollar;
 using Basel.Recorder;
@@ -64,7 +65,7 @@ namespace BandSlider
         public IRecognizer Recognizer { get; set; }
         public ISensorDataProducer Producer { get; set; }
         public SliderCtrlClient SliderCtrl { get; set; }
-        public GestureDetector PPDetector { get; set; }
+        public AccelerometerGestureDetector PPDetector { get; set; }
 
         public Frame Root { get; private set; }
 

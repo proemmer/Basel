@@ -90,14 +90,14 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <None Include="BandSliderTileLayout.msbtl">
+    <None Include="Tile\BandSliderTileLayout.msbtl">
       <Generator>MSBandLayoutCodeGenerator</Generator>
       <LastGenOutput>BandSliderTileLayout.cs</LastGenOutput>
     </None>
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BandSliderTileLayout.cs">
+    <Compile Include="Tile\BandSliderTileLayout.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BandSliderTileLayout.msbtl</DependentUpon>
@@ -109,6 +109,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tile\TileConstants.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -117,6 +118,8 @@
     <None Include="BandSlider_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\SampleTileIconLarge.png" />
+    <Content Include="Assets\SampleTileIconSmall.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

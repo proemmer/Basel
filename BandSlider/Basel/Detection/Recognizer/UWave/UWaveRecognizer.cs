@@ -15,7 +15,7 @@ namespace Basel.Detection.Recognizer.UWave
         private const int QUAN_WIN_SIZE = 8;
         private const int QUAN_MOV_STEP = 4;
 
-        public override IGesture Recognize(List<IBandAccelerometerReading> readings, bool protractor)
+        public override IGesture Recognize(List<IBandAccelerometerReading> readings)
         {
             var accIndex = 0;
             var readingsCopy = readings.ToList();

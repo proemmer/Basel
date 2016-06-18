@@ -41,7 +41,9 @@
   <ItemGroup>
     <Compile Include="BandManager.cs" />
     <Compile Include="BaselConfiguration.cs" />
-    <Compile Include="Detection\Detector.cs" />
+    <Compile Include="Detection\Detectors\AccelerometerGestureDetector.cs" />
+    <Compile Include="Detection\Detectors\Detector.cs" />
+    <Compile Include="Detection\Detectors\IDetector.cs" />
     <Compile Include="Detection\Helpers\DetectionExtensions.cs" />
     <Compile Include="Detection\Helpers\GPRECTF.cs" />
     <Compile Include="Detection\Helpers\Point.cs" />

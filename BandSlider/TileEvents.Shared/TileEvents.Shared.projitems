@@ -16,7 +16,6 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)DataPage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GestureDetector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MainPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SliderCtrlClient.cs" />
   </ItemGroup>

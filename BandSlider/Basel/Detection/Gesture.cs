@@ -5,7 +5,7 @@ namespace Basel.Detection
     public abstract class Gesture : IComparable, IGesture
     {
         public string Name { get; protected set; }
-
+        public int Length { get; set; }
 
         /// <summary>
         /// Sort comparator in descending order of score.

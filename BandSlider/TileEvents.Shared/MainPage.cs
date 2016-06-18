@@ -16,8 +16,10 @@
     TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
+using BandSlider.Tile;
 using Basel;
 using Basel.Detection;
+using Basel.Detection.Detectors;
 using Basel.Detection.Recognizer.Dollar;
 using Basel.Detection.Recognizer.UWave;
 using Basel.Recorder;
@@ -29,6 +31,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using TileEvents;
 using Windows.Storage;
@@ -47,9 +50,75 @@ namespace BandSlider
     partial class MainPage
     {
         private App _viewModel;
-        private ButtonKind _buttonKind;
         private bool _handlingClick;
+        IBandClient _bandClient;
 
+        private async void ListenToTileEventsButton_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonClick(async () =>
+            {
+                if (_bandClient == null)
+                {
+                    // Get the list of Microsoft Bands paired to the phone.
+                    IBandInfo[] pairedBands = await BandClientManager.Instance.GetBandsAsync();
+                    if (pairedBands.Length < 1)
+                    {
+                        App.Current.StatusMessage = "This sample app requires a Microsoft Band paired to your device. Also make sure that you have the latest firmware installed on your Band, as provided by the latest Microsoft Health app.";
+                        return;
+                    }
+                    // Connect to Microsoft Band.
+                    _bandClient = await BandClientManager.Instance.ConnectAsync(pairedBands[0]);
+
+                    var id = TileConstants.TileGuid;
+                    var cts = new CancellationTokenSource();
+                    if (!_bandClient.TileManager.TileInstalledAndOwned(ref id, cts.Token))
+                    {
+                        // Create a Tile with a TextButton and WrappedTextBlock on it.
+                        BandTile myTile = new BandTile(TileConstants.TileGuid)
+                        {
+                            Name = "BandSlider",
+                            TileIcon = await LoadIcon("ms-appx:///Assets/SampleTileIconLarge.png"),
+                            SmallIcon = await LoadIcon("ms-appx:///Assets/SampleTileIconSmall.png")
+                        };
+                        var designe = new BandSliderTileLayout();
+                        myTile.PageLayouts.Add(designe.Layout);
+
+                        // Remove the Tile from the Band, if present. An application won't need to do this everytime it runs. 
+                        // But in case you modify this sample code and run it again, let's make sure to start fresh.
+                        await _bandClient.TileManager.RemoveTileAsync(TileConstants.TileGuid);
+                        await designe.LoadIconsAsync(myTile);
+
+                        // Create the Tile on the Band.
+                        await _bandClient.TileManager.AddTileAsync(myTile);
+                        await _bandClient.TileManager.SetPagesAsync(TileConstants.TileGuid, new PageData(TileConstants.Page1Guid, 0, designe.Data.All));
+                        App.Current.StatusMessage = "Installed Tile";
+                    }
+
+                    _bandClient.TileManager.TileButtonPressed += TileManager_TileButtonPressed;
+                    await _bandClient.TileManager.StartReadingsAsync();
+                    _viewModel.StatusMessage = "Check the Tile on your Band (it's the last Tile). Waiting for events ...";
+                }
+                else
+                {
+                    await _bandClient.TileManager.StopReadingsAsync();
+                    _bandClient.Dispose();
+                    _bandClient = null;
+                    _viewModel.StatusMessage = "Done.";
+                }
+
+            });
+        }
+
+        private void TileManager_TileButtonPressed(object sender, BandTileEventArgs<IBandTileButtonPressedEvent> e)
+        {
+            Dispatcher.RunAsync(
+                 CoreDispatcherPriority.Normal,
+                 () =>
+                 {
+                     _viewModel.StatusMessage = $"TileButtonPressed = {e.TileEvent.ElementId}";
+                 }
+             );
+        }
 
         #region Record and play
         private void ButtonRun_Click(object sender, RoutedEventArgs e)
@@ -81,6 +150,7 @@ namespace BandSlider
                 _viewModel.Root.Navigate(typeof(DataPage));
             });
         }
+
 
         private void ButtonStop_Click(object sender, RoutedEventArgs e)
         {
@@ -159,8 +229,6 @@ namespace BandSlider
         }
         #endregion
 
-
-
         #region Detection And Gestures
         private void ButtonAddGesture_Click(object sender, RoutedEventArgs e)
         {
@@ -187,7 +255,7 @@ namespace BandSlider
                 var data = _viewModel.Playing ? _viewModel.CurrentRecord.Accelerometer.ToList() : _viewModel.Recorder?.Record.Accelerometer.ToList();
                 if (data.Any())
                 {
-                    await Task.Run(() => { result = _viewModel.Recognizer.Recognize(data, false); });
+                    await Task.Run(() => { result = _viewModel.Recognizer.Recognize(data); });
                 }
 
                 if (result != null)
@@ -199,40 +267,58 @@ namespace BandSlider
 
         private void ButtonDetect_Click(object sender, RoutedEventArgs e)
         {
-            ButtonClick (async () =>
-            {
-                _viewModel.StatusMessage = "";
-                if (_viewModel.PPDetector == null)
-                {
-                    _viewModel.PPDetector = new GestureDetector((name =>
-                    {
-                        Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => _viewModel.StatusMessage = $"{DateTime.Now}:{name}");
-                        if (_viewModel.SliderCtrl != null)
-                        {
-                            switch (name)
-                            {
-                                case "next":
-                                    _viewModel.SliderCtrl.NextAsync();
-                                    break;
-                                case "prev":
-                                    _viewModel.SliderCtrl.PrevAsync();
-                                    break;
-                                case "start":
-                                    _viewModel.SliderCtrl.StartAsync();
-                                    break;
-                                case "stop":
-                                    _viewModel.SliderCtrl.StopAsync();
-                                    break;
-                            }
-                        }
-                    }));
+            ButtonClick(async () =>
+           {
+               _viewModel.StatusMessage = "";
+               if (_viewModel.PPDetector == null)
+               {
 
-                    await _viewModel.PPDetector.StartDetectionAsync();
-                }
-                else
-                    await _viewModel.PPDetector.StartDetectionAsync();
-            });
-            
+                   if (_viewModel.Producer == null)
+                       _viewModel.Producer = new BandManager(BandClientManager.Instance, _viewModel.Config);
+
+                   _viewModel.PPDetector = new AccelerometerGestureDetector(_viewModel.Producer, new BaselConfiguration());
+                   await ConfigureDetector();
+                   await _viewModel.PPDetector.StartDetectionAsync();
+               }
+               else
+                   await _viewModel.PPDetector.StopDetectionAsync();
+           });
+
+        }
+
+
+        private async Task ConfigureDetector()
+        {
+            var folder = KnownFolders.PicturesLibrary;
+            foreach (var file in (await folder.GetFilesAsync()).Where(x => x.Name.EndsWith(".bsd")))
+            {
+                string jsonText = await FileIO.ReadTextAsync(file);
+                var record = JsonRecordPersistor.Deserialize(jsonText);
+                var name = file.Name.Substring(0, file.Name.IndexOf("."));
+                _viewModel.PPDetector.AddRecordAsGesture(name, record, () =>
+                {
+                    Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => _viewModel.StatusMessage = $"{DateTime.Now}:{name}");
+                    if (_viewModel.SliderCtrl != null)
+                    {
+                        switch (name)
+                        {
+                            case "next":
+                                _viewModel.SliderCtrl.NextAsync();
+                                break;
+                            case "prev":
+                                _viewModel.SliderCtrl.PrevAsync();
+                                break;
+                            case "start":
+                                _viewModel.SliderCtrl.StartAsync();
+                                break;
+                            case "stop":
+                                _viewModel.SliderCtrl.StopAsync();
+                                break;
+                        }
+                    }
+                });
+
+            }
         }
         #endregion
 
@@ -258,64 +344,6 @@ namespace BandSlider
             }
         }
 
-        private async Task BuildLayout(BandTile myTile)
-        {
-            FilledPanel panel = new FilledPanel() { Rect = new PageRect(0, 0, 220, 150) };
-
-            PageElement buttonElement = null;
-
-            switch (_buttonKind)
-            {
-                case ButtonKind.Text:
-                    buttonElement = new TextButton();
-                    break;
-
-                case ButtonKind.Filled:
-                    buttonElement = new FilledButton() { BackgroundColor = new BandColor(0, 128, 0) };
-                    break;
-
-                case ButtonKind.Icon:
-                    buttonElement = new IconButton();
-                    myTile.AdditionalIcons.Add(await LoadIcon("ms-appx:///Assets/Smile.png"));
-                    myTile.AdditionalIcons.Add(await LoadIcon("ms-appx:///Assets/SmileUpsideDown.png"));
-                    break;
-
-                default:
-                    throw new NotImplementedException();
-            }
-
-            buttonElement.ElementId = 1;
-            buttonElement.Rect = new PageRect(10, 10, 200, 90);
-
-            panel.Elements.Add(buttonElement);
-
-            myTile.PageLayouts.Add(new PageLayout(panel));
-        }
-        
-        private PageElementData GetPageElementData()
-        {
-            switch (_buttonKind)
-            {
-                case ButtonKind.Text:
-                    return new TextButtonData(1, "Click here");
-
-                case ButtonKind.Filled:
-                    return new FilledButtonData(1, new BandColor(128, 0, 0));
-
-                case ButtonKind.Icon:
-                    return new IconButtonData(
-                        elementId: 1,
-                        iconIndex: 2, // The first 2 indexes are taken by the tile icons.
-                        pressedIconIndex: 3, // The first 2 indexes are taken by the tile icons.
-                        iconColor: new BandColor(0, 128, 0),
-                        pressedIconColor: new BandColor(128, 0, 0),
-                        backgroundColor: new BandColor(0x35, 0x35, 0x35),
-                        pressedBackgroundColor: new BandColor(0x20, 0x20, 0x20));
-
-                default:
-                    throw new NotImplementedException();
-            }
-        }
 
         private async Task<BandIcon> LoadIcon(string uri)
         {
@@ -329,33 +357,7 @@ namespace BandSlider
             }
         }
 
-        ButtonKind ButtonKindFromModel()
-        {
-            if (this._viewModel.UseTextButton)
-            {
-                return ButtonKind.Text;
-            }
-            else if (this._viewModel.UseFilledButton)
-            {
-                return ButtonKind.Filled;
-            }
-            else if (this._viewModel.UseIconButton)
-            {
-                return ButtonKind.Icon;
-            }
-            else
-            {
-                throw new NotImplementedException();
-            }
-        }
 
-        private enum ButtonKind
-        {
-            Text,
-            Filled,
-            Icon
-        }
-        
         #endregion
     }
 }

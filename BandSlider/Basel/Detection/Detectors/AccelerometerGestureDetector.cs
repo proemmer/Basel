@@ -7,66 +7,54 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Windows.Storage;
 
-namespace TileEvents
+namespace Basel.Detection.Detectors
 {
-    public class GestureDetector
+    public class AccelerometerGestureDetector : Detector
     {
         private const double GForceThreshold = 1.5;
-        private IRecognizer _recognizer;
-        private ISensorDataProducer _bandManager;
+        private IRecognizer _recognizer = new UWaveRecognizer();
         private IBaselConfiguration _config = new BaselConfiguration() { Accelerometer = true };
         private List<IBandAccelerometerReading> _readings = new List<IBandAccelerometerReading>();
         private int _minDataForDetection = 0;
-        private Action<string> _onDetected;
+
 
 
         public double Threshold { get; set; } = GForceThreshold;
 
-        public GestureDetector(Action<string> onDetected)
+        public AccelerometerGestureDetector(ISensorDataProducer producer, IBaselConfiguration configuration) : base(producer, configuration)
         {
-            _onDetected = onDetected;
+            configuration.Accelerometer = true;
+            producer.OnAccelerometerSensorUpdate += Producer_OnAccelerometerSensorUpdate;
         }
 
-        private async Task ReadGestures()
+        public override void AddRecordAsGesture(string name, IRecord record, Action onDetected)
         {
-            var folder = KnownFolders.PicturesLibrary;
-            _recognizer = new UWaveRecognizer();
-            foreach (var file in (await folder.GetFilesAsync()).Where(x => x.Name.EndsWith(".bsd")))
-            {
-                string jsonText = await FileIO.ReadTextAsync(file);
-                var record = JsonRecordPersistor.Deserialize(jsonText);
-                var name = file.Name.Substring(0, file.Name.IndexOf("."));
-                var gesture = new UWaveGesture(name, record.Accelerometer.SkipWhile(reading => !InRange(reading)).TakeWhile(reading => InRange(reading)).ToList());  //TODO!!! ->  
-                _recognizer.AddGesture(name, gesture);
-
-                if (_minDataForDetection < gesture.Length)
-                    _minDataForDetection = gesture.Length;
-            }
-
-            if (_recognizer.Gestures.Any())
-                _bandManager = new BandManager(BandClientManager.Instance, _config);
-            
+            var gesture = new UWaveGesture(name, record.Accelerometer.SkipWhile(reading => !InRange(reading)).TakeWhile(reading => InRange(reading)).ToList());
+            AddGesture(gesture, onDetected);
         }
 
+        public override void AddGesture(IGesture gesture, Action onDetected)
+        {
+            if (_minDataForDetection < gesture.Length)
+                _minDataForDetection = gesture.Length;
+            _recognizer.AddGesture(gesture.Name, gesture);
+            base.AddGesture(gesture, onDetected);
+        }
 
         public async Task StartDetectionAsync()
         {
-            await ReadGestures();
-
-            _bandManager.OnAccelerometerSensorUpdate += _bandManager_OnAccelerometerSensorUpdate;
-            await _bandManager.StartAsync();
+            await _producer.StartAsync();
         }
 
        
         public async Task StopDetectionAsync()
         {
-            await _bandManager.StopAsync();
+            await _producer.StopAsync();
         }
 
 
-        private void _bandManager_OnAccelerometerSensorUpdate(object sender, Microsoft.Band.Sensors.BandSensorReadingEventArgs<IBandAccelerometerReading> e)
+        private void Producer_OnAccelerometerSensorUpdate(object sender, BandSensorReadingEventArgs<IBandAccelerometerReading> e)
         {
             var test = -Threshold;
             if (InRange(e.SensorReading))
@@ -74,7 +62,7 @@ namespace TileEvents
                 _readings.Add(e.SensorReading);
                 if (_readings.Count >= _minDataForDetection)
                 {
-                    var gesture = _recognizer.Recognize(_readings, false);
+                    var gesture = _recognizer.Recognize(_readings);
                     if (gesture != null)
                     {
                         _readings.Clear();
@@ -99,9 +87,12 @@ namespace TileEvents
         {
             await Task.Run(() =>
             {
-                _onDetected?.Invoke(command);
+                var gesture = _gestures.FirstOrDefault(x => x.Key.Name == command);
+                if (gesture.Key != null)
+                    gesture.Value?.Invoke();
             });
         }
+
 
     }
 }

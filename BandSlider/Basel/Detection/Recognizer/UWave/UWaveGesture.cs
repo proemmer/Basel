@@ -11,8 +11,6 @@ namespace Basel.Detection.Recognizer.UWave
     {
         public List<IBandAccelerometerReading> Readings { get; private set; }
 
-        public int Length { get; set; }
-
         public UWaveGesture(string name, List<IBandAccelerometerReading> timepoints)
         {
             Name = name;

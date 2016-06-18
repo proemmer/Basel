@@ -2,13 +2,13 @@
 using System.Collections.Concurrent;
 using System.Threading.Tasks;
 
-namespace Basel.Detection
+namespace Basel.Detection.Detectors
 {
-    public class Detector
+    public abstract class Detector : IDetector
     {
-        private readonly ISensorDataProducer _producer;
-        private IBaselConfiguration _configuration;
-        private ConcurrentDictionary<IGesture,Action> _gestures = new ConcurrentDictionary<IGesture, Action>();
+        protected readonly ISensorDataProducer _producer;
+        protected readonly IBaselConfiguration _configuration;
+        protected readonly ConcurrentDictionary<IGesture,Action> _gestures = new ConcurrentDictionary<IGesture, Action>();
 
 
         public Detector(ISensorDataProducer producer, IBaselConfiguration configuration)
@@ -21,7 +21,9 @@ namespace Basel.Detection
             _configuration = configuration;
         }
 
-        public void AddGesture(IGesture gesture, Action onDetected)
+        public abstract void AddRecordAsGesture(string name, IRecord record, Action onDetected);
+
+        public virtual void AddGesture(IGesture gesture, Action onDetected)
         {
             _gestures.TryAdd(gesture, onDetected);
         }
@@ -196,69 +198,69 @@ namespace Basel.Detection
             }
         }
 
-        private void _producer_OnUVSensorUpdate(object sender, Microsoft.Band.Sensors.BandSensorReadingEventArgs<Microsoft.Band.Sensors.IBandUVReading> e)
+        protected virtual void _producer_OnUVSensorUpdate(object sender, Microsoft.Band.Sensors.BandSensorReadingEventArgs<Microsoft.Band.Sensors.IBandUVReading> e)
         {
         }
 
-        private void _producer_OnSkinTemperatureSensorUpdate(object sender, Microsoft.Band.Sensors.BandSensorReadingEventArgs<Microsoft.Band.Sensors.IBandSkinTemperatureReading> e)
+        protected virtual void _producer_OnSkinTemperatureSensorUpdate(object sender, Microsoft.Band.Sensors.BandSensorReadingEventArgs<Microsoft.Band.Sensors.IBandSkinTemperatureReading> e)
         {
         }
 
-        private void _producer_OnRRIntervalSensorUpdate(object sender, Microsoft.Band.Sensors.BandSensorReadingEventArgs<Microsoft.Band.Sensors.IBandRRIntervalReading> e)
+        protected virtual void _producer_OnRRIntervalSensorUpdate(object sender, Microsoft.Band.Sensors.BandSensorReadingEventArgs<Microsoft.Band.Sensors.IBandRRIntervalReading> e)
         {
         }
 
-        private void _producer_OnPedometerSensorUpdate(object sender, Microsoft.Band.Sensors.BandSensorReadingEventArgs<Microsoft.Band.Sensors.IBandPedometerReading> e)
-        {
-
-        }
-
-        private void _producer_OnHeartRateSensorUpdate(object sender, Microsoft.Band.Sensors.BandSensorReadingEventArgs<Microsoft.Band.Sensors.IBandHeartRateReading> e)
+        protected virtual void _producer_OnPedometerSensorUpdate(object sender, Microsoft.Band.Sensors.BandSensorReadingEventArgs<Microsoft.Band.Sensors.IBandPedometerReading> e)
         {
 
         }
 
-        private void _producer_OnGyroscopeSensorUpdate(object sender, Microsoft.Band.Sensors.BandSensorReadingEventArgs<Microsoft.Band.Sensors.IBandGyroscopeReading> e)
+        protected virtual void _producer_OnHeartRateSensorUpdate(object sender, Microsoft.Band.Sensors.BandSensorReadingEventArgs<Microsoft.Band.Sensors.IBandHeartRateReading> e)
         {
 
         }
 
-        private void _producer_OnGrsSensorUpdate(object sender, Microsoft.Band.Sensors.BandSensorReadingEventArgs<Microsoft.Band.Sensors.IBandGsrReading> e)
+        protected virtual void _producer_OnGyroscopeSensorUpdate(object sender, Microsoft.Band.Sensors.BandSensorReadingEventArgs<Microsoft.Band.Sensors.IBandGyroscopeReading> e)
         {
 
         }
 
-        private void _producer_OnDistanceSensorUpdate(object sender, Microsoft.Band.Sensors.BandSensorReadingEventArgs<Microsoft.Band.Sensors.IBandDistanceReading> e)
+        protected virtual void _producer_OnGrsSensorUpdate(object sender, Microsoft.Band.Sensors.BandSensorReadingEventArgs<Microsoft.Band.Sensors.IBandGsrReading> e)
         {
 
         }
 
-        private void _producer_OnContactSensorUpdate(object sender, Microsoft.Band.Sensors.BandSensorReadingEventArgs<Microsoft.Band.Sensors.IBandContactReading> e)
+        protected virtual void _producer_OnDistanceSensorUpdate(object sender, Microsoft.Band.Sensors.BandSensorReadingEventArgs<Microsoft.Band.Sensors.IBandDistanceReading> e)
         {
 
         }
 
-        private void _producer_OnCaloriesSensorUpdate(object sender, Microsoft.Band.Sensors.BandSensorReadingEventArgs<Microsoft.Band.Sensors.IBandCaloriesReading> e)
+        protected virtual void _producer_OnContactSensorUpdate(object sender, Microsoft.Band.Sensors.BandSensorReadingEventArgs<Microsoft.Band.Sensors.IBandContactReading> e)
         {
 
         }
 
-        private void _producer_OnBarometerSensorUpdate(object sender, Microsoft.Band.Sensors.BandSensorReadingEventArgs<Microsoft.Band.Sensors.IBandBarometerReading> e)
+        protected virtual void _producer_OnCaloriesSensorUpdate(object sender, Microsoft.Band.Sensors.BandSensorReadingEventArgs<Microsoft.Band.Sensors.IBandCaloriesReading> e)
         {
 
         }
 
-        private void _producer_OnAltimeterSensorUpdate(object sender, Microsoft.Band.Sensors.BandSensorReadingEventArgs<Microsoft.Band.Sensors.IBandAltimeterReading> e)
+        protected virtual void _producer_OnBarometerSensorUpdate(object sender, Microsoft.Band.Sensors.BandSensorReadingEventArgs<Microsoft.Band.Sensors.IBandBarometerReading> e)
         {
 
         }
 
-        private void _producer_OnAccelerometerSensorUpdate(object sender, Microsoft.Band.Sensors.BandSensorReadingEventArgs<Microsoft.Band.Sensors.IBandAccelerometerReading> e)
+        protected virtual void _producer_OnAltimeterSensorUpdate(object sender, Microsoft.Band.Sensors.BandSensorReadingEventArgs<Microsoft.Band.Sensors.IBandAltimeterReading> e)
         {
 
         }
 
-        private void _producer_OnAmbientLightSensorUpdate(object sender, Microsoft.Band.Sensors.BandSensorReadingEventArgs<Microsoft.Band.Sensors.IBandAmbientLightReading> e)
+        protected virtual void _producer_OnAccelerometerSensorUpdate(object sender, Microsoft.Band.Sensors.BandSensorReadingEventArgs<Microsoft.Band.Sensors.IBandAccelerometerReading> e)
+        {
+
+        }
+
+        protected virtual void _producer_OnAmbientLightSensorUpdate(object sender, Microsoft.Band.Sensors.BandSensorReadingEventArgs<Microsoft.Band.Sensors.IBandAmbientLightReading> e)
         {
         }
     }

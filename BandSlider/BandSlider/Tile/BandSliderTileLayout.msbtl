@@ -1,0 +1,103 @@
+{
+  "$type": "DesignerContents",
+  "DesignerState": {
+    "$type": "DesignerState",
+    "BandLayout": {
+      "$type": "BandLayout",
+      "Version": {
+        "$type": "Version",
+        "Major": 2,
+        "Build": -1,
+        "Revision": -1
+      },
+      "BandTheme": {
+        "$type": "Theme",
+        "Base": "R: 51, G: 102, B: 204",
+        "HighContrast": "R: 58, G: 120, B: 221",
+        "Highlight": "R: 58, G: 120, B: 221",
+        "Lowlight": "R: 49, G: 101, B: 186",
+        "Muted": "R: 43, G: 90, B: 165",
+        "SecondaryText": "R: 137, G: 151, B: 171"
+      },
+      "TileTheme": {
+        "$type": "Theme",
+        "Base": "R: 51, G: 102, B: 204",
+        "HighContrast": "R: 58, G: 120, B: 221",
+        "Highlight": "R: 58, G: 120, B: 221",
+        "Lowlight": "R: 49, G: 101, B: 186",
+        "Muted": "R: 43, G: 90, B: 165",
+        "SecondaryText": "R: 137, G: 151, B: 171"
+      },
+      "RootPanel": {
+        "$type": "FlowPanel",
+        "Elements": {
+          "$type": "Elements",
+          "$values": [
+            {
+              "$type": "TextButton",
+              "PressedColor": "R: 32, G: 32, B: 32",
+              "Text": "Start",
+              "Name": "StartStop",
+              "ElementId": 2,
+              "Id": "47478d26-485d-4e6d-af8b-68c7c1cf6e85",
+              "Width": 125,
+              "Height": 60,
+              "TopMargin": 2,
+              "HorizontalAlignment": 2
+            },
+            {
+              "$type": "TextButton",
+              "PressedColor": "R: 32, G: 32, B: 32",
+              "Text": "Detect",
+              "Name": "StartStopDetection",
+              "ElementId": 3,
+              "Id": "471f48bd-4423-4dd7-97bb-d998f24c39fd",
+              "Width": 125,
+              "Height": 60,
+              "LeftMargin": 130,
+              "TopMargin": -60,
+              "HorizontalAlignment": 2
+            },
+            {
+              "$type": "TextButton",
+              "PressedColor": "R: 32, G: 32, B: 32",
+              "Text": "Next",
+              "Name": "Next",
+              "ElementId": 4,
+              "Id": "ad3e0bae-0428-4619-8357-dca4d0092d94",
+              "Width": 125,
+              "Height": 60,
+              "LeftMargin": 130,
+              "TopMargin": 4,
+              "HorizontalAlignment": 2
+            },
+            {
+              "$type": "TextButton",
+              "PressedColor": "R: 32, G: 32, B: 32",
+              "Text": "Prev",
+              "Name": "Prev",
+              "ElementId": 5,
+              "Id": "589eb9e0-c01c-44b1-9431-465e2c8444cd",
+              "Width": 125,
+              "Height": 60,
+              "TopMargin": -60,
+              "HorizontalAlignment": 2
+            }
+          ]
+        },
+        "Name": "",
+        "ElementId": 1,
+        "Id": "b902b019-efcf-4065-9970-6bea1f205852",
+        "Width": 257,
+        "Height": 128
+      }
+    },
+    "SelectedElements": {
+      "$type": "IdList",
+      "$values": [
+        "b902b019-efcf-4065-9970-6bea1f205852"
+      ]
+    }
+  },
+  "ZoomPercent": 100.0
+}
