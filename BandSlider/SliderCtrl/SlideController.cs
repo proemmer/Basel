@@ -24,6 +24,19 @@ namespace SliderCtrl
             }
         }
 
+        [HttpGet]
+        public int State()
+        {
+            try
+            {
+                return Convert.ToInt32( Globals.ThisAddIn.Application.ActivePresentation.SlideShowWindow.View.State);
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
+        }
+
         [HttpPost]
         public void Start()
         {
@@ -54,5 +67,6 @@ namespace SliderCtrl
         {
             Globals.ThisAddIn.Application.ActivePresentation.SlideShowWindow.View.Previous();
         }
+
     }
 }

@@ -51,6 +51,7 @@ namespace BandSlider
     {
         private App _viewModel;
         private bool _handlingClick;
+        private DateTime _lastEvent = DateTime.MinValue;
         IBandClient _bandClient;
 
         private async void ListenToTileEventsButton_Click(object sender, RoutedEventArgs e)
@@ -109,13 +110,46 @@ namespace BandSlider
             });
         }
 
-        private void TileManager_TileButtonPressed(object sender, BandTileEventArgs<IBandTileButtonPressedEvent> e)
+        private async void TileManager_TileButtonPressed(object sender, BandTileEventArgs<IBandTileButtonPressedEvent> e)
         {
-            Dispatcher.RunAsync(
+            await Dispatcher.RunAsync(
                  CoreDispatcherPriority.Normal,
-                 () =>
+                 async () =>
                  {
-                     _viewModel.StatusMessage = $"TileButtonPressed = {e.TileEvent.ElementId}";
+                     if (e.TileEvent.PageId == TileConstants.Page1Guid)
+                     {
+                         _viewModel.StatusMessage = $"TileButtonPressed = {e.TileEvent.ElementId}";
+
+                         if (_viewModel.SliderCtrl != null)
+                         {
+                             if (_lastEvent.AddMilliseconds(500) < DateTime.Now)
+                             {
+                                 _lastEvent = DateTime.Now;
+                                 switch (e.TileEvent.ElementId)
+                                 {
+                                     case 4: //next Button
+                                         await _viewModel.SliderCtrl.NextAsync();
+                                         break;
+                                     case 5:
+                                         await _viewModel.SliderCtrl.PrevAsync();
+                                         break;
+                                     case 2:
+                                         var state = await _viewModel.SliderCtrl.GetStateAsync();
+                                         if (state != -1)
+                                         {
+                                             if (state != 1) //Runnung
+                                                 await _viewModel.SliderCtrl.StartAsync();
+                                             else
+                                                 await _viewModel.SliderCtrl.StopAsync();
+                                         }
+                                         break;
+                                     case 3:
+                                         ButtonDetect_Click(this, null);
+                                         break;
+                                 }
+                             }
+                         }
+                     }
                  }
              );
         }

@@ -30,6 +30,14 @@ namespace TileEvents
             return await Task.FromResult<int>(-1);
         }
 
+        public async Task<int> GetStateAsync()
+        {
+            var response = await _client.GetAsync("api/slide/state");
+            if (response.IsSuccessStatusCode)
+                return await response.Content.ReadAsAsync<int>();
+            return await Task.FromResult<int>(-1);
+        }
+
         public async Task<bool> StartAsync()
         {
             var response = await _client.PostAsync("api/slide/start", null);
