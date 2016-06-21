@@ -40,15 +40,20 @@ namespace BandSlider
 
         }
 
-        private void Page_Unloaded(object sender, RoutedEventArgs e)
+        private async void Page_Unloaded(object sender, RoutedEventArgs e)
         {
             _viewModel.Producer.OnAccelerometerSensorUpdate -= Producer_OnAccelerometerSensorUpdate;
+
+            if (_viewModel.Playing)
+                await _viewModel.Player.StopAsync();
+            else
+                await _viewModel.Recorder.StopAsync();
         }
 
 
         private async void Producer_OnAccelerometerSensorUpdate(object sender, BandSensorReadingEventArgs<IBandAccelerometerReading> e)
         {
-            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => UpdateUI(e.SensorReading));
+            Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => UpdateUI(e.SensorReading));
         }
 
         private void UpdateUI(IBandAccelerometerReading accelerometerReading)

@@ -39,9 +39,7 @@ namespace Basel
                 // Get the list of Microsoft Bands paired to the phone.
                 IBandInfo[] pairedBands = await _bandClientManager.GetBandsAsync();
                 if (pairedBands.Length < 1)
-                {
                     return await Task.FromResult(false);
-                }
 
                 _bandClient = await _bandClientManager.ConnectAsync(pairedBands[0]);
                 if (_bandClient != null)
@@ -50,7 +48,7 @@ namespace Basel
 
                     if (_configuration.AmbientLight)
                     {
-                        _bandClient.SensorManager.AmbientLight.ReadingChanged += AmbientLight_ReadingChanged; ;
+                        _bandClient.SensorManager.AmbientLight.ReadingChanged += AmbientLight_ReadingChanged;
                         start.Add(_bandClient.SensorManager.AmbientLight.StartReadingsAsync());
                     }
 
@@ -132,7 +130,7 @@ namespace Basel
                         start.Add(_bandClient.SensorManager.UV.StartReadingsAsync());
                     }
 
-                    //Task.WaitAll(start.ToArray());
+                    await Task.WhenAll(start.ToArray());
                 }
             }
             catch (Exception ex)
@@ -146,93 +144,99 @@ namespace Basel
         {
             try
             {
-                var start = new List<Task>();
+                if (_bandClient == null)
+                    return await Task.FromResult(false);
+
+                var stop = new List<Task>();
 
                 if (_configuration.AmbientLight)
                 {
                     _bandClient.SensorManager.AmbientLight.ReadingChanged -= AmbientLight_ReadingChanged;
-                    start.Add(_bandClient.SensorManager.AmbientLight.StopReadingsAsync());
+                    stop.Add(_bandClient.SensorManager.AmbientLight.StopReadingsAsync());
                 }
 
                 if (_configuration.Accelerometer)
                 {
                     _bandClient.SensorManager.Accelerometer.ReadingChanged -= Accelerometer_ReadingChanged;
-                    start.Add(_bandClient.SensorManager.Accelerometer.StopReadingsAsync());
+                    stop.Add(_bandClient.SensorManager.Accelerometer.StopReadingsAsync());
                 }
 
                 if (_configuration.Altimeter)
                 {
                     _bandClient.SensorManager.Altimeter.ReadingChanged -= Altimeter_ReadingChanged;
-                    start.Add(_bandClient.SensorManager.Altimeter.StopReadingsAsync());
+                    stop.Add(_bandClient.SensorManager.Altimeter.StopReadingsAsync());
                 }
 
                 if (_configuration.Barometer)
                 {
                     _bandClient.SensorManager.Barometer.ReadingChanged -= Barometer_ReadingChanged; 
-                    start.Add(_bandClient.SensorManager.Barometer.StopReadingsAsync());
+                    stop.Add(_bandClient.SensorManager.Barometer.StopReadingsAsync());
                 }
 
                 if (_configuration.Calories)
                 {
                     _bandClient.SensorManager.Calories.ReadingChanged -= Calories_ReadingChanged;
-                    start.Add(_bandClient.SensorManager.Calories.StopReadingsAsync());
+                    stop.Add(_bandClient.SensorManager.Calories.StopReadingsAsync());
                 }
 
                 if (_configuration.Contact)
                 {
                     _bandClient.SensorManager.Contact.ReadingChanged -= Contact_ReadingChanged;
-                    start.Add(_bandClient.SensorManager.Contact.StopReadingsAsync());
+                    stop.Add(_bandClient.SensorManager.Contact.StopReadingsAsync());
                 }
 
                 if (_configuration.Distance)
                 {
                     _bandClient.SensorManager.Distance.ReadingChanged -= Distance_ReadingChanged;
-                    start.Add(_bandClient.SensorManager.Distance.StopReadingsAsync());
+                    stop.Add(_bandClient.SensorManager.Distance.StopReadingsAsync());
                 }
 
                 if (_configuration.Gsr)
                 {
                     _bandClient.SensorManager.Gsr.ReadingChanged -= Gsr_ReadingChanged;
-                    start.Add(_bandClient.SensorManager.Gsr.StopReadingsAsync());
+                    stop.Add(_bandClient.SensorManager.Gsr.StopReadingsAsync());
                 }
 
                 if (_configuration.Gyroscope)
                 {
                     _bandClient.SensorManager.Gyroscope.ReadingChanged -= Gyroscope_ReadingChanged;
-                    start.Add(_bandClient.SensorManager.Gyroscope.StopReadingsAsync());
+                    stop.Add(_bandClient.SensorManager.Gyroscope.StopReadingsAsync());
                 }
 
                 if (_configuration.HeartRate)
                 {
                     _bandClient.SensorManager.HeartRate.ReadingChanged -= HeartRate_ReadingChanged;
-                    start.Add(_bandClient.SensorManager.HeartRate.StopReadingsAsync());
+                    stop.Add(_bandClient.SensorManager.HeartRate.StopReadingsAsync());
                 }
 
                 if (_configuration.Pedometer)
                 {
                     _bandClient.SensorManager.Pedometer.ReadingChanged -= Pedometer_ReadingChanged;
-                    start.Add(_bandClient.SensorManager.Pedometer.StopReadingsAsync());
+                    stop.Add(_bandClient.SensorManager.Pedometer.StopReadingsAsync());
                 }
 
                 if (_configuration.RRInterval)
                 {
                     _bandClient.SensorManager.RRInterval.ReadingChanged -= RRInterval_ReadingChanged;
-                    start.Add(_bandClient.SensorManager.RRInterval.StopReadingsAsync());
+                    stop.Add(_bandClient.SensorManager.RRInterval.StopReadingsAsync());
                 }
 
                 if (_configuration.SkinTemperature)
                 {
                     _bandClient.SensorManager.SkinTemperature.ReadingChanged -= SkinTemperature_ReadingChanged;
-                    start.Add(_bandClient.SensorManager.SkinTemperature.StopReadingsAsync());
+                    stop.Add(_bandClient.SensorManager.SkinTemperature.StopReadingsAsync());
                 }
 
                 if (_configuration.UV)
                 {
                     _bandClient.SensorManager.UV.ReadingChanged -= UV_ReadingChanged;
-                    start.Add(_bandClient.SensorManager.UV.StopReadingsAsync());
+                    stop.Add(_bandClient.SensorManager.UV.StopReadingsAsync());
                 }
 
-                Task.WaitAll(start.ToArray());
+                await Task.WhenAll(stop.ToArray());
+
+                _bandClient.Dispose();
+                _bandClient = null;
             }
             catch (Exception ex)
             {

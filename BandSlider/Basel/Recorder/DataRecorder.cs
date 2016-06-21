@@ -44,8 +44,8 @@ namespace Basel.Recorder
 
         public async Task<bool> StopAsync()
         {
-            var stopped = await _producer.StopAsync();
             RecorderState = RecorderState.Stopped;
+            var stopped = await _producer.StopAsync();
             DeactivateCallbacks();
             return stopped;
         }
@@ -147,7 +147,7 @@ namespace Basel.Recorder
 
             if (_configuration.AmbientLight)
             {
-                _producer.OnAmbientLightSensorUpdate -= _producer_OnAmbientLightSensorUpdate; ;
+                _producer.OnAmbientLightSensorUpdate -= _producer_OnAmbientLightSensorUpdate;
             }
 
             if (_configuration.Accelerometer)

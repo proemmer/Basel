@@ -1,0 +1,1341 @@
+{
+  "$type": "Basel.Record, Basel",
+  "Accelerometer": [
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.916748046875,
+      "AccelerationY": -0.299072265625,
+      "AccelerationZ": -0.18408203125,
+      "Timestamp": "2016-06-21T21:16:20.734435+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.917236328125,
+      "AccelerationY": -0.301025390625,
+      "AccelerationZ": -0.1826171875,
+      "Timestamp": "2016-06-21T21:16:20.7524442+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.916748046875,
+      "AccelerationY": -0.30126953125,
+      "AccelerationZ": -0.178466796875,
+      "Timestamp": "2016-06-21T21:16:20.7674346+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.908203125,
+      "AccelerationY": -0.302490234375,
+      "AccelerationZ": -0.171875,
+      "Timestamp": "2016-06-21T21:16:20.7794386+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.9072265625,
+      "AccelerationY": -0.302490234375,
+      "AccelerationZ": -0.16943359375,
+      "Timestamp": "2016-06-21T21:16:20.797065+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.899169921875,
+      "AccelerationY": -0.305419921875,
+      "AccelerationZ": -0.15771484375,
+      "Timestamp": "2016-06-21T21:16:20.8141635+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.9013671875,
+      "AccelerationY": -0.30615234375,
+      "AccelerationZ": -0.156494140625,
+      "Timestamp": "2016-06-21T21:16:20.8306349+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.90185546875,
+      "AccelerationY": -0.308349609375,
+      "AccelerationZ": -0.15625,
+      "Timestamp": "2016-06-21T21:16:20.8655481+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.90087890625,
+      "AccelerationY": -0.3134765625,
+      "AccelerationZ": -0.153076171875,
+      "Timestamp": "2016-06-21T21:16:20.8665494+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.897216796875,
+      "AccelerationY": -0.314208984375,
+      "AccelerationZ": -0.146728515625,
+      "Timestamp": "2016-06-21T21:16:20.881621+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.896484375,
+      "AccelerationY": -0.315673828125,
+      "AccelerationZ": -0.14453125,
+      "Timestamp": "2016-06-21T21:16:20.8995727+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.896728515625,
+      "AccelerationY": -0.322509765625,
+      "AccelerationZ": -0.14306640625,
+      "Timestamp": "2016-06-21T21:16:20.9165797+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.897705078125,
+      "AccelerationY": -0.324951171875,
+      "AccelerationZ": -0.14892578125,
+      "Timestamp": "2016-06-21T21:16:20.9325777+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.901123046875,
+      "AccelerationY": -0.32470703125,
+      "AccelerationZ": -0.150146484375,
+      "Timestamp": "2016-06-21T21:16:20.950304+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.90087890625,
+      "AccelerationY": -0.328857421875,
+      "AccelerationZ": -0.1591796875,
+      "Timestamp": "2016-06-21T21:16:20.9678331+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.907958984375,
+      "AccelerationY": -0.336669921875,
+      "AccelerationZ": -0.1650390625,
+      "Timestamp": "2016-06-21T21:16:20.9791406+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.9150390625,
+      "AccelerationY": -0.34619140625,
+      "AccelerationZ": -0.169677734375,
+      "Timestamp": "2016-06-21T21:16:20.9967125+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.92431640625,
+      "AccelerationY": -0.349609375,
+      "AccelerationZ": -0.162353515625,
+      "Timestamp": "2016-06-21T21:16:21.0129336+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.9140625,
+      "AccelerationY": -0.355224609375,
+      "AccelerationZ": -0.1552734375,
+      "Timestamp": "2016-06-21T21:16:21.0300776+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.914306640625,
+      "AccelerationY": -0.357177734375,
+      "AccelerationZ": -0.15576171875,
+      "Timestamp": "2016-06-21T21:16:21.0466945+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.914794921875,
+      "AccelerationY": -0.354248046875,
+      "AccelerationZ": -0.16162109375,
+      "Timestamp": "2016-06-21T21:16:21.0644016+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.921875,
+      "AccelerationY": -0.3515625,
+      "AccelerationZ": -0.162841796875,
+      "Timestamp": "2016-06-21T21:16:21.0819053+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.924072265625,
+      "AccelerationY": -0.348876953125,
+      "AccelerationZ": -0.15966796875,
+      "Timestamp": "2016-06-21T21:16:21.0979613+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.92431640625,
+      "AccelerationY": -0.342529296875,
+      "AccelerationZ": -0.1552734375,
+      "Timestamp": "2016-06-21T21:16:21.1154645+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.92578125,
+      "AccelerationY": -0.344970703125,
+      "AccelerationZ": -0.15869140625,
+      "Timestamp": "2016-06-21T21:16:21.1329324+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.92822265625,
+      "AccelerationY": -0.35791015625,
+      "AccelerationZ": -0.15966796875,
+      "Timestamp": "2016-06-21T21:16:21.1489309+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.953369140625,
+      "AccelerationY": -0.465087890625,
+      "AccelerationZ": -0.18896484375,
+      "Timestamp": "2016-06-21T21:16:21.1665992+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 1.0322265625,
+      "AccelerationY": -0.713134765625,
+      "AccelerationZ": -0.230712890625,
+      "Timestamp": "2016-06-21T21:16:21.1781633+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 1.061767578125,
+      "AccelerationY": -0.921142578125,
+      "AccelerationZ": -0.221435546875,
+      "Timestamp": "2016-06-21T21:16:21.1956629+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.9990234375,
+      "AccelerationY": -1.199462890625,
+      "AccelerationZ": -0.197021484375,
+      "Timestamp": "2016-06-21T21:16:21.2117149+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 1.056640625,
+      "AccelerationY": -1.3427734375,
+      "AccelerationZ": -0.245849609375,
+      "Timestamp": "2016-06-21T21:16:21.2290507+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 1.126220703125,
+      "AccelerationY": -1.9814453125,
+      "AccelerationZ": -0.35107421875,
+      "Timestamp": "2016-06-21T21:16:21.2472398+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.85400390625,
+      "AccelerationY": -3.1328125,
+      "AccelerationZ": -0.63818359375,
+      "Timestamp": "2016-06-21T21:16:21.2627929+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.9091796875,
+      "AccelerationY": -3.40380859375,
+      "AccelerationZ": -0.94921875,
+      "Timestamp": "2016-06-21T21:16:21.2807522+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 1.046142578125,
+      "AccelerationY": -3.13232421875,
+      "AccelerationZ": -0.917236328125,
+      "Timestamp": "2016-06-21T21:16:21.2982813+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 1.015869140625,
+      "AccelerationY": -2.764404296875,
+      "AccelerationZ": -0.8359375,
+      "Timestamp": "2016-06-21T21:16:21.314306+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 1.20166015625,
+      "AccelerationY": -2.89599609375,
+      "AccelerationZ": -0.64501953125,
+      "Timestamp": "2016-06-21T21:16:21.3318472+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 1.286376953125,
+      "AccelerationY": -2.894775390625,
+      "AccelerationZ": -0.436767578125,
+      "Timestamp": "2016-06-21T21:16:21.3318472+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 1.316650390625,
+      "AccelerationY": -2.6611328125,
+      "AccelerationZ": -0.098876953125,
+      "Timestamp": "2016-06-21T21:16:21.3657009+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 1.25,
+      "AccelerationY": -2.01513671875,
+      "AccelerationZ": 0.0302734375,
+      "Timestamp": "2016-06-21T21:16:21.3767049+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 1.186279296875,
+      "AccelerationY": -1.767578125,
+      "AccelerationZ": 0.070556640625,
+      "Timestamp": "2016-06-21T21:16:21.3957517+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 1.032470703125,
+      "AccelerationY": -1.08056640625,
+      "AccelerationZ": 0.146240234375,
+      "Timestamp": "2016-06-21T21:16:21.4120719+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.93701171875,
+      "AccelerationY": -1.059326171875,
+      "AccelerationZ": 0.078369140625,
+      "Timestamp": "2016-06-21T21:16:21.4307978+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.9638671875,
+      "AccelerationY": -1.085205078125,
+      "AccelerationZ": 0.072998046875,
+      "Timestamp": "2016-06-21T21:16:21.4453384+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.85986328125,
+      "AccelerationY": -1.015380859375,
+      "AccelerationZ": 0.0419921875,
+      "Timestamp": "2016-06-21T21:16:21.4628474+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.731201171875,
+      "AccelerationY": -1.028564453125,
+      "AccelerationZ": -0.06982421875,
+      "Timestamp": "2016-06-21T21:16:21.4795397+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.7373046875,
+      "AccelerationY": -1.030517578125,
+      "AccelerationZ": -0.14697265625,
+      "Timestamp": "2016-06-21T21:16:21.4795397+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.780517578125,
+      "AccelerationY": -0.805419921875,
+      "AccelerationZ": -0.245849609375,
+      "Timestamp": "2016-06-21T21:16:21.5146229+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.752685546875,
+      "AccelerationY": -0.919921875,
+      "AccelerationZ": -0.137451171875,
+      "Timestamp": "2016-06-21T21:16:21.5306829+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.761474609375,
+      "AccelerationY": -0.849853515625,
+      "AccelerationZ": -0.0654296875,
+      "Timestamp": "2016-06-21T21:16:21.5306829+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.91259765625,
+      "AccelerationY": -0.15576171875,
+      "AccelerationZ": -0.093994140625,
+      "Timestamp": "2016-06-21T21:16:21.5651734+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.6640625,
+      "AccelerationY": 0.31494140625,
+      "AccelerationZ": -0.17333984375,
+      "Timestamp": "2016-06-21T21:16:21.5771066+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.5966796875,
+      "AccelerationY": 0.4111328125,
+      "AccelerationZ": -0.22900390625,
+      "Timestamp": "2016-06-21T21:16:21.5942095+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.566162109375,
+      "AccelerationY": 0.531494140625,
+      "AccelerationZ": -0.244873046875,
+      "Timestamp": "2016-06-21T21:16:21.6106711+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.3642578125,
+      "AccelerationY": 0.629638671875,
+      "AccelerationZ": -0.261962890625,
+      "Timestamp": "2016-06-21T21:16:21.6280114+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.317138671875,
+      "AccelerationY": 0.616455078125,
+      "AccelerationZ": -0.295654296875,
+      "Timestamp": "2016-06-21T21:16:21.6280114+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.235107421875,
+      "AccelerationY": 0.593994140625,
+      "AccelerationZ": -0.3251953125,
+      "Timestamp": "2016-06-21T21:16:21.6613609+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.18310546875,
+      "AccelerationY": 0.545166015625,
+      "AccelerationZ": -0.296630859375,
+      "Timestamp": "2016-06-21T21:16:21.6794+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.19384765625,
+      "AccelerationY": 0.53662109375,
+      "AccelerationZ": -0.253173828125,
+      "Timestamp": "2016-06-21T21:16:21.6794+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.184814453125,
+      "AccelerationY": 0.55712890625,
+      "AccelerationZ": -0.1923828125,
+      "Timestamp": "2016-06-21T21:16:21.7129552+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.21142578125,
+      "AccelerationY": 0.6201171875,
+      "AccelerationZ": -0.204833984375,
+      "Timestamp": "2016-06-21T21:16:21.7309609+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.34130859375,
+      "AccelerationY": 0.660400390625,
+      "AccelerationZ": -0.250732421875,
+      "Timestamp": "2016-06-21T21:16:21.7309609+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.760009765625,
+      "AccelerationY": 0.8115234375,
+      "AccelerationZ": -0.434326171875,
+      "Timestamp": "2016-06-21T21:16:21.7475323+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 1.319091796875,
+      "AccelerationY": 0.984619140625,
+      "AccelerationZ": -0.55078125,
+      "Timestamp": "2016-06-21T21:16:21.7755768+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 1.563232421875,
+      "AccelerationY": 1.057861328125,
+      "AccelerationZ": -0.589111328125,
+      "Timestamp": "2016-06-21T21:16:21.7755768+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 2.118896484375,
+      "AccelerationY": 1.04345703125,
+      "AccelerationZ": -0.730712890625,
+      "Timestamp": "2016-06-21T21:16:21.8105886+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 2.751220703125,
+      "AccelerationY": 0.93115234375,
+      "AccelerationZ": -0.761474609375,
+      "Timestamp": "2016-06-21T21:16:21.8266602+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 3.02001953125,
+      "AccelerationY": 0.815673828125,
+      "AccelerationZ": -0.74853515625,
+      "Timestamp": "2016-06-21T21:16:21.8266602+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 3.59326171875,
+      "AccelerationY": 0.308349609375,
+      "AccelerationZ": -0.662841796875,
+      "Timestamp": "2016-06-21T21:16:21.8606581+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 4.004150390625,
+      "AccelerationY": -0.04150390625,
+      "AccelerationZ": -0.623779296875,
+      "Timestamp": "2016-06-21T21:16:21.8776619+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 4.2978515625,
+      "AccelerationY": -0.02783203125,
+      "AccelerationZ": -0.632080078125,
+      "Timestamp": "2016-06-21T21:16:21.8776619+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 5.009521484375,
+      "AccelerationY": -0.442138671875,
+      "AccelerationZ": -0.801025390625,
+      "Timestamp": "2016-06-21T21:16:21.8956801+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 5.624267578125,
+      "AccelerationY": -0.660888671875,
+      "AccelerationZ": -1.044677734375,
+      "Timestamp": "2016-06-21T21:16:21.930188+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 6.323974609375,
+      "AccelerationY": -0.892578125,
+      "AccelerationZ": -1.198486328125,
+      "Timestamp": "2016-06-21T21:16:21.930188+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 7.379638671875,
+      "AccelerationY": -1.375244140625,
+      "AccelerationZ": -0.68115234375,
+      "Timestamp": "2016-06-21T21:16:21.946194+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 7.9990234375,
+      "AccelerationY": -1.490966796875,
+      "AccelerationZ": 0.32177734375,
+      "Timestamp": "2016-06-21T21:16:21.9642555+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 7.9990234375,
+      "AccelerationY": -2.0537109375,
+      "AccelerationZ": 0.452392578125,
+      "Timestamp": "2016-06-21T21:16:21.9980164+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 7.9990234375,
+      "AccelerationY": -2.517822265625,
+      "AccelerationZ": -0.197509765625,
+      "Timestamp": "2016-06-21T21:16:22.0086813+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 7.496826171875,
+      "AccelerationY": -2.28271484375,
+      "AccelerationZ": -0.85205078125,
+      "Timestamp": "2016-06-21T21:16:22.0271854+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 6.224853515625,
+      "AccelerationY": -2.626220703125,
+      "AccelerationZ": -0.849853515625,
+      "Timestamp": "2016-06-21T21:16:22.0271854+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 4.0166015625,
+      "AccelerationY": -2.840576171875,
+      "AccelerationZ": -0.502197265625,
+      "Timestamp": "2016-06-21T21:16:22.0432084+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 3.12451171875,
+      "AccelerationY": -3.00244140625,
+      "AccelerationZ": -1.09375,
+      "Timestamp": "2016-06-21T21:16:22.0779145+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 2.68408203125,
+      "AccelerationY": -3.1328125,
+      "AccelerationZ": -1.173828125,
+      "Timestamp": "2016-06-21T21:16:22.0779145+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 1.77294921875,
+      "AccelerationY": -2.5302734375,
+      "AccelerationZ": -0.8955078125,
+      "Timestamp": "2016-06-21T21:16:22.0944649+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 1.162109375,
+      "AccelerationY": -1.859130859375,
+      "AccelerationZ": -0.544921875,
+      "Timestamp": "2016-06-21T21:16:22.1450093+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.942626953125,
+      "AccelerationY": -1.813232421875,
+      "AccelerationZ": -0.583984375,
+      "Timestamp": "2016-06-21T21:16:22.1450093+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.6552734375,
+      "AccelerationY": -1.6083984375,
+      "AccelerationZ": -0.6630859375,
+      "Timestamp": "2016-06-21T21:16:22.1469415+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.476318359375,
+      "AccelerationY": -1.224365234375,
+      "AccelerationZ": -0.59912109375,
+      "Timestamp": "2016-06-21T21:16:22.16301+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.43505859375,
+      "AccelerationY": -1.01318359375,
+      "AccelerationZ": -0.565673828125,
+      "Timestamp": "2016-06-21T21:16:22.1739489+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.38818359375,
+      "AccelerationY": -0.585693359375,
+      "AccelerationZ": -0.534912109375,
+      "Timestamp": "2016-06-21T21:16:22.1919894+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.329345703125,
+      "AccelerationY": -0.1572265625,
+      "AccelerationZ": -0.530029296875,
+      "Timestamp": "2016-06-21T21:16:22.2255245+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.35595703125,
+      "AccelerationY": -0.01416015625,
+      "AccelerationZ": -0.6064453125,
+      "Timestamp": "2016-06-21T21:16:22.2255245+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.373291015625,
+      "AccelerationY": 0.0498046875,
+      "AccelerationZ": -0.659423828125,
+      "Timestamp": "2016-06-21T21:16:22.2426015+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.442138671875,
+      "AccelerationY": 0.144775390625,
+      "AccelerationZ": -0.624267578125,
+      "Timestamp": "2016-06-21T21:16:22.2770434+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.5341796875,
+      "AccelerationY": 0.16064453125,
+      "AccelerationZ": -0.62255859375,
+      "Timestamp": "2016-06-21T21:16:22.2770434+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.611572265625,
+      "AccelerationY": 0.447021484375,
+      "AccelerationZ": -0.526123046875,
+      "Timestamp": "2016-06-21T21:16:22.2945765+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.584228515625,
+      "AccelerationY": 0.603515625,
+      "AccelerationZ": -0.576904296875,
+      "Timestamp": "2016-06-21T21:16:22.3108614+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.726806640625,
+      "AccelerationY": 0.53662109375,
+      "AccelerationZ": -0.60693359375,
+      "Timestamp": "2016-06-21T21:16:22.3280911+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.9404296875,
+      "AccelerationY": 0.4267578125,
+      "AccelerationZ": -0.76416015625,
+      "Timestamp": "2016-06-21T21:16:22.3494084+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.947021484375,
+      "AccelerationY": 0.34814453125,
+      "AccelerationZ": -0.67138671875,
+      "Timestamp": "2016-06-21T21:16:22.3619042+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.82958984375,
+      "AccelerationY": 0.4365234375,
+      "AccelerationZ": -0.586669921875,
+      "Timestamp": "2016-06-21T21:16:22.3729105+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.74267578125,
+      "AccelerationY": 0.4912109375,
+      "AccelerationZ": -0.582275390625,
+      "Timestamp": "2016-06-21T21:16:22.3905534+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.7783203125,
+      "AccelerationY": 0.4443359375,
+      "AccelerationZ": -0.576416015625,
+      "Timestamp": "2016-06-21T21:16:22.4240568+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.78662109375,
+      "AccelerationY": 0.401611328125,
+      "AccelerationZ": -0.603271484375,
+      "Timestamp": "2016-06-21T21:16:22.4240568+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.872314453125,
+      "AccelerationY": 0.26171875,
+      "AccelerationZ": -0.57177734375,
+      "Timestamp": "2016-06-21T21:16:22.4420781+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.857177734375,
+      "AccelerationY": 0.3505859375,
+      "AccelerationZ": -0.57861328125,
+      "Timestamp": "2016-06-21T21:16:22.4595112+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.839599609375,
+      "AccelerationY": 0.343017578125,
+      "AccelerationZ": -0.574951171875,
+      "Timestamp": "2016-06-21T21:16:22.475171+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.851806640625,
+      "AccelerationY": 0.269287109375,
+      "AccelerationZ": -0.571533203125,
+      "Timestamp": "2016-06-21T21:16:22.4931905+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.80224609375,
+      "AccelerationY": 0.262939453125,
+      "AccelerationZ": -0.54052734375,
+      "Timestamp": "2016-06-21T21:16:22.5105107+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.83056640625,
+      "AccelerationY": 0.214111328125,
+      "AccelerationZ": -0.55419921875,
+      "Timestamp": "2016-06-21T21:16:22.5269906+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.88330078125,
+      "AccelerationY": 0.218017578125,
+      "AccelerationZ": -0.590576171875,
+      "Timestamp": "2016-06-21T21:16:22.5445804+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.84912109375,
+      "AccelerationY": 0.2626953125,
+      "AccelerationZ": -0.614013671875,
+      "Timestamp": "2016-06-21T21:16:22.5618614+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.8291015625,
+      "AccelerationY": 0.276123046875,
+      "AccelerationZ": -0.59228515625,
+      "Timestamp": "2016-06-21T21:16:22.5793628+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.82373046875,
+      "AccelerationY": 0.2734375,
+      "AccelerationZ": -0.58740234375,
+      "Timestamp": "2016-06-21T21:16:22.5903798+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.863525390625,
+      "AccelerationY": 0.314208984375,
+      "AccelerationZ": -0.579833984375,
+      "Timestamp": "2016-06-21T21:16:22.6066268+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.8837890625,
+      "AccelerationY": 0.361083984375,
+      "AccelerationZ": -0.580322265625,
+      "Timestamp": "2016-06-21T21:16:22.6244401+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.829345703125,
+      "AccelerationY": 0.415283203125,
+      "AccelerationZ": -0.60009765625,
+      "Timestamp": "2016-06-21T21:16:22.6404381+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.75537109375,
+      "AccelerationY": 0.40380859375,
+      "AccelerationZ": -0.6240234375,
+      "Timestamp": "2016-06-21T21:16:22.6574741+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.72900390625,
+      "AccelerationY": 0.419921875,
+      "AccelerationZ": -0.63818359375,
+      "Timestamp": "2016-06-21T21:16:22.6751504+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.734130859375,
+      "AccelerationY": 0.381591796875,
+      "AccelerationZ": -0.57421875,
+      "Timestamp": "2016-06-21T21:16:22.6921262+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.782470703125,
+      "AccelerationY": 0.318603515625,
+      "AccelerationZ": -0.580322265625,
+      "Timestamp": "2016-06-21T21:16:22.7095829+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.79541015625,
+      "AccelerationY": 0.297119140625,
+      "AccelerationZ": -0.561279296875,
+      "Timestamp": "2016-06-21T21:16:22.7271151+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.731201171875,
+      "AccelerationY": 0.337158203125,
+      "AccelerationZ": -0.548583984375,
+      "Timestamp": "2016-06-21T21:16:22.743181+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.72119140625,
+      "AccelerationY": 0.3525390625,
+      "AccelerationZ": -0.596923828125,
+      "Timestamp": "2016-06-21T21:16:22.7605097+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.73779296875,
+      "AccelerationY": 0.357666015625,
+      "AccelerationZ": -0.603271484375,
+      "Timestamp": "2016-06-21T21:16:22.7715887+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.738037109375,
+      "AccelerationY": 0.36376953125,
+      "AccelerationZ": -0.60400390625,
+      "Timestamp": "2016-06-21T21:16:22.7896225+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.712646484375,
+      "AccelerationY": 0.38720703125,
+      "AccelerationZ": -0.6376953125,
+      "Timestamp": "2016-06-21T21:16:22.8069476+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.708984375,
+      "AccelerationY": 0.391845703125,
+      "AccelerationZ": -0.657958984375,
+      "Timestamp": "2016-06-21T21:16:22.8226582+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.663818359375,
+      "AccelerationY": 0.39404296875,
+      "AccelerationZ": -0.68310546875,
+      "Timestamp": "2016-06-21T21:16:22.8406827+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.6083984375,
+      "AccelerationY": 0.370361328125,
+      "AccelerationZ": -0.687744140625,
+      "Timestamp": "2016-06-21T21:16:22.8566798+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.591796875,
+      "AccelerationY": 0.35693359375,
+      "AccelerationZ": -0.6845703125,
+      "Timestamp": "2016-06-21T21:16:22.8745788+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.601806640625,
+      "AccelerationY": 0.35400390625,
+      "AccelerationZ": -0.679931640625,
+      "Timestamp": "2016-06-21T21:16:22.8921636+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.585693359375,
+      "AccelerationY": 0.3876953125,
+      "AccelerationZ": -0.634033203125,
+      "Timestamp": "2016-06-21T21:16:22.9081608+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.60791015625,
+      "AccelerationY": 0.35986328125,
+      "AccelerationZ": -0.63134765625,
+      "Timestamp": "2016-06-21T21:16:22.9255082+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.6689453125,
+      "AccelerationY": 0.343994140625,
+      "AccelerationZ": -0.62158203125,
+      "Timestamp": "2016-06-21T21:16:22.9428217+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.693603515625,
+      "AccelerationY": 0.336669921875,
+      "AccelerationZ": -0.606689453125,
+      "Timestamp": "2016-06-21T21:16:22.9595511+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.7060546875,
+      "AccelerationY": 0.32763671875,
+      "AccelerationZ": -0.61279296875,
+      "Timestamp": "2016-06-21T21:16:22.97213+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.723876953125,
+      "AccelerationY": 0.3095703125,
+      "AccelerationZ": -0.630126953125,
+      "Timestamp": "2016-06-21T21:16:22.9883592+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.73193359375,
+      "AccelerationY": 0.31640625,
+      "AccelerationZ": -0.635986328125,
+      "Timestamp": "2016-06-21T21:16:23.0063514+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.715087890625,
+      "AccelerationY": 0.3193359375,
+      "AccelerationZ": -0.647705078125,
+      "Timestamp": "2016-06-21T21:16:23.0228086+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.681640625,
+      "AccelerationY": 0.339599609375,
+      "AccelerationZ": -0.662841796875,
+      "Timestamp": "2016-06-21T21:16:23.0393256+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.6708984375,
+      "AccelerationY": 0.3408203125,
+      "AccelerationZ": -0.679931640625,
+      "Timestamp": "2016-06-21T21:16:23.0563428+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.676025390625,
+      "AccelerationY": 0.34326171875,
+      "AccelerationZ": -0.681396484375,
+      "Timestamp": "2016-06-21T21:16:23.0733266+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.68017578125,
+      "AccelerationY": 0.343505859375,
+      "AccelerationZ": -0.666748046875,
+      "Timestamp": "2016-06-21T21:16:23.0909244+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.68115234375,
+      "AccelerationY": 0.335693359375,
+      "AccelerationZ": -0.6533203125,
+      "Timestamp": "2016-06-21T21:16:23.1074526+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.68408203125,
+      "AccelerationY": 0.3349609375,
+      "AccelerationZ": -0.646728515625,
+      "Timestamp": "2016-06-21T21:16:23.1241396+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.713623046875,
+      "AccelerationY": 0.32373046875,
+      "AccelerationZ": -0.633544921875,
+      "Timestamp": "2016-06-21T21:16:23.1417159+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.709228515625,
+      "AccelerationY": 0.31591796875,
+      "AccelerationZ": -0.61865234375,
+      "Timestamp": "2016-06-21T21:16:23.1592736+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.709228515625,
+      "AccelerationY": 0.311279296875,
+      "AccelerationZ": -0.624755859375,
+      "Timestamp": "2016-06-21T21:16:23.171648+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.70458984375,
+      "AccelerationY": 0.300048828125,
+      "AccelerationZ": -0.599853515625,
+      "Timestamp": "2016-06-21T21:16:23.1881713+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.697021484375,
+      "AccelerationY": 0.267822265625,
+      "AccelerationZ": -0.596435546875,
+      "Timestamp": "2016-06-21T21:16:23.2042701+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.70458984375,
+      "AccelerationY": 0.261474609375,
+      "AccelerationZ": -0.601806640625,
+      "Timestamp": "2016-06-21T21:16:23.2227832+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.71435546875,
+      "AccelerationY": 0.256591796875,
+      "AccelerationZ": -0.602294921875,
+      "Timestamp": "2016-06-21T21:16:23.2388026+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.719970703125,
+      "AccelerationY": 0.248046875,
+      "AccelerationZ": -0.59619140625,
+      "Timestamp": "2016-06-21T21:16:23.2776387+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.716064453125,
+      "AccelerationY": 0.269287109375,
+      "AccelerationZ": -0.59423828125,
+      "Timestamp": "2016-06-21T21:16:23.2786383+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.70556640625,
+      "AccelerationY": 0.291748046875,
+      "AccelerationZ": -0.5986328125,
+      "Timestamp": "2016-06-21T21:16:23.2906446+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.708740234375,
+      "AccelerationY": 0.2890625,
+      "AccelerationZ": -0.6064453125,
+      "Timestamp": "2016-06-21T21:16:23.3066596+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.7041015625,
+      "AccelerationY": 0.301513671875,
+      "AccelerationZ": -0.60302734375,
+      "Timestamp": "2016-06-21T21:16:23.323654+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.713134765625,
+      "AccelerationY": 0.3095703125,
+      "AccelerationZ": -0.601318359375,
+      "Timestamp": "2016-06-21T21:16:23.3406668+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.71337890625,
+      "AccelerationY": 0.33447265625,
+      "AccelerationZ": -0.602783203125,
+      "Timestamp": "2016-06-21T21:16:23.3581495+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.723876953125,
+      "AccelerationY": 0.3349609375,
+      "AccelerationZ": -0.599365234375,
+      "Timestamp": "2016-06-21T21:16:23.3581495+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.740478515625,
+      "AccelerationY": 0.330078125,
+      "AccelerationZ": -0.5986328125,
+      "Timestamp": "2016-06-21T21:16:23.3873752+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.748779296875,
+      "AccelerationY": 0.35791015625,
+      "AccelerationZ": -0.59375,
+      "Timestamp": "2016-06-21T21:16:23.425707+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.74658203125,
+      "AccelerationY": 0.360595703125,
+      "AccelerationZ": -0.581298828125,
+      "Timestamp": "2016-06-21T21:16:23.4266379+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.73876953125,
+      "AccelerationY": 0.3642578125,
+      "AccelerationZ": -0.57568359375,
+      "Timestamp": "2016-06-21T21:16:23.4376401+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.745361328125,
+      "AccelerationY": 0.38037109375,
+      "AccelerationZ": -0.578369140625,
+      "Timestamp": "2016-06-21T21:16:23.4548675+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.744384765625,
+      "AccelerationY": 0.38232421875,
+      "AccelerationZ": -0.580322265625,
+      "Timestamp": "2016-06-21T21:16:23.4724096+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.745849609375,
+      "AccelerationY": 0.369873046875,
+      "AccelerationZ": -0.5703125,
+      "Timestamp": "2016-06-21T21:16:23.4899168+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.7470703125,
+      "AccelerationY": 0.366455078125,
+      "AccelerationZ": -0.5771484375,
+      "Timestamp": "2016-06-21T21:16:23.5068881+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.742919921875,
+      "AccelerationY": 0.37158203125,
+      "AccelerationZ": -0.576171875,
+      "Timestamp": "2016-06-21T21:16:23.5068881+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.727783203125,
+      "AccelerationY": 0.37158203125,
+      "AccelerationZ": -0.569091796875,
+      "Timestamp": "2016-06-21T21:16:23.5401121+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.723876953125,
+      "AccelerationY": 0.36376953125,
+      "AccelerationZ": -0.568115234375,
+      "Timestamp": "2016-06-21T21:16:23.5571923+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.729736328125,
+      "AccelerationY": 0.367431640625,
+      "AccelerationZ": -0.569091796875,
+      "Timestamp": "2016-06-21T21:16:23.5571923+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.7333984375,
+      "AccelerationY": 0.364990234375,
+      "AccelerationZ": -0.560546875,
+      "Timestamp": "2016-06-21T21:16:23.585193+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.732421875,
+      "AccelerationY": 0.363525390625,
+      "AccelerationZ": -0.55517578125,
+      "Timestamp": "2016-06-21T21:16:23.6028761+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.7294921875,
+      "AccelerationY": 0.364013671875,
+      "AccelerationZ": -0.558349609375,
+      "Timestamp": "2016-06-21T21:16:23.6208978+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.72705078125,
+      "AccelerationY": 0.357666015625,
+      "AccelerationZ": -0.556640625,
+      "Timestamp": "2016-06-21T21:16:23.6368913+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.726806640625,
+      "AccelerationY": 0.35400390625,
+      "AccelerationZ": -0.566650390625,
+      "Timestamp": "2016-06-21T21:16:23.6549068+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.72998046875,
+      "AccelerationY": 0.358154296875,
+      "AccelerationZ": -0.572021484375,
+      "Timestamp": "2016-06-21T21:16:23.6549068+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.7294921875,
+      "AccelerationY": 0.351806640625,
+      "AccelerationZ": -0.5615234375,
+      "Timestamp": "2016-06-21T21:16:23.6879158+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.716552734375,
+      "AccelerationY": 0.352783203125,
+      "AccelerationZ": -0.563232421875,
+      "Timestamp": "2016-06-21T21:16:23.7055315+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.716064453125,
+      "AccelerationY": 0.351806640625,
+      "AccelerationZ": -0.566650390625,
+      "Timestamp": "2016-06-21T21:16:23.7055315+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.7138671875,
+      "AccelerationY": 0.335205078125,
+      "AccelerationZ": -0.570556640625,
+      "Timestamp": "2016-06-21T21:16:23.739511+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.710205078125,
+      "AccelerationY": 0.357666015625,
+      "AccelerationZ": -0.57568359375,
+      "Timestamp": "2016-06-21T21:16:23.75651+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.71337890625,
+      "AccelerationY": 0.36279296875,
+      "AccelerationZ": -0.57763671875,
+      "Timestamp": "2016-06-21T21:16:23.75651+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.70263671875,
+      "AccelerationY": 0.35498046875,
+      "AccelerationZ": -0.57080078125,
+      "Timestamp": "2016-06-21T21:16:23.7855148+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.70654296875,
+      "AccelerationY": 0.33154296875,
+      "AccelerationZ": -0.570556640625,
+      "Timestamp": "2016-06-21T21:16:23.8020563+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.718994140625,
+      "AccelerationY": 0.328369140625,
+      "AccelerationZ": -0.5751953125,
+      "Timestamp": "2016-06-21T21:16:23.8188102+02:00"
+    },
+    {
+      "$type": "Basel.SensorReadings.BaselBandAccelerometerReading, Basel",
+      "AccelerationX": 0.71630859375,
+      "AccelerationY": 0.340576171875,
+      "AccelerationZ": -0.5810546875,
+      "Timestamp": "2016-06-21T21:16:23.8368083+02:00"
+    }
+  ],
+  "Altimeter": [],
+  "AmbientLight": [],
+  "Barometer": [],
+  "Calories": [],
+  "Contact": [],
+  "Distance": [],
+  "Gsr": [],
+  "Gyroscope": [],
+  "HeartRate": [],
+  "Pedometer": [],
+  "RRInterval": [],
+  "SkinTemperature": [],
+  "UV": []
+}

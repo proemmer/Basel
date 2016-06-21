@@ -319,6 +319,8 @@ namespace BandSlider
                 });
 
             }
+
+            _viewModel.StatusMessage = "Detecting...";
         }
         #endregion
 
@@ -332,7 +334,6 @@ namespace BandSlider
             try
             {
                 action();
-                _viewModel.StatusMessage = "Paused";
             }
             catch (Exception ex)
             {

@@ -12,11 +12,12 @@ namespace Basel.Detection.Detectors
 {
     public class AccelerometerGestureDetector : Detector
     {
-        private const double GForceThreshold = 1.5;
+        private const double GForceThreshold = 0.0;
         private IRecognizer _recognizer = new UWaveRecognizer();
+        private readonly ISensorDataProducer _producer;
         private IBaselConfiguration _config = new BaselConfiguration() { Accelerometer = true };
         private List<IBandAccelerometerReading> _readings = new List<IBandAccelerometerReading>();
-        private int _minDataForDetection = 0;
+        private int _minDataForDetection = Int32.MaxValue;
 
 
 
@@ -24,8 +25,9 @@ namespace Basel.Detection.Detectors
 
         public AccelerometerGestureDetector(ISensorDataProducer producer, IBaselConfiguration configuration) : base(producer, configuration)
         {
+            _producer = producer;
             configuration.Accelerometer = true;
-            producer.OnAccelerometerSensorUpdate += Producer_OnAccelerometerSensorUpdate;
+            
         }
 
         public override void AddRecordAsGesture(string name, IRecord record, Action onDetected)
@@ -36,7 +38,7 @@ namespace Basel.Detection.Detectors
 
         public override void AddGesture(IGesture gesture, Action onDetected)
         {
-            if (_minDataForDetection < gesture.Length)
+            if (_minDataForDetection > gesture.Length)
                 _minDataForDetection = gesture.Length;
             _recognizer.AddGesture(gesture.Name, gesture);
             base.AddGesture(gesture, onDetected);
@@ -44,6 +46,7 @@ namespace Basel.Detection.Detectors
 
         public async Task StartDetectionAsync()
         {
+            _producer.OnAccelerometerSensorUpdate += Producer_OnAccelerometerSensorUpdate;
             await _producer.StartAsync();
         }
 
@@ -51,6 +54,7 @@ namespace Basel.Detection.Detectors
         public async Task StopDetectionAsync()
         {
             await _producer.StopAsync();
+            _producer.OnAccelerometerSensorUpdate -= Producer_OnAccelerometerSensorUpdate;
         }
 
 

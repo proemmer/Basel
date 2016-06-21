@@ -10,10 +10,9 @@ namespace Basel.Detection.Recognizer.UWave
     /// </summary>
     public class UWaveRecognizer : Recognizer
     {
-        private const int DIMENSION = 3;
         //(8,4) applies to 100Hz; if 50Hz, change to (4,2)...
-        private const int QUAN_WIN_SIZE = 8;
-        private const int QUAN_MOV_STEP = 4;
+        private const int QUAN_WIN_SIZE = 4;
+        private const int QUAN_MOV_STEP = 2;
 
         public override IGesture Recognize(List<IBandAccelerometerReading> readings)
         {
@@ -60,8 +59,9 @@ namespace Basel.Detection.Recognizer.UWave
         private int QuantizeAcc(List<IBandAccelerometerReading> readings)
         {
             var i = 0;
+            var k = 0;
             var window = QUAN_WIN_SIZE;
-            var temp = new List<BaselBandAccelerometerReading>();
+            var temp = new BaselBandAccelerometerReading[readings.Count / QUAN_MOV_STEP + 1];
             //take moving window average
             while (i < readings.Count)
             {
@@ -77,18 +77,19 @@ namespace Basel.Detection.Recognizer.UWave
                     sumZ += readings[j].AccelerationZ;
                 }
 
-                temp.Add(new BaselBandAccelerometerReading
+                temp[k] = new BaselBandAccelerometerReading
                 {
                     AccelerationX = sumX * 1.0 / window,
                     AccelerationY = sumY * 1.0 / window,
                     AccelerationZ = sumZ * 1.0 / window
-                });
-                i++;
+                };
+                k++;
+                i += QUAN_MOV_STEP;
             }//while
 
 
             //nonlinear quantization and copy quantized value to original buffer 	
-            for (i = 0; i < temp.Count; i++)
+            for (i = 0; i < k; i++)
             {
                 if (temp[i].AccelerationX > 10)
                 {
@@ -144,7 +145,7 @@ namespace Basel.Detection.Recognizer.UWave
                 };
             }
 
-            return temp.Count;
+            return k;
         }
 
         private double DTWdistance(List<IBandAccelerometerReading> sample1, int length1 , List<IBandAccelerometerReading> sample2, int length2, int i, int j, Dictionary<int, double> table)
