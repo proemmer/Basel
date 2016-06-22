@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace Basel.Detection.Helpers
+namespace Basel.Detection.Recognizer.Dollar.Helpers
 {
     /**
      * Represents a point in 2D coordinate space

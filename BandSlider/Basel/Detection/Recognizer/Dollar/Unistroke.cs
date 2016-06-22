@@ -1,4 +1,4 @@
-﻿using Basel.Detection.Helpers;
+﻿using Basel.Detection.Recognizer.Dollar.Helpers;
 using Microsoft.Band.Sensors;
 using System;
 using System.Collections.Generic;

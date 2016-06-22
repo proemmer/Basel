@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace Basel.Detection.Helpers
+namespace Basel.Detection.Recognizer.Dollar.Helpers
 {
     public struct Size
     {

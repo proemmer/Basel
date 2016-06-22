@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Basel.Detection.Helpers
+namespace Basel.Detection.Recognizer.Dollar.Helpers
 {
     [StructLayout(LayoutKind.Sequential)]
     internal struct GPRECTF

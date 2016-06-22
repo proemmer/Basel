@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.Band.Sensors;
-using Basel.Detection.Helpers;
 using Basel.SensorReadings;
-using Recognizer.Dollar;
 using System.Linq;
+using Basel.Detection.Recognizer.Dollar.Helpers;
 
 namespace Basel.Detection.Recognizer.Dollar
 {
@@ -67,9 +66,9 @@ namespace Basel.Detection.Recognizer.Dollar
                     double[] best = GoldenSectionSearch(
                             points,                             // to rotate
                             u.Points,                           // to match
-                            DetectionExtensions.Degrees2Radians(-45.0),   // lbound
-                            DetectionExtensions.Degrees2Radians(+45.0),   // ubound
-                            DetectionExtensions.Degrees2Radians(2.0)      // threshold
+                            DollarDetectionExtensions.Degrees2Radians(-45.0),   // lbound
+                            DollarDetectionExtensions.Degrees2Radians(+45.0),   // ubound
+                            DollarDetectionExtensions.Degrees2Radians(2.0)      // threshold
                         );
 
                     double score = 1.0 - best[0] / HalfDiagonal;
@@ -115,7 +114,7 @@ namespace Basel.Detection.Recognizer.Dollar
                 }
                 i++;
             }
-            return new double[3] { Math.Min(fx1, fx2), DetectionExtensions.Radians2Degrees((b + a) / 2.0), i }; // distance, angle, calls to pathdist
+            return new double[3] { Math.Min(fx1, fx2), DollarDetectionExtensions.Radians2Degrees((b + a) / 2.0), i }; // distance, angle, calls to pathdist
         }
 
         /// <summary>
@@ -135,7 +134,7 @@ namespace Basel.Detection.Recognizer.Dollar
             }
             double angle = Math.Atan(b / a);
             double distance = Math.Acos(a * Math.Cos(angle) + b * Math.Sin(angle));
-            return new double[3] { distance, DetectionExtensions.Radians2Degrees(angle), 0.0 }; // distance, angle, calls to pathdist
+            return new double[3] { distance, DollarDetectionExtensions.Radians2Degrees(angle), 0.0 }; // distance, angle, calls to pathdist
         }
 
         /// <summary>
@@ -165,7 +164,7 @@ namespace Basel.Detection.Recognizer.Dollar
             {
                 D = d; // the last angle tried was better still
                 theta += step;
-                List<IBandAccelerometerReading> newPoints = pts1.RotatePoints( DetectionExtensions.Degrees2Radians(theta));
+                List<IBandAccelerometerReading> newPoints = pts1.RotatePoints( DollarDetectionExtensions.Degrees2Radians(theta));
                 d = PathDistance(newPoints, pts2);
                 i++;
             }
@@ -187,7 +186,7 @@ namespace Basel.Detection.Recognizer.Dollar
 
             for (int i = -180; i <= +180; i++)
             {
-                List<IBandAccelerometerReading> newPoints = pts1.RotatePoints(DetectionExtensions.Degrees2Radians(i));
+                List<IBandAccelerometerReading> newPoints = pts1.RotatePoints(DollarDetectionExtensions.Degrees2Radians(i));
                 double d = PathDistance(newPoints, pts2);
 
                 if (d < bestD)

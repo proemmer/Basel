@@ -60,7 +60,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Recognizer.Dollar
+namespace Basel.Detection.Recognizer.Dollar.Helpers
 {
     public class NBestList
     {

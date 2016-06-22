@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Basel.Detection.Helpers
+namespace Basel.Detection.Recognizer.Dollar.Helpers
 {
     public struct Rectangle
     {

@@ -3,9 +3,9 @@ using Microsoft.Band.Sensors;
 using System;
 using System.Collections.Generic;
 
-namespace Basel.Detection.Helpers
+namespace Basel.Detection.Recognizer.Dollar.Helpers
 {
-    public static class DetectionExtensions
+    public static class DollarDetectionExtensions
     {
         public static List<IBandAccelerometerReading> ResampleInSpace(this List<IBandAccelerometerReading> points, double px)
         {
