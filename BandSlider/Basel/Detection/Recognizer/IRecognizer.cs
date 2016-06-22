@@ -1,5 +1,4 @@
 ﻿using Microsoft.Band.Sensors;
-using Recognizer.Dollar;
 using System.Collections.Generic;
 
 namespace Basel.Detection.Recognizer

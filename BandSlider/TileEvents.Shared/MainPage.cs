@@ -26,7 +26,6 @@ using Basel.Recorder;
 using Microsoft.Band;
 using Microsoft.Band.Tiles;
 using Microsoft.Band.Tiles.Pages;
-using Recognizer.Dollar;
 using System;
 using System.IO;
 using System.Linq;

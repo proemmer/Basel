@@ -197,7 +197,8 @@ namespace Basel.Recorder
                         }
                     }
 
-                    //TODO:  synchronize with other sensors!
+                    if (_cts.IsCancellationRequested)
+                        break;
 
                 } while (Loop);
             },
