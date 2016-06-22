@@ -18,6 +18,7 @@ namespace Basel.Detection.Detectors
         private IBaselConfiguration _config = new BaselConfiguration() { Accelerometer = true };
         private List<IBandAccelerometerReading> _readings = new List<IBandAccelerometerReading>();
         private int _minDataForDetection = Int32.MaxValue;
+        private int _maxDataForDetection = Int32.MinValue;
 
 
 
@@ -40,6 +41,8 @@ namespace Basel.Detection.Detectors
         {
             if (_minDataForDetection > gesture.Length)
                 _minDataForDetection = gesture.Length;
+            if (_maxDataForDetection < gesture.Length)
+                _maxDataForDetection = gesture.Length;
             _recognizer.AddGesture(gesture.Name, gesture);
             base.AddGesture(gesture, onDetected);
         }
@@ -72,7 +75,7 @@ namespace Basel.Detection.Detectors
                         _readings.Clear();
                         OnGestureDetected(gesture.Name);
                     }
-                    else
+                    else if(_readings.Count >= _maxDataForDetection)
                         _readings.RemoveAt(0);
                 }
             }
