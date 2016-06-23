@@ -60,7 +60,7 @@ This app could be used to test the functionality of the *Basel* (e.g. Record, Pl
 
 ##SliderCtrl
 
-Is an Powerpoint AddIn which opens an REST Interface to control the presentation remotely. This is used py the sample app to use gestures to control a presentration.  
+Is a Powerpoint AddIn which opens an REST interface to control the presentation remotely. This is used py the sample app to use gestures to control a presentration.  
 
 ```c#
     public partial class ThisAddIn
