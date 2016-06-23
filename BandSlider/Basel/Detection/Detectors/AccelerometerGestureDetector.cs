@@ -63,7 +63,6 @@ namespace Basel.Detection.Detectors
 
         private void Producer_OnAccelerometerSensorUpdate(object sender, BandSensorReadingEventArgs<IBandAccelerometerReading> e)
         {
-            var test = -Threshold;
             if (InRange(e.SensorReading))
             {
                 _readings.Add(e.SensorReading);
