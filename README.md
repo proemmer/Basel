@@ -58,6 +58,12 @@ This app could be used to test the functionality of the *Basel* (e.g. Record, Pl
 ![System Overview](./images/AccelerometerView.PNG)
 
 
+###BandTile
+
+To control a powerpoint presentation also from the band, we created a sample tile, which sends button events to the UWP app.
+
+![System Overview](./images/Tile.PNG)
+
 ##SliderCtrl
 
 Is a Powerpoint AddIn which opens an REST interface to control the presentation remotely. This is used py the sample app to use gestures to control a presentration.  
