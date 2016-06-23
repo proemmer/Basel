@@ -6,8 +6,10 @@ Control PowerPoint with the Microsoft Band 2
 
 Is a gesture library to receive data from the Microsoft Band 2 easily. It can be used for detecting gestures and also storing and replaying sensor readings.
 The stored gestures can also be written to the filesystem, for later use. The library contains 
-an extensible set of recognition algorithms which can be used e.g. by the detectors. A detector takes a set of template gestures and a for each gesture a 
-correlating delegate which get's invoked when one of the assigned gesture was detected by incoming sensor readings from the producer (e.g. MSBand or Player).
+an extensible set of recognition algorithms which can be used e.g. by the detectors. 
+
+A detector takes a set of template gestures and a for each gesture a 
+correlating delegate which gets invoked when one of the assigned gesture was detected by incoming sensor readings from the producer (e.g. MSBand or Player).
 
 ![System Overview](./images/System.PNG)
 
