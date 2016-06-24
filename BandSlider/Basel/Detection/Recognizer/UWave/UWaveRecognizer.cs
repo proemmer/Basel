@@ -30,7 +30,7 @@ namespace Basel.Detection.Recognizer.UWave
 
 
 
-        private int DetectGesture(List<IBandAccelerometerReading> readings, int length, List<UWaveGesture> gestures)
+        private int DetectGesture(List<IBandAccelerometerReading> readings, int length, List<UWaveGesture> gestures, double maxDistance = 1.0)
         {
             if (length <= 0)
                 return -1;
@@ -53,7 +53,7 @@ namespace Basel.Detection.Recognizer.UWave
                     ret = i;
             }
 
-            return ret;
+            return distances[ret] <= maxDistance ? ret : -1;
         }
 
         private int QuantizeAcc(List<IBandAccelerometerReading> readings)

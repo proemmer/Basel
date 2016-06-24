@@ -14,7 +14,6 @@ namespace Basel.Detection.Detectors
     {
         private const double GForceThreshold = 0.0;
         private IRecognizer _recognizer = new UWaveRecognizer();
-        private readonly ISensorDataProducer _producer;
         private IBaselConfiguration _config = new BaselConfiguration() { Accelerometer = true };
         private List<IBandAccelerometerReading> _readings = new List<IBandAccelerometerReading>();
         private int _minDataForDetection = Int32.MaxValue;
@@ -26,9 +25,7 @@ namespace Basel.Detection.Detectors
 
         public AccelerometerGestureDetector(ISensorDataProducer producer, IBaselConfiguration configuration) : base(producer, configuration)
         {
-            _producer = producer;
             configuration.Accelerometer = true;
-            
         }
 
         public override void AddRecordAsGesture(string name, IRecord record, Action onDetected)
@@ -47,21 +44,7 @@ namespace Basel.Detection.Detectors
             base.AddGesture(gesture, onDetected);
         }
 
-        public async Task StartDetectionAsync()
-        {
-            _producer.OnAccelerometerSensorUpdate += Producer_OnAccelerometerSensorUpdate;
-            await _producer.StartAsync();
-        }
-
-       
-        public async Task StopDetectionAsync()
-        {
-            await _producer.StopAsync();
-            _producer.OnAccelerometerSensorUpdate -= Producer_OnAccelerometerSensorUpdate;
-        }
-
-
-        private void Producer_OnAccelerometerSensorUpdate(object sender, BandSensorReadingEventArgs<IBandAccelerometerReading> e)
+        protected override void _producer_OnAccelerometerSensorUpdate(object sender, BandSensorReadingEventArgs<IBandAccelerometerReading> e)
         {
             if (InRange(e.SensorReading))
             {

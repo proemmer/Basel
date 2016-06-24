@@ -32,7 +32,9 @@ namespace Basel.Recorder
         Task<bool> StopAsync();
 
 
-        
+        double Speed { get; set; }
+
+        bool Loop { get; set; }
 
 
     }

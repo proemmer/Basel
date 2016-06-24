@@ -31,7 +31,7 @@ namespace SliderCtrl
             {
                 return Convert.ToInt32( Globals.ThisAddIn.Application.ActivePresentation.SlideShowWindow.View.State);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return -1;
             }

@@ -134,13 +134,10 @@ namespace BandSlider
                                          break;
                                      case 2:
                                          var state = await _viewModel.SliderCtrl.GetStateAsync();
-                                         if (state != -1)
-                                         {
-                                             if (state != 1) //Runnung
-                                                 await _viewModel.SliderCtrl.StartAsync();
-                                             else
-                                                 await _viewModel.SliderCtrl.StopAsync();
-                                         }
+                                         if (state != 1)
+                                             await _viewModel.SliderCtrl.StartAsync();
+                                         else
+                                             await _viewModel.SliderCtrl.StopAsync();
                                          break;
                                      case 3:
                                          ButtonDetect_Click(this, null);
@@ -167,6 +164,7 @@ namespace BandSlider
                         {
                             Record = _viewModel.CurrentRecord
                         };
+                        _viewModel.Player.Loop = true;
                         _viewModel.Producer = _viewModel.Player as ISensorDataProducer;
                         _viewModel.StatusMessage = "Playing...";
                     }
@@ -175,7 +173,10 @@ namespace BandSlider
                 }
                 else
                 {
-                    _viewModel.Producer = new BandManager(BandClientManager.Instance, _viewModel.Config);
+                    if(_bandClient != null)
+                        _viewModel.Producer = new BandManager(_bandClient, _viewModel.Config);
+                    else 
+                        _viewModel.Producer = new BandManager(BandClientManager.Instance, _viewModel.Config);
                     _viewModel.Recorder = new DataRecorder(_viewModel.Producer, _viewModel.Config);
                     _viewModel.StatusMessage = "Recording...";
                 }
@@ -183,7 +184,6 @@ namespace BandSlider
                 _viewModel.Root.Navigate(typeof(DataPage));
             });
         }
-
 
         private void ButtonStop_Click(object sender, RoutedEventArgs e)
         {
@@ -305,16 +305,23 @@ namespace BandSlider
                _viewModel.StatusMessage = "";
                if (_viewModel.PPDetector == null)
                {
-
                    if (_viewModel.Producer == null)
-                       _viewModel.Producer = new BandManager(BandClientManager.Instance, _viewModel.Config);
+                   {
+                       if(_bandClient == null)
+                            _viewModel.Producer = new BandManager(BandClientManager.Instance, _viewModel.Config);
+                       else
+                           _viewModel.Producer = new BandManager(_bandClient, _viewModel.Config);
+                   }
 
-                   _viewModel.PPDetector = new AccelerometerGestureDetector(_viewModel.Producer, new BaselConfiguration());
+                   _viewModel.PPDetector = new AccelerometerGestureDetector(_viewModel.Producer, _viewModel.Config);
                    await ConfigureDetector();
-                   await _viewModel.PPDetector.StartDetectionAsync();
+                   await _viewModel.PPDetector.StartAsync();
                }
                else
-                   await _viewModel.PPDetector.StopDetectionAsync();
+               {
+                   await _viewModel.PPDetector.StopAsync();
+                   _viewModel.PPDetector = null;
+               }
            });
 
         }

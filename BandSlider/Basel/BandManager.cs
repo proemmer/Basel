@@ -1,10 +1,7 @@
 ﻿using Microsoft.Band;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using System.Collections.Concurrent;
-using System.Linq;
 using Basel.SensorReadings;
 
 namespace Basel
@@ -31,17 +28,34 @@ namespace Basel
             _configuration = configuration;
         }
 
+        public BandManager(IBandClient bandClient, IBaselConfiguration configuration)
+        {
+            if (bandClient == null)
+                throw new ArgumentNullException("bandClient");
+            if (configuration == null)
+                throw new ArgumentNullException("configuration");
+
+            _bandClient = bandClient;
+            _configuration = configuration;
+        }
+
         public override async Task<bool> StartAsync()
         {
 
             try
             {
-                // Get the list of Microsoft Bands paired to the phone.
-                IBandInfo[] pairedBands = await _bandClientManager.GetBandsAsync();
-                if (pairedBands.Length < 1)
-                    return await Task.FromResult(false);
+                //We use an injected client, 
+                if (_bandClient == null)
+                {
+                    // Get the list of Microsoft Bands paired to the phone.
+                    IBandInfo[] pairedBands = await _bandClientManager.GetBandsAsync();
+                    if (pairedBands.Length < 1)
+                        return await Task.FromResult(false);
 
-                _bandClient = await _bandClientManager.ConnectAsync(pairedBands[0]);
+                    _bandClient = await _bandClientManager.ConnectAsync(pairedBands[0]);
+                }
+
+
                 if (_bandClient != null)
                 {
                     var start = new List<Task>();
@@ -235,10 +249,10 @@ namespace Basel
 
                 await Task.WhenAll(stop.ToArray());
 
-                _bandClient.Dispose();
-                _bandClient = null;
+                
+                Dispose();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return await Task.FromResult(false);
             }
@@ -247,8 +261,12 @@ namespace Basel
 
         public void Dispose()
         {
-            if (_bandClient != null)
+            //If we have no client manager, the calle have to handle the disposing
+            if (_bandClientManager != null && _bandClient != null)
+            {
                 _bandClient.Dispose();
+                _bandClient = null;
+            }
         }
 
         #region Reading Converter

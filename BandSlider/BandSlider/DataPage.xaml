@@ -10,6 +10,7 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        
         <Button Content="Back" Height="72" HorizontalAlignment="Center" Margin="0,10,10,0" Name="stopButton" VerticalAlignment="Top" Width="160" Click="stopButton_Click"/>
         <TextBlock Height="30" HorizontalAlignment="Left"  Margin="20,100,0,0" Name="xTextBlock" Text="X: 1.0" VerticalAlignment="Top" Foreground="Red" FontSize="28" FontWeight="Bold"/>
         <TextBlock Height="30" HorizontalAlignment="Center"  Margin="0,100,0,0" Name="yTextBlock" Text="Y: 1.0" VerticalAlignment="Top" Foreground="Green" FontSize="28" FontWeight="Bold"/>
@@ -17,6 +18,9 @@
         <Line x:Name="xLine" X1="240" Y1="350" X2="340" Y2="350" Stroke="Red" StrokeThickness="4"></Line>
         <Line x:Name="yLine" X1="240" Y1="350" X2="240" Y2="270" Stroke="Green" StrokeThickness="4"></Line>
         <Line x:Name="zLine" X1="240" Y1="350" X2="190" Y2="400" Stroke="Blue" StrokeThickness="4"></Line>
-        <TextBlock Height="30" HorizontalAlignment="Center" Margin="6,571,6,0" Name="statusTextBlock" Text="TextBlock" VerticalAlignment="Top" Width="444" />
+        <TextBlock Height="30" HorizontalAlignment="Center" Margin="6,571,6,0" Name="statusTextBlock" Text="" VerticalAlignment="Top" Width="444" />
+
+        <Slider x:Name="speed" Height="72" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="0,10,10,0" Value="10" Minimum="1" Maximum="10" />
+        <TextBlock Height="30" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0" Name="speedTextBlock" Text="TextBlock"  Width="444" />
     </Grid>
 </Page>

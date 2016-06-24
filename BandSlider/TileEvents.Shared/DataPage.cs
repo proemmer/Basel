@@ -70,6 +70,9 @@ namespace BandSlider
             yLine.Y2 = yLine.Y1 - accelerometerReading.AccelerationY * 200;
             zLine.X2 = zLine.X1 - accelerometerReading.AccelerationZ * 100;
             zLine.Y2 = zLine.Y1 + accelerometerReading.AccelerationZ * 100;
+
+            _viewModel.Player.Speed = speed.Value / 10 ;
+            speedTextBlock.Text = $"{_viewModel.Player.Speed} x";
         }
 
         private void stopButton_Click(object sender, RoutedEventArgs e)
