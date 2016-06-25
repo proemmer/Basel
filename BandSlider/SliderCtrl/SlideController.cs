@@ -53,19 +53,40 @@ namespace SliderCtrl
         [HttpPost]
         public void Stop()
         {
-            Globals.ThisAddIn.Application.ActivePresentation.SlideShowWindow.View.Exit();
+            try
+            {
+                Globals.ThisAddIn.Application.ActivePresentation.SlideShowWindow.View.Exit();
+            }
+            catch(Exception)
+            {
+
+            }
         }
 
         [HttpPost]
         public void Next()
         {
-            Globals.ThisAddIn.Application.ActivePresentation.SlideShowWindow.View.Next();
+            try
+            {
+                Globals.ThisAddIn.Application.ActivePresentation.SlideShowWindow.View.Next();
+            }
+            catch(Exception)
+            {
+
+            }
         }
 
         [HttpPost]
         public void Prev()
         {
-            Globals.ThisAddIn.Application.ActivePresentation.SlideShowWindow.View.Previous();
+            try
+            {
+                Globals.ThisAddIn.Application.ActivePresentation.SlideShowWindow.View.Previous();
+            }
+            catch(Exception)
+            {
+
+            }
         }
 
     }

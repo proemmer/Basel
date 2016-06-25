@@ -11,8 +11,10 @@ namespace Basel.Detection.Recognizer.UWave
     public class UWaveRecognizer : Recognizer
     {
         //(8,4) applies to 100Hz; if 50Hz, change to (4,2)...
-        private const int QUAN_WIN_SIZE = 4;
-        private const int QUAN_MOV_STEP = 2;
+
+        public int QuanWinSize { get; set; } = 4;
+        public int QuanMoveStep { get; set; } = 2;
+        public double MaxDistance { get; set; } = 1.0;
 
         public override IGesture Recognize(List<IBandAccelerometerReading> readings)
         {
@@ -24,7 +26,7 @@ namespace Basel.Detection.Recognizer.UWave
             foreach (var gesture in gestures)
                 gesture.Length = QuantizeAcc(gesture.Readings);
 
-            var ret = DetectGesture(readings, accIndex, gestures);
+            var ret = DetectGesture(readings, accIndex, gestures, MaxDistance);
             return ret >= 0 ?  gestures[ret] : null;
         }
 
@@ -60,8 +62,8 @@ namespace Basel.Detection.Recognizer.UWave
         {
             var i = 0;
             var k = 0;
-            var window = QUAN_WIN_SIZE;
-            var temp = new BaselBandAccelerometerReading[readings.Count / QUAN_MOV_STEP + 1];
+            var window = QuanWinSize;
+            var temp = new BaselBandAccelerometerReading[readings.Count / QuanMoveStep + 1];
             //take moving window average
             while (i < readings.Count)
             {
@@ -84,7 +86,7 @@ namespace Basel.Detection.Recognizer.UWave
                     AccelerationZ = sumZ * 1.0 / window
                 };
                 k++;
-                i += QUAN_MOV_STEP;
+                i += QuanMoveStep;
             }//while
 
 
