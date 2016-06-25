@@ -125,3 +125,14 @@ Is a Powerpoint AddIn which opens an REST interface to control the presentation 
         }
     }
 ```
+
+#Conclusion
+
+- Issues when switching devices -> needs new pairing
+- Battery runtime -> max two hours, when app is active
+- MS Band API not as reliable as expected
+  - Sometimes events are not raised
+  - Longer breaks between events
+- PowerPoint has to be started as admin or the used port has to be opend manually
+- Stored gestures have to be somewhere in KnownFolders for accessing them via UWP-app
+
