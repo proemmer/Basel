@@ -20,7 +20,7 @@ Basel uses the *ConsumerProducer* pattern to connect the modules with each other
 
 ###Configuration
 
-The basel configuration class ist the configuration for all basel modules, at the time, this is only used to activate sensors.
+The basel configuration class ist the configuration for all *Basel* modules, at the time, this is only used to activate sensors.
 
 ###Detection
 
@@ -35,7 +35,7 @@ In this namespace, you will find some algorithms to recognize gestures. For all 
 
 ####Detectors
 
-In this namespace, there are gesture detectors to detect gestures at runtime for different sensors.
+In this namespace, there are gesture detectors which are using the recognizers to detect gestures at runtime for different sensors.
 
 ![Recognizer](./images/Detector.PNG)
 
