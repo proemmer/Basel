@@ -26,13 +26,13 @@ namespace Basel.Detection.Recognizer.UWave
             foreach (var gesture in gestures)
                 gesture.Length = QuantizeAcc(gesture.Readings);
 
-            var ret = DetectGesture(readings, accIndex, gestures, MaxDistance);
+            var ret = DetectGesture(readingsCopy, accIndex, gestures, MaxDistance);
             return ret >= 0 ?  gestures[ret] : null;
         }
 
 
 
-        private int DetectGesture(List<IBandAccelerometerReading> readings, int length, List<UWaveGesture> gestures, double maxDistance = 1.0)
+        private int DetectGesture(List<IBandAccelerometerReading> readings, int length, List<UWaveGesture> gestures, double maxDistance)
         {
             if (length <= 0)
                 return -1;
