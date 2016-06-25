@@ -14,7 +14,39 @@ correlating delegate which gets invoked when one of the assigned gesture was det
 ![System Overview](./images/System.PNG)
 
 
-###Persistance
+Basel uses the *ConsumerProducer* pattern to connect the modules whit each other.
+
+![System Overview](./images/Producer.PNG)
+
+###Configuration
+
+The basel configuration class ist the configuration for all basel modules, at the time, this is only used to activate sensors.
+
+###Detection
+
+For detection, Basel provides 3 base classes and theyr interface. The first of them is *Gesture*, this class is a container whith sensor readings, a name and a lenght. The others are  Recognizer and Detector.
+
+![Recognizer](./images/Gesture.PNG)
+
+####Recognizers
+
+In this namespace, you will find some algorithms to revognize gestures. For all this *Recognizers*, you should use the Recognizer base class.
+
+
+![Recognizer](./images/Recognizer.PNG)
+
+####Detectors
+
+In this namespace, there are gesture detectors, to detect gestures at runtime, for different senssors.
+
+![Recognizer](./images/Detector.PNG)
+
+
+###Recorder
+
+This namespace contains a *Recorder*, a *Player* and the persistence module.
+
+####Persistance
 
 The recorded data can be stored to a file, by using the JSONSerial
 
@@ -46,6 +78,9 @@ The recorded data can be stored to a file, by using the JSONSerial
 }
 ```
 
+###Filter
+
+In this namespace ther ase some filters which can used.
 
 ##UWP Sample APP
 
