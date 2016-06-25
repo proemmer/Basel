@@ -16,7 +16,7 @@ correlating delegate which gets invoked when one of the assigned gesture was det
 
 Basel uses the *ConsumerProducer* pattern to connect the modules whit each other.
 
-![System Overview](./images/Producer.PNG)
+![Producer](./images/Producer.PNG)
 
 ###Configuration
 
@@ -25,8 +25,6 @@ The basel configuration class ist the configuration for all basel modules, at th
 ###Detection
 
 For detection, Basel provides 3 base classes and theyr interface. The first of them is *Gesture*, this class is a container whith sensor readings, a name and a lenght. The others are  Recognizer and Detector.
-
-![Recognizer](./images/Gesture.PNG)
 
 ####Recognizers
 
